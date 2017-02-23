@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>RocketMQ系列0x4——rocketmq-srvutil | 拾遗集 | 那故事仓猝结束不到气绝便已安葬</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="rocketmq,rocketmq-srvutil">
+    <meta name="description" content="1. &amp;#x89E3;&amp;#x8BFB;&amp;#x6574;&amp;#x4E2A; module &amp;#x53EA;&amp;#x6709;&amp;#x4E00;&amp;#x4E2A;&amp;#x6709;&amp;#x6548;&amp;#x6587;&amp;#x4EF6;&amp;#xFF1A;com.alibaba.rocketmq.srvutil.ServerUtil
+&amp;#x5728; Apache Commons CLI &amp;#x7684;&amp;#x57FA;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RocketMQ系列0x4——rocketmq-srvutil">
+<meta property="og:url" content="http://hiant.github.io/2016/08/21/rocketmq-0x4/index.html">
+<meta property="og:site_name" content="拾遗集">
+<meta property="og:description" content="1. &amp;#x89E3;&amp;#x8BFB;&amp;#x6574;&amp;#x4E2A; module &amp;#x53EA;&amp;#x6709;&amp;#x4E00;&amp;#x4E2A;&amp;#x6709;&amp;#x6548;&amp;#x6587;&amp;#x4EF6;&amp;#xFF1A;com.alibaba.rocketmq.srvutil.ServerUtil
+&amp;#x5728; Apache Commons CLI &amp;#x7684;&amp;#x57FA;&amp;">
+<meta property="og:updated_time" content="2016-08-29T04:14:30.657Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RocketMQ系列0x4——rocketmq-srvutil">
+<meta name="twitter:description" content="1. &amp;#x89E3;&amp;#x8BFB;&amp;#x6574;&amp;#x4E2A; module &amp;#x53EA;&amp;#x6709;&amp;#x4E00;&amp;#x4E2A;&amp;#x6709;&amp;#x6548;&amp;#x6587;&amp;#x4EF6;&amp;#xFF1A;com.alibaba.rocketmq.srvutil.ServerUtil
+&amp;#x5728; Apache Commons CLI &amp;#x7684;&amp;#x57FA;&amp;">
+    
+        <link rel="alternative" href="/atom.xml" title="拾遗集" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Hi ant</h5>
+          <a href="mailto:liudong.work@gmail.com" title="liudong.work@gmail.com" class="mail">liudong.work@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hiant" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">RocketMQ系列0x4——rocketmq-srvutil</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">RocketMQ系列0x4——rocketmq-srvutil</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-08-21T13:48:14.000Z" itemprop="datePublished" class="page-time">
+  2016-08-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/rocketmq/">rocketmq</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解读"><span class="post-toc-text">1. 解读</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-rocketmq-0x4"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">RocketMQ系列0x4——rocketmq-srvutil</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016年08月21日 21:48" datetime="2016-08-21T13:48:14.000Z"  itemprop="datePublished">2016-08-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/rocketmq/">rocketmq</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="&#x89E3;&#x8BFB;">1. &#x89E3;&#x8BFB;</h2><p>&#x6574;&#x4E2A; module &#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x6709;&#x6548;&#x6587;&#x4EF6;&#xFF1A;<code>com.alibaba.rocketmq.srvutil.ServerUtil</code></p>
+<p>&#x5728; <code>Apache Commons CLI</code> &#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x5C01;&#x88C5;&#x4E86;&#x670D;&#x52A1;&#x7AEF;&#x547D;&#x4EE4;&#x884C;&#x7684;4&#x4E2A;&#x9759;&#x6001;&#x65B9;&#x6CD5;</p>
+<ol>
+<li><p><code>public static Options buildCommandlineOptions(final Options options)</code><br> &#x5728; <code>options</code> &#x4E2D;&#x589E;&#x52A0; <code>-h</code>(<code>--help</code>) &#x548C; <code>-n</code>(<code>--namesrvAddr</code>)</p>
+</li>
+<li><p><code>public static CommandLine parseCmdLine(final String appName, String[] args, Options options, CommandLineParser parser)</code><br> &#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;&#x89E3;&#x6790;&#x5931;&#x8D25;&#x6216; <code>commandLine</code> &#x4E2D;&#x542B;&#x6709; <code>-h</code> &#x9009;&#x9879;&#x65F6;&#xFF0C;&#x5B9E;&#x4F8B;&#x5316; <code>width</code> &#x4E3A; <code>110</code> &#x7684; <code>org.apache.commons.cli.HelpFormatter</code> &#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x8C03;&#x7528; <code>printHelp</code> &#x65B9;&#x6CD5;&#x8F93;&#x51FA;&#x547D;&#x4EE4;&#x884C;&#x7684;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;&#xFF1B;&#x5426;&#x5219;&#x8FD4;&#x56DE;&#x89E3;&#x6790;&#x540E;&#x7684; <code>commandLine</code></p>
+</li>
+<li><p><code>public static void printCommandLineHelp(final String appName, final Options options)</code><br> &#x5B9E;&#x4F8B;&#x5316; <code>width</code> &#x4E3A; <code>110</code> &#x7684; <code>org.apache.commons.cli.HelpFormatter</code> &#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x8C03;&#x7528; <code>printHelp</code> &#x65B9;&#x6CD5;&#x8F93;&#x51FA;&#x547D;&#x4EE4;&#x884C;&#x7684;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;</p>
+</li>
+<li><p><code>public static Properties commandLine2Properties(final CommandLine commandLine)</code><br> &#x904D;&#x5386; <code>commandLine</code> &#x4E2D;&#x7684; Option[]&#xFF0C;&#x4EE5; option &#x7684; <code>LongOption</code> &#x505A;&#x4E3A; key &#xFF0C;&#x5C06;&#x5BF9;&#x5E94;&#x7684; value &#x52A0;&#x5165; <code>Properties</code> &#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;&#x4E2D;</p>
+</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-08-29T04:14:30.657Z" itemprop="dateUpdated">2016年8月29日 12:14</time>
+</span><br>
+
+
+        本站所有文章均为原创，欢迎订阅，转载请注明出处：<a href="/2016/08/21/rocketmq-0x4/" target="_blank" rel="external">http://hiant.github.io/2016/08/21/rocketmq-0x4/</a>
+    </div>
+    <footer>
+        <a href="http://hiant.github.io">
+            <img src="/img/author.jpg" alt="Hi ant">
+            Hi ant
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rocketmq/">rocketmq</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rocketmq-srvutil/">rocketmq-srvutil</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2016/08/21/rocketmq-0x4/&title=《RocketMQ系列0x4——rocketmq-srvutil》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2016/08/21/rocketmq-0x4/&title=《RocketMQ系列0x4——rocketmq-srvutil》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2016/08/21/rocketmq-0x4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RocketMQ系列0x4——rocketmq-srvutil》 — 拾遗集&url=http://hiant.github.io/2016/08/21/rocketmq-0x4/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2016/08/21/rocketmq-0x4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/08/26/rocketmq-0x5/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">RocketMQ系列0x5——rocketmq-namesrv</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/08/18/rocketmq-0x3/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">RocketMQ系列0x3——rocketmq-common</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="rocketmq-0x4" data-title="RocketMQ系列0x4——rocketmq-srvutil" data-url="http://hiant.github.io/2016/08/21/rocketmq-0x4/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'hiant', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.7');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>拾遗集 &copy; 2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2016/08/21/rocketmq-0x4/&title=《RocketMQ系列0x4——rocketmq-srvutil》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2016/08/21/rocketmq-0x4/&title=《RocketMQ系列0x4——rocketmq-srvutil》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2016/08/21/rocketmq-0x4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RocketMQ系列0x4——rocketmq-srvutil》 — 拾遗集&url=http://hiant.github.io/2016/08/21/rocketmq-0x4/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2016/08/21/rocketmq-0x4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3a0Y6CMBAFUP//p91Xk13x3g5uQjl9MoDQg8k4nc7jEY/nyzg+8vvs6/H2nicPDAyMyzKeh2My6eNvrd35LRUDA+MGjHcR7PjzcaDMX1DOfnscAwMDIw6USao3CdAYGBgYa4xk2ZlciYGBgXHMWEvgktGmgF9fi2NgYFyQkVfd///zV/Y3MDAwLsVYC515WGyTwsVZYWBgbM3IA1zSNnHWYnVxPhgYGJsy2q3HtrifT6h9KX/8DhgYGJsy8gavSXhN7jxpF8PAwLgDYy1qHSPzktlZS18MDIxdGec+rA2O+Zbnh5lgYGBszchbvvLy2fFUJncu/iswMDC2ZsyXr23K2Ibdt2cxMDA2ZeRNWkk5rG2bOC0QY2Bg3ICRPCwPgm3SGf0nJN0iGBgYWzMmzROThG8tiC/uZmBgYFyWMW+eWGuYaAtzo54RDAyMLRiTpod26u32ZP5cDAyMvRmLzVjx4nZCWmy2wMDA2JQxD6nzElu7tI72SDEwMDZirBX6c+rahkERrDEwMG7JmDR+Jclf27RRbAxgYGBszWgLYflmZ55ctmAMDIy9Gc9yTNop2nSwoGJgYGzNyEcbTCdBNink5U0hGBgYezDytK9d4uZF//liGAMD4w6MNvC1LVyL3Wr5lRgYGBiDRrHkFUxSTAwMDIxvX5MX5j6EbwwMjBsw2kJ/27SRTLpNEDEwMO7DaJeOeWHurHRz0qKBgYFxccYPFSlqmIB4F9AAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.7" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

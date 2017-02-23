@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>RocketMQ系列0x3——rocketmq-common | 拾遗集 | 那故事仓猝结束不到气绝便已安葬</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="rocketmq,rocketmq-common">
+    <meta name="description" content="1. Maven&amp;#x4F9D;&amp;#x8D56;&amp;#x56FE;&amp;#x4F7F;&amp;#x7528; IDEA &amp;#x53EF;&amp;#x4EE5;&amp;#x770B;&amp;#x5230; compile &amp;#x7EA7;&amp;#x522B;&amp;#x7684;&amp;#x4F9D;&amp;#x8D56;&amp;#x56FE;&amp;#x5982;&amp;#x4E0B;&amp;#xFF1A;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RocketMQ系列0x3——rocketmq-common">
+<meta property="og:url" content="http://hiant.github.io/2016/08/18/rocketmq-0x3/index.html">
+<meta property="og:site_name" content="拾遗集">
+<meta property="og:description" content="1. Maven&amp;#x4F9D;&amp;#x8D56;&amp;#x56FE;&amp;#x4F7F;&amp;#x7528; IDEA &amp;#x53EF;&amp;#x4EE5;&amp;#x770B;&amp;#x5230; compile &amp;#x7EA7;&amp;#x522B;&amp;#x7684;&amp;#x4F9D;&amp;#x8D56;&amp;#x56FE;&amp;#x5982;&amp;#x4E0B;&amp;#xFF1A;">
+<meta property="og:image" content="http://obob2kgnc.bkt.clouddn.com/img/0818/rocketmq_common.png">
+<meta property="og:updated_time" content="2016-11-23T06:26:51.828Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RocketMQ系列0x3——rocketmq-common">
+<meta name="twitter:description" content="1. Maven&amp;#x4F9D;&amp;#x8D56;&amp;#x56FE;&amp;#x4F7F;&amp;#x7528; IDEA &amp;#x53EF;&amp;#x4EE5;&amp;#x770B;&amp;#x5230; compile &amp;#x7EA7;&amp;#x522B;&amp;#x7684;&amp;#x4F9D;&amp;#x8D56;&amp;#x56FE;&amp;#x5982;&amp;#x4E0B;&amp;#xFF1A;">
+<meta name="twitter:image" content="http://obob2kgnc.bkt.clouddn.com/img/0818/rocketmq_common.png">
+    
+        <link rel="alternative" href="/atom.xml" title="拾遗集" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Hi ant</h5>
+          <a href="mailto:liudong.work@gmail.com" title="liudong.work@gmail.com" class="mail">liudong.work@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hiant" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">RocketMQ系列0x3——rocketmq-common</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">RocketMQ系列0x3——rocketmq-common</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-08-18T11:25:21.000Z" itemprop="datePublished" class="page-time">
+  2016-08-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/rocketmq/">rocketmq</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Maven依赖图"><span class="post-toc-text">1. Maven依赖图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解读"><span class="post-toc-text">2. 解读</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common"><span class="post-toc-text">2.1. common</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-admin"><span class="post-toc-text">2.2. common.admin</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-annotation"><span class="post-toc-text">2.3. common.annotation</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-conflict"><span class="post-toc-text">2.4. common.conflict</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-constant"><span class="post-toc-text">2.5. common.constant</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-consumer"><span class="post-toc-text">2.6. common.consumer</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-filter"><span class="post-toc-text">2.7. common.filter</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-filter-impl"><span class="post-toc-text">2.8. common.filter.impl</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-help"><span class="post-toc-text">2.9. common.help</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-hook"><span class="post-toc-text">2.10. common.hook</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-message"><span class="post-toc-text">2.11. common.message</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-namesrv"><span class="post-toc-text">2.12. common.namesrv</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-protocol"><span class="post-toc-text">2.13. common.protocol</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-protocol-body"><span class="post-toc-text">2.14. common.protocol.body</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-protocol-heartbeat"><span class="post-toc-text">2.15. common.protocol.heartbeat</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-protocol-topic"><span class="post-toc-text">2.16. common.protocol.topic</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-running"><span class="post-toc-text">2.17. common.running</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-stats"><span class="post-toc-text">2.18. common.stats</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-subscription"><span class="post-toc-text">2.19. common.subscription</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-sysflag"><span class="post-toc-text">2.20. common.sysflag</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common-utils"><span class="post-toc-text">2.21. common.utils</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他"><span class="post-toc-text">3. 其他</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-rocketmq-0x3"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">RocketMQ系列0x3——rocketmq-common</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016年08月18日 19:25" datetime="2016-08-18T11:25:21.000Z"  itemprop="datePublished">2016-08-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/rocketmq/">rocketmq</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Maven&#x4F9D;&#x8D56;&#x56FE;">1. Maven&#x4F9D;&#x8D56;&#x56FE;</h2><p>&#x4F7F;&#x7528; IDEA &#x53EF;&#x4EE5;&#x770B;&#x5230; compile &#x7EA7;&#x522B;&#x7684;&#x4F9D;&#x8D56;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://obob2kgnc.bkt.clouddn.com/img/0818/rocketmq_common.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="&#x89E3;&#x8BFB;">2. &#x89E3;&#x8BFB;</h2><p><code>rocketmq-common</code> &#x4E3B;&#x8981;&#x5C01;&#x88C5;&#x4E86;&#x4E00;&#x4E9B;&#x901A;&#x7528;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x3001;&#x679A;&#x4E3E;&#x3001;&#x5E38;&#x91CF;&#x7B49;&#x5B9A;&#x4E49;&#xFF0C;&#x4EE5;&#x53CA;&#x4E00;&#x4E9B;&#x7EF4;&#x62A4;&#x547D;&#x4EE4;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x9010;&#x4E2A;package&#x7406;&#x89E3;&#x4E00;&#x4E0B;&#x3002;</p>
+<h3 id="common">2.1. common</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">BrokerConfig</td>
+<td style="text-align:left">Broker&#x7684;&#x914D;&#x7F6E;JavaBean&#xFF0C;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7ED3;&#x6784;&#xFF1A;<br><ol> <li>rocketmqHome&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>System.getProperty(MixAll.ROCKETMQ_HOME_PROPERTY,System.getenv(MixAll.ROCKETMQ_HOME_ENV))</code>&#xFF1B;&#x5176;&#x4E2D; <code>ROCKETMQ_HOME_PROPERTY = &quot;rocketmq.home.dir&quot;</code> <code>ROCKETMQ_HOME_ENV = &quot;ROCKETMQ_HOME&quot;</code></li> <li>namesrvAddr&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>System.getProperty(MixAll.NAMESRV_ADDR_PROPERTY,System.getenv(MixAll.NAMESRV_ADDR_ENV))</code>&#xFF1B;&#x5176;&#x4E2D; <code>NAMESRV_ADDR_PROPERTY = &quot;rocketmq.namesrv.addr&quot;</code> <code>NAMESRV_ADDR_ENV = &quot;NAMESRV_ADDR&quot;</code></li> <li>brokerIP1&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>RemotingUtil.getLocalAddress()</code>&#xFF1B;&#x53D6;&#x7F51;&#x5361;&#x6240;&#x6709;IPV4&#x5730;&#x5740;&#x4E0D;&#x4E3A; <code>127.0</code> &#x548C; <code>192.168</code> &#x5F00;&#x5934;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#xFF0C;IPV4&#x5730;&#x5740;&#x4E3A;&#x7A7A;&#x5219;&#x53D6;IPV6&#x7B2C;&#x4E00;&#x4E2A;&#x5730;&#x5740;&#xFF0C;&#x5426;&#x5219;&#x8FD4;&#x56DE; <code>InetAddress.getLocalHost()</code></li> <li>brokerIP2&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>RemotingUtil.getLocalAddress()</code>&#xFF1B;&#x540C; <code>brokerIP1</code></li> <li>brokerName&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>localHostName()</code>&#xFF1B;&#x4E0D;&#x80FD;&#x83B7;&#x53D6; <code>InetAddress.getLocalHost().getHostName()</code> &#x65F6;&#x8FD4;&#x56DE;&#x56FA;&#x5B9A;&#x503C; <code>DEFAULT_BROKER</code></li> <li>brokerClusterName&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;DefaultCluster&quot;</code></li> <li>brokerId&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>MixAll.MASTER_ID</code>&#xFF1B;&#x5176;&#x4E2D; <code>MASTER_ID = 0L</code></li> <li>brokerPermission&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>PermName.PERM_READ</code>|<code>PermName.PERM_WRITE</code></li> <li>defaultTopicQueueNums&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>8</code></li> <li>autoCreateTopicEnable&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>true</code></li> <li>clusterTopicEnable&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>true</code></li> <li>brokerTopicEnable&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>true</code></li> <li>autoCreateSubscriptionGroup&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>true</code></li> <li>sendMessageThreadPoolNums&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>16 + Runtime.getRuntime().availableProcessors() * 4</code></li> <li>pullMessageThreadPoolNums&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>16 + Runtime.getRuntime().availableProcessors() * 2</code></li> <li>adminBrokerThreadPoolNums&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>16</code></li> <li>clientManageThreadPoolNums&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>16</code></li> <li>flushConsumerOffsetInterval&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>1000 * 5</code></li> <li>flushConsumerOffsetHistoryInterval&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>1000 * 60</code></li> <li>rejectTransactionMessage&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>false</code></li> <li>fetchNamesrvAddrByAddressServer&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>false</code></li> <li>sendThreadPoolQueueCapacity&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>100000</code></li> <li>pullThreadPoolQueueCapacity&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>100000</code></li> <li>filterServerNums&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>0</code></li> <li>longPollingEnable&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>true</code></li> <li>shortPollingTimeMills&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>1000</code></li> <li>notifyConsumerIdsChangedEnable&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>true</code></li> <li>highSpeedMode&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>false</code></li> <li>transferMsgByHeap&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>false</code></li> </ol></td>
+</tr>
+<tr>
+<td style="text-align:left">ConfigManager</td>
+<td style="text-align:left">&#x914D;&#x7F6E;&#x7BA1;&#x7406;&#x7684;&#x62BD;&#x8C61;&#x7C7B;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;3&#x4E2A;&#x65B9;&#x6CD5;&#xFF1A;<br><ol><li><code>load</code>&#xFF1A;&#x4ECE;&#x6587;&#x4EF6;&#x52A0;&#x8F7D;&#x6587;&#x4EF6;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x51FA;&#x9519;&#x65F6;&#x5C1D;&#x8BD5;&#x52A0;&#x8F7D; <code>.bak</code> &#x6587;&#x4EF6;&#x53CD;&#x5E8F;&#x5217;&#x5316;</li><li><code>persist</code>&#xFF1A;&#x540C;&#x6B65;&#x65B9;&#x6CD5;&#xFF0C;&#x5C06;&#x914D;&#x7F6E;&#x5E8F;&#x5217;&#x5316;&#x5230;&#x6587;&#x4EF6;</li></ol></td>
+</tr>
+<tr>
+<td style="text-align:left">DataVersion</td>
+<td style="text-align:left">&#x57FA;&#x4E8E;&#x65F6;&#x95F4;&#x6233;&#x3001;&#x539F;&#x5B50;&#x8BA1;&#x6570;&#x5668;&#x7684;&#x6570;&#x636E;&#x7248;&#x672C;</td>
+</tr>
+<tr>
+<td style="text-align:left">MixAll</td>
+<td style="text-align:left">&#x9884;&#x7F6E;&#x7684;&#x7CFB;&#x7EDF;&#x5E38;&#x91CF;&#x53CA;&#x4E00;&#x4E9B;&#x5E38;&#x7528;&#x65B9;&#x6CD5;&#xFF0C;&#x5E38;&#x91CF;&#x5217;&#x8868;&#xFF1A;<br><ol> <li>ROCKETMQ_HOME_ENV&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;ROCKETMQ_HOME&quot;</code></li> <li>ROCKETMQ_HOME_PROPERTY&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;rocketmq.home.dir&quot;</code></li> <li>NAMESRV_ADDR_ENV&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;NAMESRV_ADDR&quot;</code></li> <li>NAMESRV_ADDR_PROPERTY&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;rocketmq.namesrv.addr&quot;</code></li> <li>MESSAGE_COMPRESS_LEVEL&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;rocketmq.message.compressLevel&quot;</code></li> <li>WS_DOMAIN_NAME&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>System.getProperty(&quot;rocketmq.namesrv.domain&quot;, &quot;jmenv.tbsite.net&quot;)</code></li> <li>WS_DOMAIN_SUBGROUP&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>System.getProperty(&quot;rocketmq.namesrv.domain.subgroup&quot;, &quot;nsaddr&quot;)</code></li> <li>WS_ADDR&#xFF1A;<strong>&#x5F53;&#x542F;&#x52A8;Broker&#x65F6;&#xFF0C;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;NameServer&#x4F1A;&#x4ECE;&#x8FD9;&#x4E2A;&#x5730;&#x5740;&#x81EA;&#x52A8;&#x83B7;&#x53D6;&#xFF0C;&#x56E0;&#x6B64;&#x9664;&#x4E86;Ali&#x81EA;&#x5DF1;&#x7528;&#xFF0C;&#x4E00;&#x822C;&#x90FD;&#x8981;&#x5728;Broker&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x914D;&#x7F6E;NameServer&#xFF0C;&#x5426;&#x5219;Broker&#x8D77;&#x6765;&#x4E86;&#x4E5F;&#x4E0D;&#x4F1A;&#x5982;&#x9884;&#x671F;&#x4E00;&#x6837;&#x5DE5;&#x4F5C;</strong>&#xFF0C;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;http://&quot; + WS_DOMAIN_NAME + &quot;:8080/rocketmq/&quot; + WS_DOMAIN_SUBGROUP</code></li> <li>DEFAULT_TOPIC&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;TBW102&quot;</code></li> <li>BENCHMARK_TOPIC&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;BenchmarkTest&quot;</code></li> <li>DEFAULT_PRODUCER_GROUP&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;DEFAULT_PRODUCER&quot;</code></li> <li>DEFAULT_CONSUMER_GROUP&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;DEFAULT_CONSUMER&quot;</code></li> <li>TOOLS_CONSUMER_GROUP&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;TOOLS_CONSUMER&quot;</code></li> <li>FILTERSRV_CONSUMER_GROUP&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;FILTERSRV_CONSUMER&quot;</code></li> <li>MONITOR_CONSUMER_GROUP&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;__MONITOR_CONSUMER&quot;</code></li> <li>CLIENT_INNER_PRODUCER_GROUP&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;CLIENT_INNER_PRODUCER&quot;</code></li> <li>SELF_TEST_PRODUCER_GROUP&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;SELF_TEST_P_GROUP&quot;</code></li> <li>SELF_TEST_CONSUMER_GROUP&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;SELF_TEST_C_GROUP&quot;</code></li> <li>SELF_TEST_TOPIC&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;SELF_TEST_TOPIC&quot;</code></li> <li>OFFSET_MOVED_EVENT&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;OFFSET_MOVED_EVENT&quot;</code></li> <li>ONS_HTTP_PROXY_GROUP&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;CID_ONS-HTTP-PROXY&quot;</code></li> <li>CID_ONSAPI_PERMISSION_GROUP&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;CID_ONSAPI_PERMISSION&quot;</code></li> <li>CID_ONSAPI_OWNER_GROUP&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;CID_ONSAPI_OWNER&quot;</code></li> <li>CID_ONSAPI_PULL_GROUP&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;CID_ONSAPI_PULL&quot;</code></li> <li>CID_RMQ_SYS_PREFIX&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;CID_RMQ_SYS_&quot;</code></li> <li>LocalInetAddrs&#xFF1A;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x7F51;&#x5361;&#x7684;&#x5730;&#x5740;&#xFF0C;<strong>&#x672A;&#x4F7F;&#x7528;</strong></li> <li>Localhost&#xFF1A;<strong>&#x672A;&#x4F7F;&#x7528;</strong>&#xFF0C;&#x9ED8;&#x8BA4;&#x503C; <code>InetAddress.getLocalHost().getHostAddress()</code></li> <li>DEFAULT_CHARSET&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;UTF-8&quot;</code></li> <li>MASTER_ID&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>0L</code></li> <li>CURRENT_JVM_PID&#xFF1A;&#x901A;&#x8FC7; <code>RuntimeMXBean</code> &#x83B7;&#x53D6;&#x5F53;&#x524D;&#x8FDB;&#x7A0B;&#x7684;&#x8FDB;&#x7A0B;&#x53F7;&#xFF0C;<strong>&#x672A;&#x4F7F;&#x7528;</strong></li> <li>RETRY_GROUP_TOPIC_PREFIX&#xFF1A;&#x91CD;&#x8BD5;Topic&#x7684;&#x524D;&#x7F00;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;%RETRY%&quot;</code></li> <li>DLQ_GROUP_TOPIC_PREFIX&#xFF1A;DLQ&#x662F; <code>Dead Letter Queue</code> &#x7684;&#x7F29;&#x5199;&#xFF0C;&#x6B7B;&#x4FE1;&#x961F;&#x5217;&#x7684;&#x524D;&#x7F00;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;%DLQ%&quot;</code></li> <li>SYSTEM_TOPIC_PREFIX&#xFF1A;&#x7CFB;&#x7EDF;Topic&#x7684;&#x524D;&#x7F00;&#xFF0C;<strong>&#x672A;&#x4F7F;&#x7528;</strong>&#xFF0C;&#x9ED8;&#x8BA4;&#x503C; <code>&quot;rmq_sys_&quot;</code></li> </ol></td>
+</tr>
+<tr>
+<td style="text-align:left">MQVersion</td>
+<td style="text-align:left">&#x9884;&#x7F6E;&#x4E86;MQ&#x7684;&#x7814;&#x53D1;&#x7248;&#x672C;&#x53F7;&#xFF0C;&#x5F53;&#x524D;&#x7248;&#x672C;&#x53F7;&#x662F;&#xFF1A;<code>Version.V3_4_6</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Pair</td>
+<td style="text-align:left">&#x5C06;2&#x4E2A;&#x5BF9;&#x8C61;&#x5C01;&#x88C5;&#x6210;&#x4E00;&#x5BF9;&#xFF0C;<strong>&#x672A;&#x4F7F;&#x7528;</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">ServiceState</td>
+<td style="text-align:left">&#x751F;&#x4EA7;&#x8005;&#x3001;&#x6D88;&#x8D39;&#x8005;&#x5904;&#x7406;&#x670D;&#x52A1;&#x7684;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x679A;&#x4E3E;&#x503C;&#xFF1A;<br><ol><li><code>CREATE_JUST</code>&#xFF1A;&#x521A;&#x521B;&#x5EFA;&#x672A;&#x542F;&#x52A8;</li><li><code>RUNNING</code>&#xFF1A;&#x8FD0;&#x884C;&#x4E2D;</li><li><code>SHUTDOWN_ALREADY</code></li><li><code>START_FAILED</code></li></ol></td>
+</tr>
+<tr>
+<td style="text-align:left">ServiceThread</td>
+<td style="text-align:left">&#x670D;&#x52A1;&#x7EBF;&#x7A0B;&#x7684;&#x62BD;&#x8C61;&#x7C7B;&#xFF0C;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7ED3;&#x6784;&#xFF1A;<br><ol> <li>thread&#xFF1A;&#x5185;&#x90E8;&#x5C01;&#x88C5;&#x8D77;&#x6765;&#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x7EBF;&#x7A0B;&#x540D;&#x4E3A;&#x5B9E;&#x73B0;&#x7C7B;&#x8FD4;&#x56DE;&#x7684;&#x670D;&#x52A1;&#x540D;</li> <li>JoinTime&#xFF1A;&#x670D;&#x52A1;&#x5728; <code>shutdown</code> &#x7684;&#x65F6;&#x5019;&#x7EBF;&#x7A0B;join&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C; <code>90 * 1000</code></li> <li>hasNotified&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>false</code></li> <li>stoped&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>false</code></li> </ol></td>
+</tr>
+<tr>
+<td style="text-align:left">SystemClock</td>
+<td style="text-align:left">&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x6307;&#x5B9A;&#x7684; <code>precision</code> &#x81EA;&#x52A8;&#x66F4;&#x65B0;&#x7684;&#x65F6;&#x949F;JavaBean&#xFF0C;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7ED3;&#x6784;&#xFF1A;<br><ol> <li>precision&#xFF1A;&#x81EA;&#x52A8;&#x66F4;&#x65B0;&#x7684;&#x5468;&#x671F;&#x53CA;&#x4FEE;&#x6B63;&#x7CBE;&#x5EA6;</li> <li>now&#xFF1A;&#x5F53;&#x524D;&#x65F6;&#x949F;&#xFF0C;&#x66F4;&#x65B0;&#x65F6;&#x8BBE;&#x7F6E;&#x4E3A; <code>System.currentTimeMillis()</code></li> </ol></td>
+</tr>
+<tr>
+<td style="text-align:left">ThreadFactoryImpl</td>
+<td style="text-align:left"><code>ThreadFactory</code> &#x5B9E;&#x73B0;&#x7C7B;JavaBean&#xFF0C;&#x6839;&#x636E; <code>threadIndex</code> &#x548C; <code>threadNamePrefix</code> &#x751F;&#x6210;&#x6307;&#x5B9A;&#x540D;&#x79F0;&#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7ED3;&#x6784;&#xFF1A;<br><ol> <li>threadIndex&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>new AtomicLong(0)</code></li> <li>threadNamePrefix&#xFF1A;</li> </ol></td>
+</tr>
+<tr>
+<td style="text-align:left">TopicConfig</td>
+<td style="text-align:left">Topic&#x914D;&#x7F6E;&#x7684;JavaBean&#xFF0C;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7ED3;&#x6784;&#xFF1A;<br><ol> <li>DefaultReadQueueNums&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>16</code></li> <li>DefaultWriteQueueNums&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>16</code></li> <li>SEPARATOR&#xFF1A;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x5206;&#x9694;&#x7B26;&#xFF0C;<strong>&#x672A;&#x4F7F;&#x7528;</strong>&#xFF0C;&#x9ED8;&#x8BA4;&#x503C; <code>&quot; &quot;</code></li> <li>topicName&#xFF1A;<strong>&#x9700;&#x8981;&#x8BBE;&#x7F6E;</strong></li> <li>readQueueNums&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>DefaultReadQueueNums</code></li> <li>writeQueueNums&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>DefaultWriteQueueNums</code></li> <li>perm&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>PermName.PERM_READ</code>|<code>PermName.PERM_WRITE</code></li> <li>topicFilterType&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>TopicFilterType.SINGLE_TAG</code></li> <li>topicSysFlag&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>0</code></li> <li>order&#xFF1A;&#x9ED8;&#x8BA4;&#x503C; <code>false</code></li> </ol></td>
+</tr>
+<tr>
+<td style="text-align:left">TopicFilterType</td>
+<td style="text-align:left">Topic &#x8FC7;&#x6EE4;&#x7C7B;&#x578B;&#x7684;&#x679A;&#x4E3E;&#x503C;&#xFF1A;<br><ol><li><code>SINGLE_TAG</code></li><li><code>MULTI_TAG</code></li></ol></td>
+</tr>
+<tr>
+<td style="text-align:left">UtilAll</td>
+<td style="text-align:left">&#x5DE5;&#x5177;&#x7C7B;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x65F6;&#x95F4;&#x3001;&#x5B57;&#x7B26;&#x4E32;&#x3001;byte[]&#x3001;&#x5806;&#x6808;&#x7B49;&#x5904;&#x7406;&#x548C;&#x8F6C;&#x6362;&#x7684;&#x65B9;&#x6CD5;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>BrokerConfig.rocketmqHome</strong></p>
+<blockquote>
+<ul>
+<li>Broker&#x542F;&#x52A8;&#x65F6;&#xFF0C;&#x52A0;&#x8F7D; <code>brokerConfig.getRocketmqHome() + &quot;/conf/logback_broker.xml&quot;</code> &#x8DEF;&#x5F84;&#x4E0B;&#x7684;&#x65E5;&#x5FD7;&#x914D;&#x7F6E;</li>
+</ul>
+</blockquote>
+<p><strong>MixAll&#x4E2D;&#x7684;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#x7B80;&#x4ECB;&#xFF1A;</strong></p>
+<blockquote>
+<ul>
+<li>getRetryTopic&#xFF1A;&#x83B7;&#x53D6;&#x6307;&#x5B9A; <code>consumerGroup</code> &#x7684;&#x91CD;&#x8BD5;Topic &#x2013;&gt; <code>RETRY_GROUP_TOPIC_PREFIX + consumerGroup</code></li>
+<li>isSysConsumerGroup&#xFF1A;&#x6307;&#x5B9A; <code>consumerGroup</code> &#x7684;&#x662F;&#x5426;&#x7CFB;&#x7EDF;&#x5185;&#x90E8;&#x6D88;&#x8D39;&#x8005;&#x7EC4; &#x2013;&gt; <code>consumerGroup.startsWith(CID_RMQ_SYS_PREFIX)</code></li>
+<li>getDLQTopic&#xFF1A;&#x83B7;&#x53D6;&#x6307;&#x5B9A; <code>consumerGroup</code> &#x7684;&#x6B7B;&#x4FE1;&#x961F;&#x5217; &#x2013;&gt; <code>DLQ_GROUP_TOPIC_PREFIX + consumerGroup</code></li>
+<li>brokerVIPChannel&#xFF1A;&#x8FD4;&#x56DE;&#x6307;&#x5B9A; <code>brokerAddr</code> &#x7AEF;&#x53E3;&#x53F7;&#x5C0F;2&#x7684;Broker&#x5730;&#x5740;&#xFF1B;<strong>&#x76F8;&#x5173;&#x7AEF;&#x53E3;&#x7684;&#x95EE;&#x9898;&#x540E;&#x7EED;&#x5728;Broker&#x7684;&#x89E3;&#x8BFB;&#x4E2D;&#x4F1A;&#x6709;&#x8FDB;&#x4E00;&#x6B65;&#x8BF4;&#x660E;</strong></li>
+<li>getPID&#xFF1A;&#x901A;&#x8FC7; <code>RuntimeMXBean</code> &#x83B7;&#x53D6;&#x5F53;&#x524D;&#x8FDB;&#x7A0B;&#x7684;&#x8FDB;&#x7A0B;&#x53F7;</li>
+<li>string2File&#xFF1A;&#x4F7F;&#x7528; <code>string2FileNotSafe&#xFF1A;&#x4F7F;&#x7528;</code> &#x5C06;&#x6307;&#x5B9A; <code>str</code> &#x5199;&#x5165;&#x6307;&#x5B9A;&#x7684; <code>fileName</code>&#xFF1B;&#x5148;&#x5C06;&#x5185;&#x5BB9;&#x5199;&#x5165; <code>fileName + &quot;.tmp&quot;</code> &#x6587;&#x4EF6;&#xFF0C;&#x5982;&#x679C; <code>fileName</code> &#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x5B58;&#x5728;&#xFF0C;&#x5C06;&#x539F;&#x6765;&#x7684;&#x5185;&#x5BB9;&#x5199;&#x5165; <code>fileName + &quot;.bak&quot;</code>&#xFF0C;&#x5220;&#x9664;&#x6587;&#x4EF6;&#x540E;&#xFF0C;&#x5C06; <code>fileName + &quot;.tmp&quot;</code> &#x91CD;&#x547D;&#x540D;&#x5230; <code>fileName</code></li>
+<li>string2FileNotSafe&#xFF1A;&#x4F7F;&#x7528; <code>FileWriter</code> &#x5C06;&#x6307;&#x5B9A; <code>str</code> &#x5199;&#x5165;&#x6307;&#x5B9A;&#x7684; <code>fileName</code></li>
+<li>file2String(java.lang.String)&#xFF1A;&#x4F7F;&#x7528; <code>file2String(java.io.File)</code> &#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#x5185;&#x5BB9;</li>
+<li>file2String(java.net.URL)&#xFF1A;&#x4F7F;&#x7528; <code>URLConnection.getInputStream()</code> &#x83B7;&#x53D6;&#x8F93;&#x5165;&#x6D41;&#xFF0C;&#x6784;&#x9020; <code>UTF-8</code> &#x7F16;&#x7801;&#x7684;&#x5B57;&#x7B26;&#x4E32; </li>
+<li>file2String(java.io.File)&#xFF1A;&#x4F7F;&#x7528; <code>FileReader</code> &#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#xFF0C;<strong>&#x672A;&#x4F7F;&#x7528;&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x76F4;&#x63A5;&#x586B;&#x5145;char[]&#x540E;&#x8F6C;&#x6362;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5927;&#x6587;&#x4EF6;&#x614E;&#x7528;</strong></li>
+<li>printObjectProperties(org.slf4j.Logger, java.lang.Object)&#xFF1A;&#x8C03;&#x7528; <code>printObjectProperties(org.slf4j.Logger, java.lang.Object, boolean)</code>&#xFF0C;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x9ED8;&#x8BA4; <code>false</code></li>
+<li>printObjectProperties(org.slf4j.Logger, java.lang.Object, boolean)&#xFF1A;&#x4F7F;&#x7528; <code>Logger</code> &#xFF08;&#x672A;&#x6307;&#x5B9A;&#x65F6;&#xFF0C;&#x8F93;&#x51FA;&#x5230;&#x6807;&#x51C6;&#x8F93;&#x51FA;&#xFF09;&#x8F93;&#x51FA;&#x6307;&#x5B9A;&#x5BF9;&#x8C61;&#x7684;&#x58F0;&#x660E;&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x63A7;&#x5236;&#x662F;&#x5426;&#x53EA;&#x8F93;&#x51FA;&#x5E26;&#x6709; <code>com.alibaba.rocketmq.common.annotation.ImportantField</code> &#x6CE8;&#x89E3;&#x7684;&#x5B57;&#x6BB5;</li>
+<li>properties2String&#xFF1A;&#x5C06; <code>Properties</code> &#x5BF9;&#x8C61;&#x8F6C;&#x6210;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x6BCF;&#x884C;&#x4E00;&#x7EC4; <code>key=value</code></li>
+<li>string2Properties&#xFF1A;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x52A0;&#x8F7D;&#x8FDB; <code>Properties</code> &#x5BF9;&#x8C61;</li>
+<li>object2Properties&#xFF1A;&#x5C06;&#x6307;&#x5B9A;&#x5BF9;&#x8C61;&#x7684;&#x5B57;&#x6BB5;&#x548C;&#x503C;&#x52A0;&#x8F7D;&#x8FDB; <code>Properties</code> &#x5BF9;&#x8C61;</li>
+<li>properties2Object&#xFF1A;&#x904D;&#x5386;&#x6307;&#x5B9A;&#x5BF9;&#x8C61;&#x7684;&#x6240;&#x6709;set&#x65B9;&#x6CD5;&#xFF0C;&#x622A;&#x53D6;set&#x540E;&#x7684;&#x5269;&#x4F59;&#x5B57;&#x7B26;&#x4E32;&#x518D;&#x9996;&#x5B57;&#x6BCD;&#x5C0F;&#x5199;&#x4F5C;&#x4E3A;&#x5B57;&#x6BB5;&#x540D;&#xFF0C;&#x5982;&#x679C;&#x6307;&#x5B9A;&#x7684; <code>Properties</code> &#x5BF9;&#x8C61;&#x4E2D;&#x5B58;&#x5728;&#x8BE5;&#x5B57;&#x6BB5;&#xFF0C;&#x8C03;&#x7528;&#x8BE5;set&#x65B9;&#x6CD5;&#x8BBE;&#x7F6E; <code>Properties</code> &#x5BF9;&#x8C61;&#x5BF9;&#x5E94;&#x7684;&#x503C;</li>
+<li>isPropertiesEqual&#xFF1A;&#x901A;&#x8FC7; <code>Properties#equals</code> &#x5224;&#x65AD;&#x4E24;&#x4E2A; <code>Properties</code> &#x5BF9;&#x8C61;&#x662F;&#x5426;&#x76F8;&#x7B49;</li>
+<li>getLocalInetAddress&#xFF1A;&#x904D;&#x5386; <code>NetworkInterface.getNetworkInterfaces()</code> &#x4E2D;&#x7684;&#x6240;&#x6709;&#x5730;&#x5740;</li>
+<li>localhost&#xFF1A;<code>InetAddress.getLocalHost().getHostAddress()</code></li>
+<li>compareAndIncreaseOnly&#xFF1A;&#x901A;&#x8FC7;&#x5FAA;&#x73AF;&#x548C;CAS&#xFF0C;&#x4FDD;&#x8BC1; <code>AtomicLong</code> &#x7684;&#x503C;&#x8BBE;&#x7F6E;&#x6210;&#x529F;&#xFF0C;&#x8BBE;&#x7F6E;&#x7684;&#x503C;&#x5FC5;&#x987B;&#x5927;&#x4E8E;&#x8BBE;&#x7F6E;&#x524D;&#x7684;&#x503C;&#x624D;&#x80FD;&#x8FD4;&#x56DE; <code>true</code></li>
+</ul>
+</blockquote>
+</blockquote>
+<h3 id="common-admin">2.2. common.admin</h3><p><code>rocketmq-tools</code> &#x7BA1;&#x7406;&#x5DE5;&#x5177;&#x7528;&#x5230;&#x7684;&#x4E00;&#x4E9B;JavaBean</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ConsumeStats</td>
+<td style="text-align:left">&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#x7528;&#x5230;&#x7684;&#x6D88;&#x8D39;&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td style="text-align:left">OffsetWrapper</td>
+<td style="text-align:left">&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#x7528;&#x5230;&#x7684;&#x504F;&#x79FB;&#x91CF;&#x5305;&#x88C5;</td>
+</tr>
+<tr>
+<td style="text-align:left">RollbackStats</td>
+<td style="text-align:left">&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#x7528;&#x5230;&#x7684;&#x56DE;&#x6EDA;&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td style="text-align:left">TopicOffset</td>
+<td style="text-align:left">&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#x7528;&#x5230;&#x7684;Topic&#x504F;&#x79FB;&#x91CF;</td>
+</tr>
+<tr>
+<td style="text-align:left">TopicStatsTable</td>
+<td style="text-align:left">&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#x7528;&#x5230;&#x7684;Topic&#x72B6;&#x6001;&#x8868;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-annotation">2.3. common.annotation</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ImportantField</td>
+<td style="text-align:left">&#x7528;&#x6765;&#x6CE8;&#x89E3;&#x4E00;&#x4E9B;&#x914D;&#x7F6E;&#x4E2D;&#x7684;&#x91CD;&#x8981;&#x9879;&#xFF0C;&#x5728;&#x7EF4;&#x62A4;&#x5DE5;&#x5177;&#x4E2D;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x52A8;&#x6001;&#x8F93;&#x51FA;&#x8FD9;&#x4E9B;&#x5185;&#x5BB9;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>&#x6CE8;&#x89E3;&#x4F7F;&#x7528;&#x7684;&#x5730;&#x65B9;&#xFF1A;</strong></p>
+<ol>
+<li><code>com.alibaba.rocketmq.common.BrokerConfig</code></li>
+<li><code>com.alibaba.rocketmq.filtersrv.FiltersrvConfig</code></li>
+<li><code>com.alibaba.rocketmq.store.config.MessageStoreConfig</code></li>
+</ol>
+<p><strong>&#x6CE8;&#x89E3;&#x5224;&#x65AD;&#x7684;&#x5730;&#x65B9;&#xFF1A;</strong></p>
+<ol>
+<li><code>com.alibaba.rocketmq.common.MixAll#printObjectProperties(org.slf4j.Logger, java.lang.Object, boolean)</code></li>
+</ol>
+</blockquote>
+<h3 id="common-conflict">2.4. common.conflict</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">PackageConflictDetect</td>
+<td style="text-align:left">&#x7528;&#x4E8E; fastjson &#x7684;&#x7248;&#x672C;&#x51B2;&#x7A81;&#x68C0;&#x6D4B;&#xFF0C;&#x8981;&#x6C42;&#x6700;&#x4F4E;&#x7248;&#x672C;&#xFF1A;<code>1.2.3</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>fastjson &#x7248;&#x672C;&#x51B2;&#x7A81;&#x68C0;&#x6D4B;&#x7684;&#x5730;&#x65B9;&#xFF1A;</strong></p>
+<ol>
+<li><code>com.alibaba.rocketmq.broker.BrokerStartup</code></li>
+<li><code>com.alibaba.rocketmq.filtersrv.FiltersrvStartup</code></li>
+<li><code>com.alibaba.rocketmq.namesrv.NamesrvStartup</code></li>
+<li><code>com.alibaba.rocketmq.client.impl.factory.MQClientInstance</code></li>
+<li><code>com.alibaba.rocketmq.tools.command.MQAdminStartup</code></li>
+</ol>
+</blockquote>
+<h3 id="common-constant">2.5. common.constant</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">DBMsgConstants</td>
+<td style="text-align:left">&#x5B9A;&#x4E49;&#x4E86;&#x6700;&#x5927;&#x6D88;&#x606F;&#x5305;&#x4F53;&#x957F;&#x5EA6; <code>maxBodySize</code> &#x957F;&#x5EA6;&#x4E3A;&#xFF1A;<code>64*1024*1204</code>; //64KB</td>
+</tr>
+<tr>
+<td style="text-align:left">LoggerName</td>
+<td style="text-align:left">&#x5B9A;&#x4E49;&#x4E86;&#x5E38;&#x7528;&#x7684; slf4j &#x7684; Logger &#x540D;&#x5B57;</td>
+</tr>
+<tr>
+<td style="text-align:left">PermName</td>
+<td style="text-align:left">&#x4E3B;&#x8981;&#x5B9A;&#x4E49;&#x8BFB;&#x3001;&#x5199;&#x3001;&#x7EE7;&#x627F;&#x7684;&#x6743;&#x9650;&#x53CA;&#x6743;&#x9650;&#x8BC6;&#x522B;&#x65B9;&#x6CD5;&#xFF08;&#x4F4D;&#x8FD0;&#x7B97;&#xFF09;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>LoggerName &#x7684;&#x58F0;&#x660E;&#x5217;&#x8868;&#xFF1A;</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String FiltersrvLoggerName = <span class="string">&quot;RocketmqFiltersrv&quot;</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String NamesrvLoggerName = <span class="string">&quot;RocketmqNamesrv&quot;</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String BrokerLoggerName = <span class="string">&quot;RocketmqBroker&quot;</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String ClientLoggerName = <span class="string">&quot;RocketmqClient&quot;</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String ToolsLoggerName = <span class="string">&quot;RocketmqTools&quot;</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String CommonLoggerName = <span class="string">&quot;RocketmqCommon&quot;</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String StoreLoggerName = <span class="string">&quot;RocketmqStore&quot;</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String StoreErrorLoggerName = <span class="string">&quot;RocketmqStoreError&quot;</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TransactionLoggerName = <span class="string">&quot;RocketmqTransaction&quot;</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String RebalanceLockLoggerName = <span class="string">&quot;RocketmqRebalanceLock&quot;</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String RocketmqStatsLoggerName = <span class="string">&quot;RocketmqStats&quot;</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String CommercialLoggerName = <span class="string">&quot;RocketmqCommercial&quot;</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String FlowControlLoggerName = <span class="string">&quot;RocketmqFlowControl&quot;</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String RocketmqAuthorizeLoggerName = <span class="string">&quot;RocketmqAuthorize&quot;</span>;</div></pre></td></tr></table></figure></p>
+<p><strong>&#x9898;&#x5916;&#x8BDD;&#xFF1A;</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">perm2String</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> perm)</span> </span>{</div><div class="line">    <span class="keyword">final</span> StringBuffer sb = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;---&quot;</span>);</div><div class="line">    <span class="keyword">if</span> (isReadable(perm)) {</div><div class="line">        sb.replace(<span class="number">0</span>, <span class="number">1</span>, <span class="string">&quot;R&quot;</span>);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (isWriteable(perm)) {</div><div class="line">        sb.replace(<span class="number">1</span>, <span class="number">2</span>, <span class="string">&quot;W&quot;</span>);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (isInherited(perm)) {</div><div class="line">        sb.replace(<span class="number">2</span>, <span class="number">3</span>, <span class="string">&quot;X&quot;</span>);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">return</span> sb.toString();</div><div class="line">}</div></pre></td></tr></table></figure></p>
+<p>&#x56E0;&#x4E3A;&#x4E0D;&#x662F;&#x6838;&#x5FC3;&#x4EE3;&#x7801;&#xFF0C;&#x8C03;&#x7528;&#x6B21;&#x6570;&#x4E5F;&#x4E0D;&#x591A;&#xFF0C;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#xFF0C;&#x4F46;&#x662F;&#x8FD8;&#x662F;&#x503E;&#x5411;&#x7528;&#x5982;&#x4E0B;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#xFF0C;&#x6709;&#x70B9;&#x5F3A;&#x8FEB;&#x75C7;&#x7684;&#x8D76;&#x811A;&#x554A;&#x3002;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">perm2String</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> perm)</span> </span>{</div><div class="line">    <span class="keyword">final</span> StringBuilder sb = <span class="keyword">new</span> StringBuilder(<span class="number">3</span>);</div><div class="line">    sb.append(isReadable(perm)?<span class="string">&apos;R&apos;</span>:<span class="string">&apos;-&apos;</span>);</div><div class="line">    sb.append(isWriteable(perm)?<span class="string">&apos;W&apos;</span>:<span class="string">&apos;-&apos;</span>);</div><div class="line">    sb.append(isInherited(perm)?<span class="string">&apos;X&apos;</span>:<span class="string">&apos;-&apos;</span>);</div><div class="line">    <span class="keyword">return</span> sb.toString();</div><div class="line">}</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="common-consumer">2.6. common.consumer</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ConsumeFromWhere</td>
+<td style="text-align:left">&#x5B9A;&#x4E49;&#x4E86;&#x6D88;&#x8D39;&#x504F;&#x79FB;&#x91CF;&#x8D77;&#x59CB;&#x4F4D;&#x7F6E;&#x7684;&#x679A;&#x4E3E;&#x503C;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>&#x8FC7;&#x671F;&#x7684;&#x679A;&#x4E3E;&#x5DF2;&#x7ECF;&#x5168;&#x90E8;&#x88AB; <code>CONSUME_FROM_LAST_OFFSET</code> &#x66FF;&#x4EE3;</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ConsumeFromWhere {</div><div class="line">    CONSUME_FROM_LAST_OFFSET,</div><div class="line"></div><div class="line">    <span class="meta">@Deprecated</span></div><div class="line">    CONSUME_FROM_LAST_OFFSET_AND_FROM_MIN_WHEN_BOOT_FIRST,</div><div class="line">    <span class="meta">@Deprecated</span></div><div class="line">    CONSUME_FROM_MIN_OFFSET,</div><div class="line">    <span class="meta">@Deprecated</span></div><div class="line">    CONSUME_FROM_MAX_OFFSET,</div><div class="line">    CONSUME_FROM_FIRST_OFFSET,</div><div class="line">    CONSUME_FROM_TIMESTAMP,</div><div class="line">}</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="common-filter">2.7. common.filter</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">FilterAPI</td>
+<td style="text-align:left">&#x4E3B;&#x8981;&#x63D0;&#x4F9B;&#x4E86;2&#x4E2A; <code>static</code> &#x65B9;&#x6CD5;&#xFF1A;<ol><li>simpleClassName&#xFF1A;&#x622A;&#x53D6;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x65B9;&#x5F0F;&#x5728;&#x5B8C;&#x6210;&#x7C7B;&#x540D;&#x4E2D;&#x83B7;&#x53D6;&#x7B80;&#x77ED;&#x7C7B;&#x540D;</li><li>buildSubscriptionData&#xFF1A;&#x6839;&#x636E;consumerGroup&#x3001;topic&#x3001;subString&#x6784;&#x9020;&#x4E00;&#x4E2A; <code>SubscriptionData</code></li></ol></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">FilterContext</td>
+<td style="text-align:left">&#x4EC5;&#x5B58;&#x50A8; <code>consumerGroup</code> &#x7684;JavaBean&#xFF0C;&#x5728;&#x63A5;&#x53E3;&#x65B9;&#x6CD5; <code>com.alibaba.rocketmq.common.filter.MessageFilter#match</code> &#x4E2D;&#x4F7F;&#x7528;</td>
+</tr>
+<tr>
+<td style="text-align:left">MessageFilter</td>
+<td style="text-align:left">&#x4EC5;&#x58F0;&#x660E;&#x63A5;&#x53E3;&#x65B9;&#x6CD5; <code>boolean match(final MessageExt msg, final FilterContext context);</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>subString&#x4E2D;&#x5982;&#x679C;&#x5B58;&#x5728;&#x591A;&#x4E2A;tag&#xFF0C;&#x7531;&#x53CC;&#x7AD6;&#x7EBF;&#x5206;&#x9694;&#xFF1A;<code>tag1 || tag2 || tag3</code></strong></p>
+</blockquote>
+<h3 id="common-filter-impl">2.8. common.filter.impl</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Op</td>
+<td style="text-align:left">&#x4EC5;&#x5B58;&#x50A8; <code>symbol</code> &#x7684;&#x62BD;&#x8C61;&#x7C7B;</td>
+</tr>
+<tr>
+<td style="text-align:left">Operand</td>
+<td style="text-align:left"><code>Op</code> &#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x65E0;&#x7279;&#x6B8A;&#x5B9E;&#x73B0;</td>
+</tr>
+<tr>
+<td style="text-align:left">Operator</td>
+<td style="text-align:left"><code>Op</code> &#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x6269;&#x5C55;&#x4E86; <code>priority</code> &#x4F18;&#x5148;&#x7EA7;&#x3001;<code>compareable</code> &#x662F;&#x5426;&#x53EF;&#x6BD4;&#x8F83;2&#x4E2A;&#x5C5E;&#x6027;&#xFF1B;<br>&#x5F53; <code>compareable</code> &#x4E3A; <code>true</code> &#x65F6;&#xFF0C;<code>priority</code> &#x503C;&#x5927;&#x8FD4;&#x56DE;1&#xFF0C;&#x76F8;&#x7B49;&#x8FD4;&#x56DE;0&#xFF0C;&#x5426;&#x5219;&#x8FD4;&#x56DE;-1&#xFF1B;<br>&#x4E0D;&#x63D0;&#x4F9B;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;&#x4EC5;&#x901A;&#x8FC7; <code>com.alibaba.rocketmq.common.filter.impl.Operator#createOperator</code> &#x6839;&#x636E;&#x5165;&#x53C2;&#x5B57;&#x9762;&#x91CF;&#x8FD4;&#x56DE;&#x9884;&#x7F6E;&#x7684;4&#x79CD;&#x9759;&#x6001;&#x5E38;&#x91CF;&#xFF1A;<ol><li><code>LEFTPARENTHESIS</code></li><li><code>RIGHTPARENTHESIS</code></li><li><code>AND</code></li><li><code>OR</code></li></ol></td>
+</tr>
+<tr>
+<td style="text-align:left">PolishExpr</td>
+<td style="text-align:left">&#x9006;&#x6CE2;&#x5170;&#x8868;&#x8FBE;&#x5F0F;&#x8F93;&#x51FA;&#x3002;<strong>&#x672A;&#x4F7F;&#x7528;</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Type</td>
+<td style="text-align:left">&#x7C7B;&#x578B;&#x679A;&#x4E3E;&#xFF0C;&#x7528;&#x4E8E; <code>PolishExpr</code> &#x89E3;&#x6790;&#x8868;&#x8FBE;&#x5F0F;&#xFF1A;<br><ol><li><code>NULL</code></li><li><code>OPERAND</code></li><li><code>OPERATOR</code></li><li><code>PARENTHESIS</code></li><li><code>SEPAERATOR</code></li></ol></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Operator&#x9884;&#x7F6E;&#x9759;&#x6001;&#x5E38;&#x91CF;&#xFF1A;</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Operator LEFTPARENTHESIS = <span class="keyword">new</span> Operator(<span class="string">&quot;(&quot;</span>, <span class="number">30</span>, <span class="keyword">false</span>);</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Operator RIGHTPARENTHESIS = <span class="keyword">new</span> Operator(<span class="string">&quot;)&quot;</span>, <span class="number">30</span>, <span class="keyword">false</span>);</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Operator AND = <span class="keyword">new</span> Operator(<span class="string">&quot;&amp;&amp;&quot;</span>, <span class="number">20</span>, <span class="keyword">true</span>);</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Operator OR = <span class="keyword">new</span> Operator(<span class="string">&quot;||&quot;</span>, <span class="number">15</span>, <span class="keyword">true</span>);</div></pre></td></tr></table></figure></p>
+<p><strong>Reverse Polish Notation&#xFF1A;<a href="https://zh.wikipedia.org/wiki/%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E7%A4%BA%E6%B3%95" target="_blank" rel="external">&#x9006;&#x6CE2;&#x5170;&#x8868;&#x793A;&#x6CD5;</a></strong></p>
+<blockquote>
+<ul>
+<li>&#x9006;&#x6CE2;&#x5170;&#x8BB0;&#x6CD5;&#x4E2D;&#xFF0C;&#x64CD;&#x4F5C;&#x7B26;&#x7F6E;&#x4E8E;&#x64CD;&#x4F5C;&#x6570;&#x7684;&#x540E;&#x9762;&#x3002;&#x4F8B;&#x5982;&#x8868;&#x8FBE;&#x201C;&#x4E09;&#x52A0;&#x56DB;&#x201D;&#x65F6;&#xFF0C;&#x5199;&#x4F5C;&#x201C;3 4 +&#x201D;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x201C;3 + 4&#x201D;&#x3002;&#x5982;&#x679C;&#x6709;&#x591A;&#x4E2A;&#x64CD;&#x4F5C;&#x7B26;&#xFF0C;&#x64CD;&#x4F5C;&#x7B26;&#x7F6E;&#x4E8E;&#x7B2C;&#x4E8C;&#x4E2A;&#x64CD;&#x4F5C;&#x6570;&#x7684;&#x540E;&#x9762;&#xFF0C;&#x6240;&#x4EE5;&#x5E38;&#x89C4;&#x4E2D;&#x7F00;&#x8BB0;&#x6CD5;&#x7684;&#x201C;3 - 4 + 5&#x201D;&#x5728;&#x9006;&#x6CE2;&#x5170;&#x8BB0;&#x6CD5;&#x4E2D;&#x5199;&#x4F5C;&#x201C;3 4 - 5 +&#x201D;&#xFF1A;&#x5148;3&#x51CF;&#x53BB;4&#xFF0C;&#x518D;&#x52A0;&#x4E0A;5&#x3002;&#x4F7F;&#x7528;&#x9006;&#x6CE2;&#x5170;&#x8BB0;&#x6CD5;&#x7684;&#x4E00;&#x4E2A;&#x597D;&#x5904;&#x662F;&#x4E0D;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x62EC;&#x53F7;&#x3002;&#x4F8B;&#x5982;&#x4E2D;&#x7F00;&#x8BB0;&#x6CD5;&#x4E2D;&#x201C;3 - 4 <em> 5&#x201D;&#x4E0E;&#x201C;&#xFF08;3 - 4&#xFF09;</em>5&#x201D;&#x4E0D;&#x76F8;&#x540C;&#xFF0C;&#x4F46;&#x540E;&#x7F00;&#x8BB0;&#x6CD5;&#x4E2D;&#x524D;&#x8005;&#x5199;&#x505A;&#x201C;3 4 5 <em> -&#x201D;&#xFF0C;&#x65E0;&#x6B67;&#x4E49;&#x5730;&#x8868;&#x793A;&#x201C;3 (4 5 </em>) &#x2212;&#x201D;&#xFF1B;&#x540E;&#x8005;&#x5199;&#x505A;&#x201C;3 4 - 5 *&#x201D;&#x3002;</li>
+</ul>
+</blockquote>
+</blockquote>
+<h3 id="common-help">2.9. common.help</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">FAQUrl</td>
+<td style="text-align:left">&#x9884;&#x7F6E;&#x4E86;&#x4E00;&#x4E9B;&#x5178;&#x578B;&#x95EE;&#x9898;&#x94FE;&#x63A5;&#x3001;2&#x4E2A; <code>static</code> &#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x63D0;&#x793A;&#x89E3;&#x51B3;&#x65B9;&#x6848;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>&#x5178;&#x578B;&#x95EE;&#x9898;&#x5217;&#x8868;&#xFF1A;</strong></p>
+<ul>
+<li><a href="http://docs.aliyun.com/cn#/pub/ons/faq/exceptions&amp;topic_not_exist" target="_blank" rel="external">topic_not_exist</a></li>
+<li><a href="http://docs.aliyun.com/cn#/pub/ons/faq/exceptions&amp;namesrv_not_exist" target="_blank" rel="external">namesrv_not_exist</a></li>
+<li><a href="http://docs.aliyun.com/cn#/pub/ons/faq/exceptions&amp;group_duplicate" target="_blank" rel="external">group_duplicate</a></li>
+<li><a href="http://docs.aliyun.com/cn#/pub/ons/faq/exceptions&amp;parameter_check_failed" target="_blank" rel="external">parameter_check_failed</a></li>
+<li><a href="http://docs.aliyun.com/cn#/pub/ons/faq/exceptions&amp;subGroup_not_exist" target="_blank" rel="external">subGroup_not_exist</a></li>
+<li><a href="http://docs.aliyun.com/cn#/pub/ons/faq/exceptions&amp;service_not_ok" target="_blank" rel="external">service_not_ok</a></li>
+<li><a href="http://docs.aliyun.com/cn#/pub/ons/faq/exceptions&amp;topic_not_exist" target="_blank" rel="external">topic_not_exist</a></li>
+<li><a href="http://docs.aliyun.com/cn#/pub/ons/faq/exceptions&amp;load_json_exception" target="_blank" rel="external">load_json_exception</a></li>
+<li><a href="http://docs.aliyun.com/cn#/pub/ons/faq/exceptions&amp;subscription_exception" target="_blank" rel="external">subscription_exception</a></li>
+<li><a href="http://docs.aliyun.com/cn#/pub/ons/faq/exceptions&amp;queue_not_exist" target="_blank" rel="external">queue_not_exist</a></li>
+<li><a href="http://docs.aliyun.com/cn#/pub/ons/faq/exceptions&amp;unexpected_exception" target="_blank" rel="external">unexpected_exception</a></li>
+<li><a href="http://docs.aliyun.com/cn#/pub/ons/faq/exceptions&amp;send_msg_failed" target="_blank" rel="external">send_msg_failed</a></li>
+<li><a href="http://docs.aliyun.com/cn#/pub/ons/faq/exceptions&amp;unknown_host" target="_blank" rel="external">unknown_host</a></li>
+</ul>
+</blockquote>
+<h3 id="common-hook">2.10. common.hook</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">FilterCheckHook</td>
+<td style="text-align:left">&#x5E94;&#x8BE5;&#x662F;&#x7528;&#x4F5C;&#x5BA2;&#x6237;&#x7AEF;Filter&#x68C0;&#x67E5;&#x7684;&#x94A9;&#x5B50;&#x3002;<strong><em>Class &#x2018;FilterCheckHook&#x2019; is never used</em></strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-message">2.11. common.message</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Message</td>
+<td style="text-align:left">&#x6D88;&#x606F;&#x7684;JavaBean&#xFF0C;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7ED3;&#x6784;&#x5305;&#x542B;4&#x4E2A;&#x90E8;&#x5206;&#xFF1A;<br><ol><li>topic&#xFF1A;&#x4E3B;&#x9898;&#x540D;</li><li>flag&#xFF1A;<strong><em>&#x672A;&#x627E;&#x5230;&#x8BF4;&#x660E;</em></strong></li><li>properties&#xFF1A;Map<string, string=""> &#x7ED3;&#x6784;&#x5B58;&#x50A8;&#x6D88;&#x606F;&#x5C5E;&#x6027;</string,></li><li>body&#xFF1A;byte[] &#x7ED3;&#x6784;&#x5B58;&#x50A8;&#x6D88;&#x606F;&#x5185;&#x5BB9;</li></ol><br>&#x5C01;&#x88C5;&#x4E86;&#x83B7;&#x53D6;&#x6D88;&#x606F;&#x5C5E;&#x6027;&#x3001;&#x5185;&#x5BB9;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x90E8;&#x5206;&#x6D88;&#x606F;&#x5C5E;&#x6027;&#x7684;&#x8BBE;&#x7F6E;&#x65B9;&#x6CD5;&#x6743;&#x9650;&#x4E3A; <code>default</code> &#x5728; <code>MessageAccessor</code> &#x4E2D;&#x63D0;&#x4F9B;&#x4E86; <code>static</code> &#x64CD;&#x4F5C;&#x65B9;&#x6CD5;&#xFF0C;&#x76F4;&#x63A5;&#x8BBE;&#x7F6E;&#x9884;&#x7F6E;&#x5C5E;&#x6027;&#x4F1A;&#x629B;&#x51FA;&#x5F02;&#x5E38;</td>
+</tr>
+<tr>
+<td style="text-align:left">MessageAccessor</td>
+<td style="text-align:left">&#x63D0;&#x4F9B;&#x4E86; <code>Message</code> &#x5C5E;&#x6027;&#x7684; <code>static</code> &#x64CD;&#x4F5C;&#x65B9;&#x6CD5;</td>
+</tr>
+<tr>
+<td style="text-align:left">MessageConst</td>
+<td style="text-align:left"><code>Message</code> &#x4E2D;&#x7528;&#x5230;&#x7684;&#x5C5E;&#x6027;&#x9759;&#x6001;&#x5E38;&#x91CF;&#x53CA;&#x8FD9;&#x4E9B;&#x5E38;&#x91CF;&#x96C6; <code>systemKeySet</code></td>
+</tr>
+<tr>
+<td style="text-align:left">MessageDecoder</td>
+<td style="text-align:left">&#x63D0;&#x4F9B;&#x4E86; <code>MessageId</code> &#x751F;&#x6210;&#x548C;&#x89E3;&#x6790;&#x65B9;&#x6CD5;&#x3001;<code>MessageExt</code> &#x53CA;&#x6D88;&#x606F;&#x5C5E;&#x6027;&#x7684;&#x5E8F;&#x5217;&#x5316;&#x548C;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x65B9;&#x6CD5;</td>
+</tr>
+<tr>
+<td style="text-align:left">MessageExt</td>
+<td style="text-align:left"><code>Message</code> &#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x6269;&#x5C55;&#x4E86;queueId&#x3001;storeSize&#x3001;queueOffset&#x3001;sysFlag&#x3001;bornTimestamp&#x3001;storeTimestamp&#x7B49;&#x7B49;</td>
+</tr>
+<tr>
+<td style="text-align:left">MessageId</td>
+<td style="text-align:left">&#x6D88;&#x606F;ID&#x7684;JavaBean&#xFF0C;16&#x5B57;&#x8282;&#x3002;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7ED3;&#x6784;&#x5305;&#x542B;2&#x4E2A;&#x90E8;&#x5206;&#xFF1A;<br><ol><li>address&#xFF1A;SocketAddress&#x7C7B;&#x578B;&#x7684;broker&#x76D1;&#x542C;&#x5730;&#x5740;</li><li>offset&#xFF1A;long&#x7C7B;&#x578B;&#x7684;&#x504F;&#x79FB;&#x91CF;</li></ol></td>
+</tr>
+<tr>
+<td style="text-align:left">MessageQueue</td>
+<td style="text-align:left">&#x6D88;&#x606F;&#x961F;&#x5217;&#x7684;JavaBean&#xFF0C;&#x5185;&#x5B58;&#x7ED3;&#x6784;&#x5305;&#x542B;3&#x4E2A;&#x90E8;&#x5206;&#xFF1A;<br><ol><li>topic</li><li>brokerName</li><li>queueId</li></ol><br>&#x91CD;&#x5199;&#x4E86; <code>hashcode</code> &#x548C; <code>equals</code> &#x65B9;&#x6CD5;&#xFF0C;&#x5B9E;&#x73B0;&#x4E86; <code>Comparable</code> &#x63A5;&#x53E3;</td>
+</tr>
+<tr>
+<td style="text-align:left">MessageQueueForC</td>
+<td style="text-align:left">&#x589E;&#x52A0;&#x4E86;offset&#x7684; <code>MessageQueue</code>&#xFF0C;<code>com.alibaba.rocketmq.broker.client.net.Broker2Client#convertOffsetTable2OffsetList</code> &#x4E2D;&#x751F;&#x6210;&#x5BF9;&#x8C61;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-namesrv">2.12. common.namesrv</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">NamesrvConfig</td>
+<td style="text-align:left">NameServer&#x7684;&#x914D;&#x7F6E;&#x7C7B;JavaBean&#xFF0C;&#x5185;&#x5B58;&#x7ED3;&#x6784;&#x5305;&#x542B;4&#x4E2A;&#x90E8;&#x5206;&#xFF1A;<br><ol><li>rocketmqHome&#xFF1A;&#x5148;&#x53D6;JVM&#x53D8;&#x91CF;rocketmq.home.dir&#xFF0C;&#x672A;&#x8BBE;&#x7F6E;&#x65F6;&#x53D6;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;&#x53D8;&#x91CF;ROCKETMQ_HOME</li><li>kvConfigPath&#xFF1A;&#x7528;&#x6237;&#x76EE;&#x5F55;&#x4E0B;/namesrv/kvConfig.json</li><li>productEnvName&#xFF1A;&#x9ED8;&#x8BA4;&#x201D;center&#x201D;</li><li>clusterTest&#xFF1A;&#x9ED8;&#x8BA4;false</li></ol></td>
+</tr>
+<tr>
+<td style="text-align:left">NamesrvUtil</td>
+<td style="text-align:left">&#x5B9A;&#x4E49;&#x5E38;&#x91CF; <code>public static final String NAMESPACE_ORDER_TOPIC_CONFIG = &quot;ORDER_TOPIC_CONFIG&quot;;</code></td>
+</tr>
+<tr>
+<td style="text-align:left">RegisterBrokerResult</td>
+<td style="text-align:left">Broker&#x6CE8;&#x518C;&#x7ED3;&#x679C;&#x7684;JavaBean&#xFF0C;&#x5185;&#x5B58;&#x7ED3;&#x6784;&#x5305;&#x542B;3&#x4E2A;&#x90E8;&#x5206;&#xFF1A;<br><ol><li>haServerAddr&#xFF1A;</li><li>masterAddr&#xFF1A;&#x4E3B;&#x8282;&#x70B9;&#x5730;&#x5740;</li><li>kvTable&#xFF1A;KVTable&#x7C7B;&#x578B;&#x7684;&#x5176;&#x4ED6;&#x503C;</li></ol></td>
+</tr>
+<tr>
+<td style="text-align:left">TopAddressing</td>
+<td style="text-align:left">&#x67E5;&#x8BE2;NameServer&#x4FE1;&#x606F;&#x7684;&#x914D;&#x7F6E;&#x7C7B;JavaBean&#xFF0C;&#x5185;&#x5B58;&#x7ED3;&#x6784;&#x5305;&#x542B;3&#x4E2A;&#x90E8;&#x5206;&#xFF1A;<br><ol><li>nsAddr</li><li>wsAddr</li><li>unitName&#xFF1A;&#x4E0D;&#x4E3A;&#x7A7A;&#x65F6;&#xFF0C;&#x5728; <code>wsAddr</code> &#x540E;&#x8FFD;&#x52A0; <code>-${unitName}?nofix=1</code></li></ol><br>&#x63D0;&#x4F9B;&#x4E86; <code>#fetchNSAddr()</code> &#x65B9;&#x6CD5;&#x4ECE; <code>wsAddr</code> &#x548C; <code>unitName</code> &#x7EC4;&#x6210;&#x7684;url&#x67E5;&#x8BE2;&#x6700;&#x65B0;&#x7684;NameServer&#x5730;&#x5740;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong><code>wsAddr</code> &#x503C;&#x53C2;&#x89C1;&#xFF1A;<code>MixAll.WS_ADDR</code></strong></p>
+</blockquote>
+<h3 id="common-protocol">2.13. common.protocol</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">RequestCode</td>
+<td style="text-align:left">&#x8BF7;&#x6C42;&#x7801;</td>
+</tr>
+<tr>
+<td style="text-align:left">ResponseCode</td>
+<td style="text-align:left">&#x5E94;&#x7B54;&#x7801;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-protocol-body">2.14. common.protocol.body</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">CMResult</td>
+<td style="text-align:left">&#x6D88;&#x8D39;&#x7ED3;&#x679C;&#x679A;&#x4E3E;&#x503C;&#xFF1A;<br><ol><li><code>CR_SUCCESS</code></li><li><code>CR_LATER</code></li><li><code>CR_ROLLBACK</code></li><li><code>CR_COMMIT</code></li><li><code>CR_THROW_EXCEPTION</code></li><li><code>CR_RETURN_NULL</code></li></ol></td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-protocol-heartbeat">2.15. common.protocol.heartbeat</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ConsumeType</td>
+<td style="text-align:left">&#x6D88;&#x8D39;&#x7C7B;&#x578B;&#x679A;&#x4E3E;&#x503C;&#xFF1A;<br><ol><li><code>CONSUME_ACTIVELY</code>&#xFF1A;&#x4E3B;&#x52A8;&#x578B;</li><li><code>CONSUME_PASSIVELY</code>&#xFF1A;&#x88AB;&#x52A8;&#x578B;</li></ol></td>
+</tr>
+<tr>
+<td style="text-align:left">MessageModel</td>
+<td style="text-align:left">&#x6D88;&#x606F;&#x6A21;&#x5F0F;&#x679A;&#x4E3E;&#x503C;&#xFF1A;<br><ol><li><code>BROADCASTING</code>&#xFF1A;&#x5E7F;&#x64AD;&#xFF0C;&#x6BCF;&#x4E2A;&#x6D88;&#x8D39;&#x8005;&#x62E5;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x961F;&#x5217;</li><li><code>CLUSTERING</code>&#xFF1A;&#x96C6;&#x7FA4;&#xFF0C;&#x540C;&#x96C6;&#x7FA4;&#x4E2D;&#x7684;&#x6D88;&#x8D39;&#x8005;&#x4F5C;&#x4E3A;&#x4E00;&#x7EC4;&#x4ECE;&#x4E00;&#x4E2A;&#x961F;&#x5217;&#x6D88;&#x8D39;</li></ol></td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-protocol-topic">2.16. common.protocol.topic</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">RequestCode</td>
+<td style="text-align:left">&#x5B9A;&#x4E49;&#x4E86;&#x8BF7;&#x6C42;&#x6D88;&#x606F;&#x5E38;&#x91CF;</td>
+</tr>
+<tr>
+<td style="text-align:left">ResponseCode</td>
+<td style="text-align:left">&#x5B9A;&#x4E49;&#x4E86;&#x5E94;&#x7B54;&#x6D88;&#x606F;&#x5E38;&#x91CF;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>&#x5305;&#x4E0B;&#x5176;&#x4ED6;&#x7C7B;&#xFF0C;&#x591A;&#x4E3A;JavaBean&#xFF0C;&#x4E0D;&#x505A;&#x8D58;&#x8FF0;</strong></p>
+</blockquote>
+<h3 id="common-running">2.17. common.running</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">RunningStats</td>
+<td style="text-align:left">&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x679A;&#x4E3E;&#x503C;&#xFF1A;<br><ol><li><code>commitLogMaxOffset</code></li><li><code>commitLogMinOffset</code></li><li><code>commitLogDiskRatio</code></li><li><code>consumeQueueDiskRatio</code></li><li><code>scheduleMessageOffset</code></li></ol></td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-stats">2.18. common.stats</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">StatsItem</td>
+<td style="text-align:left">&#x63D0;&#x4F9B;&#x4E86;&#x751F;&#x6210;&#x72B6;&#x6001;&#x5FEB;&#x7167; <code>StatsSnapshot</code> &#x7684;&#x65B9;&#x6CD5;</td>
+</tr>
+<tr>
+<td style="text-align:left">StatsSnapshot</td>
+<td style="text-align:left">&#x72B6;&#x6001;&#x5FEB;&#x7167;JavaBean</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-subscription">2.19. common.subscription</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SubscriptionGroupConfig</td>
+<td style="text-align:left">&#x8BA2;&#x9605;&#x7EC4;&#x914D;&#x7F6E;JavaBean&#xFF0C;&#x5185;&#x5B58;&#x7ED3;&#x6784;&#x5305;&#x542B;8&#x4E2A;&#x90E8;&#x5206;&#xFF1A;<br><ol><li>groupName&#xFF1A;&#x7EC4;&#x540D;&#xFF0C;&#x9700;&#x8981;&#x8BBE;&#x7F6E;</li><li>consumeEnable&#xFF1A;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x6D88;&#x8D39;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C; <code>true</code></li><li>consumeFromMinEnable&#xFF1A;<strong>&#x672A;&#x4F7F;&#x7528;</strong></li><li>consumeBroadcastEnable&#xFF1A;&#x662F;&#x5426;&#x5F00;&#x542F;&#x5E7F;&#x64AD;&#x6A21;&#x5F0F;&#x6D88;&#x8D39;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C; <code>true</code></li><li>retryQueueNums&#xFF1A;&#x6700;&#x5927;Topic&#x961F;&#x5217;&#x6570;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C; <code>1</code></li><li>retryMaxTimes&#xFF1A;&#x91CD;&#x8BD5;&#x6700;&#x5927;&#x6B21;&#x6570;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C; <code>16</code></li><li>brokerId&#xFF1A;&#x5F53;&#x524D;Broker&#x7684;id&#xFF0C;&#x9ED8;&#x8BA4;&#x503C; <code>MixAll.MASTER_ID=0</code></li><li>whichBrokerWhenConsumeSlowly&#xFF1A;&#x5F53;&#x6709;&#x6162;&#x6D88;&#x8D39;&#x65F6;&#x63A8;&#x8350;&#x7684;Broker&#x7684;id&#xFF0C;&#x9ED8;&#x8BA4;&#x503C; <code>1</code></li></ol></td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-sysflag">2.20. common.sysflag</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">MessageSysFlag</td>
+<td style="text-align:left">&#x4F4D;&#x8FD0;&#x7B97;&#x63D0;&#x4F9B;&#x6D88;&#x606F;&#x7684;&#x538B;&#x7F29;&#x3001;&#x591A;Tag&#x3001;&#x4E8B;&#x52A1;&#x7C7B;&#x578B;&#x7B49;&#x6807;&#x8BB0;&#x7684;&#x5224;&#x65AD;</td>
+</tr>
+<tr>
+<td style="text-align:left">PullSysFlag</td>
+<td style="text-align:left">&#x4F4D;&#x8FD0;&#x7B97;&#x63D0;&#x4F9B;&#x62C9;&#x53D6;&#x6D88;&#x606F;&#x7684;&#x786E;&#x8BA4;&#x504F;&#x79FB;&#x91CF;&#x3001;&#x963B;&#x585E;&#x3001;&#x8BA2;&#x9605;&#x3001;&#x8FC7;&#x6EE4;&#x7B49;&#x6807;&#x8BB0;&#x7684;&#x5224;&#x65AD;</td>
+</tr>
+<tr>
+<td style="text-align:left">TopicSysFlag</td>
+<td style="text-align:left">&#x4F4D;&#x8FD0;&#x7B97;&#x63D0;&#x4F9B;&#x4E3B;&#x9898;&#x6807;&#x8BB0;&#x7684;&#x5224;&#x65AD;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-utils">2.21. common.utils</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ChannelUtil</td>
+<td style="text-align:left">&#x4EC5;&#x63D0;&#x4F9B;&#x83B7;&#x53D6;&#x8FDC;&#x7AEF;IP&#x7684; <code>static</code> &#x65B9;&#x6CD5;</td>
+</tr>
+<tr>
+<td style="text-align:left">HttpTinyClient</td>
+<td style="text-align:left">&#x63D0;&#x4F9B;&#x4E86; <code>java.net.HttpURLConnection</code> &#x5C01;&#x88C5;&#x7684;&#xFF0C;httpGet&#x3001;httpPost&#x65B9;&#x6CD5;</td>
+</tr>
+<tr>
+<td style="text-align:left">IOTinyUtils</td>
+<td style="text-align:left">&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E9B;IO&#x64CD;&#x4F5C;&#x4F9B; <code>HttpTinyClient</code> &#x4F7F;&#x7528;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="&#x5176;&#x4ED6;">3. &#x5176;&#x4ED6;</h2><p>&#x901A;&#x8FC7;&#x641C;&#x7D22;&#xFF0C;&#x53D1;&#x73B0;&#x4E86; <code>rocketmq-common</code> &#x4E2D;&#x4F7F;&#x7528;&#x7684;&#x4E00;&#x4E9B;&#x73AF;&#x5883;&#x53D8;&#x91CF;</p>
+<p>&#x6E90;&#x6587;&#x4EF6;&#xFF1A;BrokerConfig</p>
+<blockquote>
+<p>rocketmq.home.dir</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x9ED8;&#x8BA4;&#x503C;</th>
+<th style="text-align:left">&#x7528;&#x9014;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;&#x53D8;&#x91CF; <code>ROCKETMQ_HOME</code></td>
+<td style="text-align:left">&#x8BBE;&#x7F6E;Broker&#x7684;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#xFF0C;&#x76EE;&#x524D;&#x7528;&#x6765;&#x5B9A;&#x4F4D; <code>/conf/logback_broker.xml</code> &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x548C;&#x5B9A;&#x4F4D;&#x6587;&#x4EF6; <code>%s/bin/startfsrv.sh</code></td>
+</tr>
+</tbody>
+</table>
+<p>rocketmq.namesrv.addr</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x9ED8;&#x8BA4;&#x503C;</th>
+<th style="text-align:left">&#x7528;&#x9014;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;&#x53D8;&#x91CF; <code>NAMESRV_ADDR</code></td>
+<td style="text-align:left">&#x8BBE;&#x7F6E;NameServer&#x7684;&#x5730;&#x5740;</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>&#x6E90;&#x6587;&#x4EF6;&#xFF1A;MixAll</p>
+<blockquote>
+<p>rocketmq.namesrv.domain</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x9ED8;&#x8BA4;&#x503C;</th>
+<th style="text-align:left">&#x7528;&#x9014;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">jmenv.tbsite.net</td>
+<td style="text-align:left">&#x6307;&#x5B9A;&#x5728;&#x7EBF;NameServer&#x67E5;&#x8BE2;&#x670D;&#x52A1;&#x7684;&#x57DF;&#x540D;</td>
+</tr>
+</tbody>
+</table>
+<p>rocketmq.namesrv.domain.subgroup</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x9ED8;&#x8BA4;&#x503C;</th>
+<th style="text-align:left">&#x7528;&#x9014;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">nsaddr</td>
+<td style="text-align:left">&#x6307;&#x5B9A;&#x5728;&#x7EBF;NameServer&#x67E5;&#x8BE2;&#x670D;&#x52A1;&#x7684;URL&#x540E;&#x7F00;</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>&#x6E90;&#x6587;&#x4EF6;&#xFF1A;PackageConflictDetect</p>
+<blockquote>
+<p>com.alibaba.rocketmq.packageConflictDetect.enable</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x9ED8;&#x8BA4;&#x503C;</th>
+<th style="text-align:left">&#x7528;&#x9014;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">true</td>
+<td style="text-align:left">&#x662F;&#x5426;&#x8FDB;&#x884C;&#x5305;&#x51B2;&#x7A81;&#x68C0;&#x6D4B;&#xFF0C;&#x8FD9;&#x91CC;&#x4EC5;&#x68C0;&#x6D4B;fastjson&#x5FC5;&#x987B;&#x5927;&#x4E8E; <code>1.2.3</code> &#x7248;&#x672C;</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>&#x6E90;&#x6587;&#x4EF6;&#xFF1A;NamesrvConfig</p>
+<blockquote>
+<p>rocketmq.home.dir</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x9ED8;&#x8BA4;&#x503C;</th>
+<th style="text-align:left">&#x7528;&#x9014;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;&#x53D8;&#x91CF; <code>ROCKETMQ_HOME</code></td>
+<td style="text-align:left">&#x8BBE;&#x7F6E;NameServer&#x7684;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#xFF0C;&#x76EE;&#x524D;&#x7528;&#x6765;&#x5B9A;&#x4F4D; <code>/conf/logback_namesrv.xml</code> &#x914D;&#x7F6E;&#x6587;&#x4EF6;</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-11-23T06:26:51.828Z" itemprop="dateUpdated">2016年11月23日 14:26</time>
+</span><br>
+
+
+        本站所有文章均为原创，欢迎订阅，转载请注明出处：<a href="/2016/08/18/rocketmq-0x3/" target="_blank" rel="external">http://hiant.github.io/2016/08/18/rocketmq-0x3/</a>
+    </div>
+    <footer>
+        <a href="http://hiant.github.io">
+            <img src="/img/author.jpg" alt="Hi ant">
+            Hi ant
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rocketmq/">rocketmq</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rocketmq-common/">rocketmq-common</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2016/08/18/rocketmq-0x3/&title=《RocketMQ系列0x3——rocketmq-common》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2016/08/18/rocketmq-0x3/&title=《RocketMQ系列0x3——rocketmq-common》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2016/08/18/rocketmq-0x3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RocketMQ系列0x3——rocketmq-common》 — 拾遗集&url=http://hiant.github.io/2016/08/18/rocketmq-0x3/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2016/08/18/rocketmq-0x3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/08/21/rocketmq-0x4/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">RocketMQ系列0x4——rocketmq-srvutil</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/08/16/rocketmq-0x2/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">RocketMQ系列0x2——rocketmq-remoting</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="rocketmq-0x3" data-title="RocketMQ系列0x3——rocketmq-common" data-url="http://hiant.github.io/2016/08/18/rocketmq-0x3/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'hiant', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.7');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>拾遗集 &copy; 2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2016/08/18/rocketmq-0x3/&title=《RocketMQ系列0x3——rocketmq-common》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2016/08/18/rocketmq-0x3/&title=《RocketMQ系列0x3——rocketmq-common》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2016/08/18/rocketmq-0x3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RocketMQ系列0x3——rocketmq-common》 — 拾遗集&url=http://hiant.github.io/2016/08/18/rocketmq-0x3/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2016/08/18/rocketmq-0x3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNElEQVR42u3aS27DMAxF0ex/0y7QaRL1PlIJaupqVKSOreMABD96PPC6fhe/8t3119Naf755yZAh47aMa7kI4/m/623xZ5G9yZAh4xzGenMpYx2CSTjme5MhQ4aMdcK3DpT9tFKGDBky+gF3DSOJICluZciQIYMXsWkKSMIoCeKba3EZMmTckJEOBr759wfnGzJkyLgJ42qvtN3WHwa8uIMMGTJGM3jax5txteFlmlDGpzxkyJAxiEE2t+sV8EEmukaGDBlDGWkbKx1k8teUHuP443eQIUPGIEbaml9vix/RSAcG6BXIkCFjNIO349MDZLsSzaDNJ0OGjNGMNNXrlKn8GBl/TTJkyDiN0WmQ1Y5QpOMBGTJknMMgj4kTsnaySIrVt1W4DBkyhjL419LBQKehRsL6ixGmDBkyxjF4iCRhMQ3BZHPpU2TIkDGVQarb/sDy4/eUIUPGAYxa+dpJK2sjh3gGK0OGjJsz+I06WWe63bT0lSFDxmwGD4u8xVYrg7eljDJkyBjK4FvnwbF2soMfco23IkOGjEGMWglaGxh0EkQZMmScxqgNCXirrnPAorZDGTJkTGJc4eJlahqU0/AtQ4aMcxhpmOsMGtcvojaEkCFDxjmMXaGThEISKIuHM2TIkHEAox9ka5urla8yZMiQwVM08t00HeTHNYJHypAh4xhGrSmWhua06JUhQ8Y5DFLE1kpQHnw7R8pkyJAxm9Fp8fMmXZomkqdsm2/IkCHj/zJ+AAgQ5PP6mSMGAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.7" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>RocketMQ系列0x5——rocketmq-namesrv | 拾遗集 | 那故事仓猝结束不到气绝便已安葬</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="rocketmq,rocketmq-namesrv">
+    <meta name="description" content="1. &amp;#x89E3;&amp;#x8BFB;1.1. NamesrvStartup &amp;#x5904;&amp;#x7406;&amp;#x6D41;&amp;#x7A0B;
+&amp;#x8BBE;&amp;#x7F6E;&amp;#x7248;&amp;#x672C;&amp;#x53F7; com.alibaba.rocketmq.namesrv.processor.DefaultRequestProcessor#processRequest com.aliba">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RocketMQ系列0x5——rocketmq-namesrv">
+<meta property="og:url" content="http://hiant.github.io/2016/08/26/rocketmq-0x5/index.html">
+<meta property="og:site_name" content="拾遗集">
+<meta property="og:description" content="1. &amp;#x89E3;&amp;#x8BFB;1.1. NamesrvStartup &amp;#x5904;&amp;#x7406;&amp;#x6D41;&amp;#x7A0B;
+&amp;#x8BBE;&amp;#x7F6E;&amp;#x7248;&amp;#x672C;&amp;#x53F7; com.alibaba.rocketmq.namesrv.processor.DefaultRequestProcessor#processRequest com.aliba">
+<meta property="og:updated_time" content="2016-08-29T10:32:52.173Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RocketMQ系列0x5——rocketmq-namesrv">
+<meta name="twitter:description" content="1. &amp;#x89E3;&amp;#x8BFB;1.1. NamesrvStartup &amp;#x5904;&amp;#x7406;&amp;#x6D41;&amp;#x7A0B;
+&amp;#x8BBE;&amp;#x7F6E;&amp;#x7248;&amp;#x672C;&amp;#x53F7; com.alibaba.rocketmq.namesrv.processor.DefaultRequestProcessor#processRequest com.aliba">
+    
+        <link rel="alternative" href="/atom.xml" title="拾遗集" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Hi ant</h5>
+          <a href="mailto:liudong.work@gmail.com" title="liudong.work@gmail.com" class="mail">liudong.work@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hiant" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">RocketMQ系列0x5——rocketmq-namesrv</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">RocketMQ系列0x5——rocketmq-namesrv</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-08-26T14:37:54.000Z" itemprop="datePublished" class="page-time">
+  2016-08-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/rocketmq/">rocketmq</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解读"><span class="post-toc-text">1. 解读</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#NamesrvStartup-处理流程"><span class="post-toc-text">1.1. NamesrvStartup 处理流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#NamesrvController-初始化流程"><span class="post-toc-text">1.2. NamesrvController 初始化流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#NamesrvController-启动流程"><span class="post-toc-text">1.3. NamesrvController 启动流程</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-rocketmq-0x5"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">RocketMQ系列0x5——rocketmq-namesrv</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016年08月26日 22:37" datetime="2016-08-26T14:37:54.000Z"  itemprop="datePublished">2016-08-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/rocketmq/">rocketmq</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="&#x89E3;&#x8BFB;">1. &#x89E3;&#x8BFB;</h2><h3 id="NamesrvStartup-&#x5904;&#x7406;&#x6D41;&#x7A0B;">1.1. NamesrvStartup &#x5904;&#x7406;&#x6D41;&#x7A0B;</h3><ol>
+<li><p>&#x8BBE;&#x7F6E;&#x7248;&#x672C;&#x53F7;<br> com.alibaba.rocketmq.namesrv.processor.DefaultRequestProcessor#processRequest<br> com.alibaba.rocketmq.broker.processor.AdminBrokerProcessor#callConsumer</p>
+</li>
+<li><p>&#x8BBE;&#x7F6E;Socket&#x7F13;&#x51B2;&#x533A;<br> &#x5982;&#x679C;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E; SEND &#x7F13;&#x51B2;&#x533A;&#xFF1A;<code>NettySystemConfig.SocketSndbufSize = 2048</code><br> &#x5982;&#x679C;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E; RECV &#x7F13;&#x51B2;&#x533A;&#xFF1A;<code>NettySystemConfig.SocketRcvbufSize = 2048</code></p>
+</li>
+<li><p>FastJson&#x7248;&#x672C;&#x51B2;&#x7A81;&#x68C0;&#x6D4B;<br> <code>com.alibaba.rocketmq.common.conflict.PackageConflictDetect#detectFastjson</code></p>
+</li>
+<li><p>&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x89E3;&#x6790;<br> &#x4F7F;&#x7528; <code>com.alibaba.rocketmq.srvutil.ServerUtil#parseCmdLine</code> &#x89E3;&#x6790;&#x547D;&#x4EE4;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x89E3;&#x6790;&#x5931;&#x8D25;&#xFF0C;&#x5219;&#x7A0B;&#x5E8F;&#x9000;&#x51FA;</p>
+</li>
+<li><p>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x52A0;&#x8F7D;<br> &#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x5305;&#x542B; <code>-c</code> &#x9009;&#x9879;&#xFF0C;&#x5219;&#x52A0;&#x8F7D;&#x6307;&#x5B9A;&#x7684; properties &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x901A;&#x8FC7; <code>com.alibaba.rocketmq.common.MixAll#properties2Object</code> &#x8BBE;&#x7F6E; <code>NamesrvConfig</code>&#x3001;<code>NettyServerConfig</code>&#x3002;<strong>&#x5176;&#x4E2D;</strong>&#xFF0C;&#x5982;&#x679C;&#x914D;&#x7F6E;&#x4E2D;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E; ListenPort&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A; <code>9876</code></p>
+</li>
+<li><p>&#x8F93;&#x51FA;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x5217;&#x8868;<br> &#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x5305;&#x542B; <code>-p</code> &#x9009;&#x9879;&#xFF0C;&#x5219;&#x901A;&#x8FC7; <code>com.alibaba.rocketmq.common.MixAll#printObjectProperties(org.slf4j.Logger, java.lang.Object)</code> &#x8F93;&#x51FA; <code>NamesrvConfig</code>&#x3001;<code>NettyServerConfig</code> &#x7684;&#x58F0;&#x660E;&#x5B57;&#x6BB5;&#xFF0C;&#x8F93;&#x51FA;&#x5B8C;&#x6210;&#x540E;&#x7A0B;&#x5E8F;&#x9000;&#x51FA;</p>
+</li>
+<li><p>&#x914D;&#x7F6E; NamesrvConfig<br> &#x901A;&#x8FC7; <code>com.alibaba.rocketmq.common.MixAll#properties2Object</code> &#x5C06;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x52A0;&#x5230; <code>NamesrvConfig</code></p>
+</li>
+<li><p>&#x914D;&#x7F6E; logback<br> logback &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x56FA;&#x5B9A;&#xFF1A;<code>namesrvConfig.getRocketmqHome() + &quot;/conf/logback_namesrv.xml&quot;</code>&#x3002;<br> <strong>&#x6CE8;&#x610F;&#xFF1A;</strong>&#x6B64;&#x524D;&#x4F1A;&#x5148;&#x5224;&#x65AD; namesrvConfig.getRocketmqHome() &#x672A;&#x8BBE;&#x7F6E;&#x65F6;&#xFF0C;&#x4F1A;&#x5BFC;&#x81F4;&#x7A0B;&#x5E8F;&#x9000;&#x51FA;&#x3002;&#x4E0D;&#x8FC7;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4EC5;&#x53D1;&#x751F;&#x5728;&#x76F4;&#x63A5;&#x8FD0;&#x884C;<br> <code>com.alibaba.rocketmq.namesrv.NamesrvStartup#main</code>&#xFF0C;&#x5982;&#x679C;&#x662F;&#x811A;&#x672C;&#x542F;&#x52A8;&#xFF0C;&#x4F1A;&#x81EA;&#x52A8;&#x5C06;&#x8BE5;&#x503C;&#x8BBE;&#x7F6E;&#x4E3A; <code>mqnamesrv</code> &#x811A;&#x672C;&#x7684;&#x4E0A;&#x4E0A;&#x5C42;&#x76EE;&#x5F55;</p>
+</li>
+<li><p>&#x5B9E;&#x4F8B;&#x5316;&#x5E76;&#x521D;&#x59CB;&#x5316; <code>NamesrvController</code><br> &#x4F7F;&#x7528; NamesrvConfig&#x3001;NettyServerConfig &#x5B9E;&#x4F8B;&#x5316; <code>NamesrvController</code> &#x7136;&#x540E;&#x8C03;&#x7528; <code>com.alibaba.rocketmq.namesrv.NamesrvController#initialize</code> &#x521D;&#x59CB;&#x5316;&#xFF0C;&#x521D;&#x59CB;&#x5316;&#x5931;&#x8D25;&#x65F6;&#x7A0B;&#x5E8F;&#x9000;&#x51FA;<br> &#x5426;&#x5219;&#x589E;&#x52A0; ShutdownHook &#xFF0C;&#x5728;&#x7A0B;&#x5E8F;&#x9000;&#x51FA;&#x65F6;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;&#xFF0C;&#x5E76;&#x8C03;&#x7528; <code>com.alibaba.rocketmq.namesrv.NamesrvController#shutdown</code> &#x91CA;&#x653E;&#x8D44;&#x6E90;</p>
+</li>
+<li><p>&#x542F;&#x52A8; <code>NamesrvController</code><br>&#x8C03;&#x7528; <code>com.alibaba.rocketmq.namesrv.NamesrvController#start</code> &#x542F;&#x52A8;&#x7EBF;&#x7A0B;&#x5DE5;&#x4F5C;</p>
+</li>
+</ol>
+<h3 id="NamesrvController-&#x521D;&#x59CB;&#x5316;&#x6D41;&#x7A0B;">1.2. NamesrvController &#x521D;&#x59CB;&#x5316;&#x6D41;&#x7A0B;</h3><ol>
+<li><p>&#x52A0;&#x8F7D; KvConfig<br> &#x5982;&#x679C; <code>NamesrvConfig</code> &#x4E2D; <code>kvConfigPath</code> &#x8DEF;&#x5F84;&#x6307;&#x5B9A;&#x7684;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x4E0D;&#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x5C06;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x7684; json &#x5185;&#x5BB9;&#x52A0;&#x8F7D;&#x8FDB;Map&#xFF1A;<code>HashMap&lt;String/* Namespace */, HashMap&lt;String/* Key */, String/* Value */&gt;&gt;</code></p>
+</li>
+<li><p>&#x5B9E;&#x4F8B;&#x5316; <code>NettyRemotingServer</code><br> <code>rocketmq-remoting</code> &#x6A21;&#x5757;&#x4E2D;&#x7684; <code>com.alibaba.rocketmq.remoting.netty.NettyRemotingServer#NettyRemotingServer(com.alibaba.rocketmq.remoting.netty.NettyServerConfig, com.alibaba.rocketmq.remoting.ChannelEventListener)</code> </p>
+</li>
+<li><p>&#x6784;&#x9020; RemotingExecutorThread &#x7EBF;&#x7A0B;&#x6C60;<br> &#x4F7F;&#x7528; <code>java.util.concurrent.Executors#newFixedThreadPool(int, java.util.concurrent.ThreadFactory)</code> &#x6784;&#x9020;&#x56FA;&#x5B9A;&#x6570;&#x76EE;&#x7EBF;&#x7A0B;&#x6C60;&#xFF0C;&#x6570;&#x76EE;&#x7531; <code>NettyServerConfig.getServerWorkerThreads</code> &#x51B3;&#x5B9A;</p>
+</li>
+<li><p>&#x6CE8;&#x518C;<br> <code>NamesrvConfig</code> &#x4E2D; <code>clusterTest</code> &#x4E3A; <code>true</code> &#x65F6;&#xFF0C;&#x8C03;&#x7528; <code>com.alibaba.rocketmq.remoting.RemotingServer#registerDefaultProcessor</code> &#x5C06;&#x4E00;&#x4E2A; <code>com.alibaba.rocketmq.namesrv.processor.ClusterTestRequestProcessor</code> &#x548C; RemotingExecutorThread &#x7EBF;&#x7A0B;&#x6C60;&#x7ED1;&#x5B9A;&#x8D77;&#x6765;&#xFF1B;&#x5426;&#x5219;&#x5C06;&#x4E00;&#x4E2A; <code>com.alibaba.rocketmq.namesrv.processor.DefaultRequestProcessor</code> &#x548C; RemotingExecutorThread &#x7EBF;&#x7A0B;&#x6C60;&#x7ED1;&#x5B9A;&#x8D77;&#x6765;&#x3002;&#x7ED1;&#x5B9A;&#x5230; <code>NettyRemotingServer</code> &#x7684; <code>defaultRequestProcessor</code> &#x4E0A;</p>
+<p> <strong>&#x4E24;&#x8005;&#x533A;&#x522B;&#xFF1A;</strong> <code>ClusterTestRequestProcessor</code> &#x7EE7;&#x627F;&#x81EA; <code>DefaultRequestProcessor</code> &#x5E76;&#x91CD;&#x5199;&#x4E86; <code>getRouteInfoByTopic</code> &#x65B9;&#x6CD5;&#xFF0C;<code>RouteInfoManager</code> &#x4E2D;&#x672A;&#x80FD;&#x83B7;&#x53D6;&#x5230; <code>TopicRouteData</code> &#x65F6;&#xFF0C;&#x53BB;&#x96C6;&#x7FA4;&#x4E0A;&#x67E5;&#x8BE2;&#x4E00;&#x6B21;</p>
+</li>
+<li><p>&#x542F;&#x52A8;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;</p>
+<ol>
+<li>5s &#x540E;&#x542F;&#x52A8;&#xFF0C;&#x6BCF;&#x9694; 10s &#x6267;&#x884C;&#x4E00;&#x6B21;&#xFF1A;&#x6E05;&#x7406;&#x5931;&#x6548;&#x7684; Broker &#x4FE1;&#x606F;</li>
+<li>1m &#x540E;&#x542F;&#x52A8;&#xFF0C;&#x6BCF;&#x9694; 10m &#x6267;&#x884C;&#x4E00;&#x6B21;&#xFF1A;&#x5728;&#x65E5;&#x5FD7;&#x4E2D; INFO &#x7EA7;&#x522B;&#x8F93;&#x51FA; KvConfig &#x7684;&#x5185;&#x5BB9;</li>
+</ol>
+</li>
+</ol>
+<h3 id="NamesrvController-&#x542F;&#x52A8;&#x6D41;&#x7A0B;">1.3. NamesrvController &#x542F;&#x52A8;&#x6D41;&#x7A0B;</h3><p>&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x542F;&#x52A8; <code>NamesrvController</code> &#x7684; <code>NettyRemotingServer</code></p>
+<ol>
+<li><p>&#x6784;&#x9020; <code>DefaultEventExecutorGroup</code><br> &#x7EBF;&#x7A0B;&#x6570;&#x76EE;&#x7531; <code>NettyServerConfig.getServerWorkerThreads</code> &#x51B3;&#x5B9A;&#xFF0C;&#x7EBF;&#x7A0B;&#x540D;&#xFF1A;<code>&quot;NettyServerCodecThread_&quot; + this.threadIndex.incrementAndGet()</code></p>
+</li>
+<li><p>&#x6784;&#x9020; BOSS &#x7EBF;&#x7A0B;<br> &#x7EBF;&#x7A0B;&#x6570;&#x56FA;&#x5B9A;&#x4E3A;1&#xFF0C;&#x7EBF;&#x7A0B;&#x540D;&#xFF1A;<code>NettyBoss_1</code></p>
+</li>
+<li><p>&#x6784;&#x9020; WORKER &#x7EBF;&#x7A0B;<br> &#x5982;&#x679C;&#x662F; Linux&#xFF0C;&#x4E14; <code>NettyServerConfig</code> &#x4E2D; <code>useEpollNativeSelector</code> &#x4E3A; <code>true</code>&#xFF0C;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; <code>EpollEventLoopGroup</code>&#xFF0C;&#x7EBF;&#x7A0B;&#x6570;&#x76EE;&#x7531; <code>NettyServerConfig.getServerSelectorThreads</code> &#x51B3;&#x5B9A;&#xFF0C;&#x7EBF;&#x7A0B;&#x540D;&#xFF1A;<code>String.format(&quot;NettyServerEPOLLSelector_%d_%d&quot;, threadTotal, this.threadIndex.incrementAndGet())</code>&#xFF1B;&#x5426;&#x5219;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; <code>NioEventLoopGroup</code>&#xFF0C;&#x7EBF;&#x7A0B;&#x6570;&#x76EE;&#x7531; <code>NettyServerConfig.getServerSelectorThreads</code> &#x51B3;&#x5B9A;&#xFF0C;&#x7EBF;&#x7A0B;&#x540D;&#xFF1A;<code>String.format(&quot;NettyServerNIOSelector_%d_%d&quot;, threadTotal, this.threadIndex.incrementAndGet())</code></p>
+</li>
+<li><p>&#x914D;&#x7F6E; <code>ServerBootstrap</code></p>
+<ul>
+<li><code>ChannelOption.SO_BACKLOG</code>&#xFF1A;<code>1024</code></li>
+<li><code>ChannelOption.SO_REUSEADDR</code>&#xFF1A;<code>true</code></li>
+<li><code>ChannelOption.SO_KEEPALIVE</code>&#xFF1A;<code>false</code></li>
+<li><code>ChannelOption.SO_SNDBUF</code>&#xFF1A;<code>nettyServerConfig.getServerSocketSndBufSize()</code></li>
+<li><code>ChannelOption.SO_RCVBUF</code>&#xFF1A;<code>nettyServerConfig.getServerSocketRcvBufSize()</code></li>
+<li><code>ChannelOption.TCP_NODELAY</code>&#xFF1A;<code>true</code> <strong>&#x8BBE;&#x7F6E;&#x7684;&#x662F;childOption</strong></li>
+<li><code>localAddress</code>&#xFF1A;<code>new InetSocketAddress(this.nettyServerConfig.getListenPort())</code></li>
+<li><code>childHandler</code>&#xFF1A;<ol>
+<li>NettyEncoder&#xFF1A;&#x7F16;&#x7801;</li>
+<li>NettyDecoder&#xFF1A;&#x89E3;&#x7801;</li>
+<li>IdleStateHandler&#xFF1A;&#x7A7A;&#x95F2;&#x5904;&#x7406;&#xFF0C;&#x7A7A;&#x95F2;&#x65F6;&#x95F4;&#x7531; <code>nettyServerConfig.getServerChannelMaxIdleTimeSeconds()</code> &#x51B3;&#x5B9A;</li>
+<li>NettyConnetManageHandler&#xFF1A;&#x8FDE;&#x63A5;&#x7BA1;&#x7406;&#xFF0C;&#x8BB0;&#x5F55;&#x8FDE;&#x63A5;&#x65E5;&#x5FD7;&#xFF0C;&#x5E76;&#x5904;&#x7406;&#x8FDE;&#x63A5;&#x4E8B;&#x4EF6;&#xFF08;&#x7A7A;&#x95F2;&#x4E8B;&#x4EF6;&#xFF09;</li>
+<li>NettyServerHandler&#xFF1A;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x5904;&#x7406;&#x3002;&#x6839;&#x636E; <code>RemotingCommand</code> &#x7684; <code>type</code> &#x8C03;&#x7528; <code>com.alibaba.rocketmq.remoting.netty.NettyRemotingAbstract#processRequestCommand</code> &#x6216; <code>com.alibaba.rocketmq.remoting.netty.NettyRemotingAbstract#processResponseCommand</code></li>
+</ol>
+</li>
+<li><code>NettyServerConfig</code> &#x672A;&#x5C06; <code>serverPooledByteBufAllocatorEnable</code> &#x8BBE;&#x7F6E;&#x4E3A; <code>false</code>&#xFF0C;&#x5219; <code>ChannelOption.ALLOCATOR</code> &#x8BBE;&#x7F6E;&#x4E3A; <code>PooledByteBufAllocator.DEFAULT</code>&#xFF0C;&#x5373;&#x9ED8;&#x8BA4;&#x5F00;&#x542F; Netty &#x7684;&#x6C60;&#x5316; ByteBuf</li>
+</ul>
+<ol>
+<li><p>&#x542F;&#x52A8; <code>ServerBootstrap</code><br>&#x8C03;&#x7528; <code>io.netty.bootstrap.AbstractBootstrap#bind()</code></p>
+</li>
+<li><p>&#x542F;&#x52A8;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;<br>3s &#x540E;&#x542F;&#x52A8;&#xFF0C;&#x6BCF;&#x9694; 1s &#x6267;&#x884C;&#x4E00;&#x6B21;&#xFF1A;&#x5904;&#x7406;&#x8D85;&#x65F6;&#x8BF7;&#x6C42;</p>
+</li>
+</ol>
+<p>### </p>
+</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-08-29T10:32:52.173Z" itemprop="dateUpdated">2016年8月29日 18:32</time>
+</span><br>
+
+
+        本站所有文章均为原创，欢迎订阅，转载请注明出处：<a href="/2016/08/26/rocketmq-0x5/" target="_blank" rel="external">http://hiant.github.io/2016/08/26/rocketmq-0x5/</a>
+    </div>
+    <footer>
+        <a href="http://hiant.github.io">
+            <img src="/img/author.jpg" alt="Hi ant">
+            Hi ant
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rocketmq/">rocketmq</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rocketmq-namesrv/">rocketmq-namesrv</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2016/08/26/rocketmq-0x5/&title=《RocketMQ系列0x5——rocketmq-namesrv》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2016/08/26/rocketmq-0x5/&title=《RocketMQ系列0x5——rocketmq-namesrv》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2016/08/26/rocketmq-0x5/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RocketMQ系列0x5——rocketmq-namesrv》 — 拾遗集&url=http://hiant.github.io/2016/08/26/rocketmq-0x5/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2016/08/26/rocketmq-0x5/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/08/28/rocketmq-0x6/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">RocketMQ系列0x6——rocketmq-broker</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/08/21/rocketmq-0x4/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">RocketMQ系列0x4——rocketmq-srvutil</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="rocketmq-0x5" data-title="RocketMQ系列0x5——rocketmq-namesrv" data-url="http://hiant.github.io/2016/08/26/rocketmq-0x5/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'hiant', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.7');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>拾遗集 &copy; 2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2016/08/26/rocketmq-0x5/&title=《RocketMQ系列0x5——rocketmq-namesrv》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2016/08/26/rocketmq-0x5/&title=《RocketMQ系列0x5——rocketmq-namesrv》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2016/08/26/rocketmq-0x5/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RocketMQ系列0x5——rocketmq-namesrv》 — 拾遗集&url=http://hiant.github.io/2016/08/26/rocketmq-0x5/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2016/08/26/rocketmq-0x5/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIUlEQVR42u3aQY7CMBAEQP7/afbKJaHbNivFrpzQwgZXkFrjGb9e8fW+vT4/c/X5+3te/WXxhYGB8VhGvsR20ff/NXbnSyoGBsYBjKsEu//6+6Cciel8bRgYGBjt6zEeBgYGxq8Dt91j5p/BwMDAWNVKW1sC/nwvjoGB8UBGHpf///on8w0MDIxHMcaiM4/FtigcXBUGBsbWjDzgksbZqs3q4HowMDA2ZbSjx7F386KzHY4WzxgDA+PhjHwYkDDynWaCiRp2GBgYBzDypvyqUWVeLEYjTAwMjK0Zq4YB7cAyLzHbIyAYGBi7MtqRwMxSZu7/5RfAwMA4gDG2pWyDcj52vwQuBgbGdoy8+MvbZ/mxiWVBjIGBcQAj+bJ2g5qXhjNjibq2xcDAeCwjCdDk3bHjGnn5WPQFMTAwNmLMF4XtGHKsMRcFPQYGxtaMsRAca8ytOnAWTTkwMDC2YAyK40Nj86ToezEwMLZmjLXA8hFje/+xY2cYGBjnMOr2VtD7mh8YFA8RAwPjAEY7JBg7ftFunuvBAAYGxgGMthGW4PMHNxPiGBgYuzLe5TVznKItBwsqBgbG1oxVm9K2cMxHAvVhCwwMjE0ZednXBmI7ZpgKXAwMjAMYM8G3qg+WRz8GBgZGstyxAi7ZHierig5bYGBgHM9Ym3jtI7vcxGJgYGzNaBv9SdnXDgzaAhEDA+McRrt1zBtzMyE+Fs0YGBjbMf4AsuFBzzYzs5sAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.7" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

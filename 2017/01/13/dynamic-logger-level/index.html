@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>动态日志级别设置 | 拾遗集 | 那故事仓猝结束不到气绝便已安葬</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="1. &amp;#x601D;&amp;#x8DEF;&amp;#x4F7F;&amp;#x7528; spring-jmx&amp;#x3001;jolokia &amp;#x5C06; JMX &amp;#x5C01;&amp;#x88C5;&amp;#x5E76;&amp;#x66B4;&amp;#x9732; restful &amp;#x63A5;&amp;#x53E3;&amp;#xFF0C;&amp;#x4FBF;&amp;#x4E8E;&amp;#x64CD;&amp;#x4F5C;&amp;#x3002;
+2. logback">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态日志级别设置">
+<meta property="og:url" content="http://hiant.github.io/2017/01/13/dynamic-logger-level/index.html">
+<meta property="og:site_name" content="拾遗集">
+<meta property="og:description" content="1. &amp;#x601D;&amp;#x8DEF;&amp;#x4F7F;&amp;#x7528; spring-jmx&amp;#x3001;jolokia &amp;#x5C06; JMX &amp;#x5C01;&amp;#x88C5;&amp;#x5E76;&amp;#x66B4;&amp;#x9732; restful &amp;#x63A5;&amp;#x53E3;&amp;#xFF0C;&amp;#x4FBF;&amp;#x4E8E;&amp;#x64CD;&amp;#x4F5C;&amp;#x3002;
+2. logback">
+<meta property="og:updated_time" content="2017-02-23T09:23:04.861Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动态日志级别设置">
+<meta name="twitter:description" content="1. &amp;#x601D;&amp;#x8DEF;&amp;#x4F7F;&amp;#x7528; spring-jmx&amp;#x3001;jolokia &amp;#x5C06; JMX &amp;#x5C01;&amp;#x88C5;&amp;#x5E76;&amp;#x66B4;&amp;#x9732; restful &amp;#x63A5;&amp;#x53E3;&amp;#xFF0C;&amp;#x4FBF;&amp;#x4E8E;&amp;#x64CD;&amp;#x4F5C;&amp;#x3002;
+2. logback">
+    
+        <link rel="alternative" href="/atom.xml" title="拾遗集" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Hi ant</h5>
+          <a href="mailto:liudong.work@gmail.com" title="liudong.work@gmail.com" class="mail">liudong.work@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hiant" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">动态日志级别设置</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">动态日志级别设置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-01-13T06:45:43.000Z" itemprop="datePublished" class="page-time">
+  2017-01-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#思路"><span class="post-toc-text">1. 思路</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#logback-实现"><span class="post-toc-text">2. logback 实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JMXConfiguratorMBean"><span class="post-toc-text">2.1. JMXConfiguratorMBean</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JMXConfigurator"><span class="post-toc-text">2.2. JMXConfigurator</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#log4j2-实现"><span class="post-toc-text">3. log4j2 实现</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-dynamic-logger-level"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">动态日志级别设置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年01月13日 14:45" datetime="2017-01-13T06:45:43.000Z"  itemprop="datePublished">2017-01-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="&#x601D;&#x8DEF;">1. &#x601D;&#x8DEF;</h1><p>&#x4F7F;&#x7528; spring-jmx&#x3001;jolokia &#x5C06; JMX &#x5C01;&#x88C5;&#x5E76;&#x66B4;&#x9732; restful &#x63A5;&#x53E3;&#xFF0C;&#x4FBF;&#x4E8E;&#x64CD;&#x4F5C;&#x3002;</p>
+<h1 id="logback-&#x5B9E;&#x73B0;">2. logback &#x5B9E;&#x73B0;</h1><h2 id="JMXConfiguratorMBean">2.1. JMXConfiguratorMBean</h2><p>&#x63A5;&#x53E3; <code>ch.qos.logback.classic.jmx.JMXConfiguratorMBean</code> &#x63D0;&#x4F9B;&#x4E86;&#x5982;&#x4E0B;&#x64CD;&#x4F5C;&#x5165;&#x53E3;&#xFF1A;</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> reloadDefaultConfiguration() <span class="keyword">throws</span> JoranException;</div><div class="line"></div><div class="line"><span class="keyword">void</span> reloadByFileName(<span class="keyword">String</span> fileName) <span class="keyword">throws</span> JoranException, FileNotFoundException;</div><div class="line"></div><div class="line"><span class="keyword">void</span> reloadByURL(URL url) <span class="keyword">throws</span> JoranException;</div><div class="line"></div><div class="line"><span class="keyword">void</span> setLoggerLevel(<span class="keyword">String</span> loggerName, <span class="keyword">String</span> levelStr);</div><div class="line"></div><div class="line"><span class="keyword">String</span> getLoggerLevel(<span class="keyword">String</span> loggerName);</div><div class="line"></div><div class="line"><span class="keyword">String</span> getLoggerEffectiveLevel(<span class="keyword">String</span> loggerName);</div><div class="line"></div><div class="line">List&lt;<span class="keyword">String</span>&gt; getLoggerList();</div><div class="line"></div><div class="line">List&lt;<span class="keyword">String</span>&gt; getStatuses();</div></pre></td></tr></table></figure>
+<h2 id="JMXConfigurator">2.2. JMXConfigurator</h2><p>&#x7C7B; <code>ch.qos.logback.classic.jmx.JMXConfigurator</code> &#x5B9E;&#x73B0;&#x4E86; <code>JMXConfiguratorMBean</code>&#x3002;</p>
+<p>&#x5B9E;&#x4F8B;&#x5316; <code>JMXConfigurator</code> &#x5E76;&#x4F7F;&#x7528; spring-jmx &#x66B4;&#x9732;&#x3002;</p>
+<p>&#x8BE5;&#x7C7B;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x4E2D;&#x7684; <code>ch.qos.logback.classic.LoggerContext</code> &#x5BF9;&#x8C61;&#xFF0C;&#x53EF;&#x901A;&#x8FC7; <code>(LoggerContext) LoggerFactory.getILoggerFactory()</code> &#x83B7;&#x53D6;&#x3002;</p>
+<h1 id="log4j2-&#x5B9E;&#x73B0;">3. log4j2 &#x5B9E;&#x73B0;</h1><p>log4j2 &#x4E2D;&#x672A;&#x63D0;&#x4F9B; JMX &#x64CD;&#x4F5C;&#x63A5;&#x53E3;&#xFF0C;&#x4E0D;&#x8FC7;&#x901A;&#x8FC7;&#x67E5;&#x770B;&#x6E90;&#x7801;&#x53EF;&#x77E5;&#xFF1A;</p>
+<ol>
+<li><code>org.apache.logging.slf4j.Log4jLogger</code>&#xFF0C;&#x662F; <code>slf4j</code> &#x7684; <code>log4j2</code> &#x6865;&#x63A5;&#x5B9E;&#x73B0;</li>
+<li><code>Log4jLogger</code> &#x662F;&#x4EE3;&#x7406;&#x7684; <code>org.apache.logging.log4j.spi.ExtendedLogger</code> &#x5177;&#x4F53;&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x529F;&#x80FD;</li>
+<li>&#x88AB;&#x4EE3;&#x7406;&#x7684; <code>ExtendedLogger</code> &#x662F;&#x901A;&#x8FC7; <code>org.apache.logging.log4j.spi.LoggerContext#getLogger(java.lang.String)</code> &#x5B9E;&#x4F8B;&#x5316;&#x7684;</li>
+<li><code>getLogger</code> &#x662F;&#x901A;&#x8FC7;&#x5728; <code>org.apache.logging.log4j.core.LoggerContext#newInstance</code> new &#x4E00;&#x4E2A; <code>org.apache.logging.log4j.core.Logger</code> &#x7684;&#x5B9E;&#x4F8B;</li>
+<li><code>org.apache.logging.log4j.core.Logger</code> &#x63D0;&#x4F9B;&#x4E86; <code>org.apache.logging.log4j.core.Logger#setLevel</code> &#x65B9;&#x6CD5;&#x8BBE;&#x7F6E;&#x65E5;&#x5FD7;&#x7EA7;&#x522B;</li>
+</ol>
+<p>&#x56E0;&#x6B64;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x4F7F;&#x7528; spring-jmx &#x5C01;&#x88C5;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x63D0;&#x4F9B; setLevel &#x65B9;&#x6CD5;&#xFF0C;&#x5728;&#x8BE5;&#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x901A;&#x8FC7; <code>org.apache.logging.log4j.LogManager#getLogger(java.lang.String)</code> &#x83B7;&#x53D6;&#x5230; logger&#xFF0C;&#x518D;&#x8C03;&#x7528;&#x8BE5; logger &#x7684; setLevel &#x65B9;&#x6CD5;&#x5373;&#x53EF;&#xFF1B;</p>
+<p>&#x7531;&#x4E8E; <code>org.apache.logging.log4j.core.LoggerContext#loggerRegistry</code> &#x7F13;&#x5B58;&#x4E86;&#x540C;&#x540D;&#x7684;&#x7684; logger&#xFF0C;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x8BBE;&#x7F6E;&#x7684;&#x5176;&#x4ED6;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x540C;&#x4E00;&#x4E2A; logger &#x5B9E;&#x4F8B;&#x3002;</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-02-23T09:23:04.861Z" itemprop="dateUpdated">2017年2月23日 17:23</time>
+</span><br>
+
+
+        本站所有文章均为原创，欢迎订阅，转载请注明出处：<a href="/2017/01/13/dynamic-logger-level/" target="_blank" rel="external">http://hiant.github.io/2017/01/13/dynamic-logger-level/</a>
+    </div>
+    <footer>
+        <a href="http://hiant.github.io">
+            <img src="/img/author.jpg" alt="Hi ant">
+            Hi ant
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2017/01/13/dynamic-logger-level/&title=《动态日志级别设置》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2017/01/13/dynamic-logger-level/&title=《动态日志级别设置》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2017/01/13/dynamic-logger-level/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《动态日志级别设置》 — 拾遗集&url=http://hiant.github.io/2017/01/13/dynamic-logger-level/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2017/01/13/dynamic-logger-level/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/01/21/dynamic-data-source-in-spring/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">spring中的动态数据源（多数据源及读写分离）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/08/28/rocketmq-0x6/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">RocketMQ系列0x6——rocketmq-broker</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="dynamic-logger-level" data-title="动态日志级别设置" data-url="http://hiant.github.io/2017/01/13/dynamic-logger-level/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'hiant', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.7');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>拾遗集 &copy; 2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2017/01/13/dynamic-logger-level/&title=《动态日志级别设置》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2017/01/13/dynamic-logger-level/&title=《动态日志级别设置》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2017/01/13/dynamic-logger-level/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《动态日志级别设置》 — 拾遗集&url=http://hiant.github.io/2017/01/13/dynamic-logger-level/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2017/01/13/dynamic-logger-level/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3ay26DQAwF0Pz/T9NtpSpwbSeVMGdWUUpgDgvXj3m94nX8Wn+/f/f53a/O73B+/WhhYGDclnGcruSa6q+SV5DvDQMD4zmMJBRWryls4k3ATZ6LgYGBcX7NeSKYhNH568PAwMD4VLHaK2IxMDAwqkVsr9/V++sXa3EMDIwbMnph8X8+f2W+gYGBcStGr91/3lybDCaP1sLAwNjN6KV9kyvz8UD5KRgYGEsZSbGat/t7DbgkcF+EewwMjNWMSTGZl5qTdl4h3cTAwFjKSMJiFTkfKlSTUQwMjCcw5nXwZOvVnbztGmJgYDyM0Tv4VcXkr+PinhgYGKsZebBL2mr5SKDazovSUwwMjNWMTw0jq4dWk7vl/xgwMDC2MvIyMkkWe2G6WtYWJhsYGBgPYPSGmgmylz42+3YYGBgrGIVsMQi4vaOrCTg6bIGBgbGOMbnRp1pm53soH03DwMBYymi6B03/yRMvSlkMDIzVjGq7v5f2VUcRhXtiYGA8gJEPGqtN/Or3ydMvUkMMDIyljF6K1ito5827ZvaKgYGxiDEZFUyK3upuLwIuBgbGCsZRXHnNWB0G9I6dvZLKGwMD4+aMapgrH30Yt9ImT8TAwNjEqA4DkqI0apC1ytroTWNgYCxl9MYA1eQvTz3LzUEMDAyMeHiQp4y9gSUGBgbGJOCWJxJxYy4iYWBgPICRN/qr5W71sEWveYeBgbGbMSkdJzOHXuAeDTUxMDDux/gB+Os2lDCn1QsAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.7" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
