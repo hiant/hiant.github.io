@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>java中enum的进阶实践 | 拾遗集 | 那故事仓猝结束不到气绝便已安葬</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="1. &amp;#x80CC;&amp;#x666F;&amp;#x9879;&amp;#x76EE;&amp;#x5B9E;&amp;#x73B0;&amp;#x4E00;&amp;#x7EC4;&amp;#x5BF9;&amp;#x5916;&amp;#x63A5;&amp;#x53E3;&amp;#xFF0C;&amp;#x63A5;&amp;#x53E3;&amp;#x58F0;&amp;#x660E;&amp;#x4E2D;&amp;#x6709;&amp;#x90E8;&amp;#x5206;&amp;#x6839;&amp;#x636E;&amp;#x7C7B;&amp;#x57">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java中enum的进阶实践">
+<meta property="og:url" content="http://hiant.github.io/2017/02/24/enum/index.html">
+<meta property="og:site_name" content="拾遗集">
+<meta property="og:description" content="1. &amp;#x80CC;&amp;#x666F;&amp;#x9879;&amp;#x76EE;&amp;#x5B9E;&amp;#x73B0;&amp;#x4E00;&amp;#x7EC4;&amp;#x5BF9;&amp;#x5916;&amp;#x63A5;&amp;#x53E3;&amp;#xFF0C;&amp;#x63A5;&amp;#x53E3;&amp;#x58F0;&amp;#x660E;&amp;#x4E2D;&amp;#x6709;&amp;#x90E8;&amp;#x5206;&amp;#x6839;&amp;#x636E;&amp;#x7C7B;&amp;#x57">
+<meta property="og:updated_time" content="2017-03-01T01:26:20.636Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java中enum的进阶实践">
+<meta name="twitter:description" content="1. &amp;#x80CC;&amp;#x666F;&amp;#x9879;&amp;#x76EE;&amp;#x5B9E;&amp;#x73B0;&amp;#x4E00;&amp;#x7EC4;&amp;#x5BF9;&amp;#x5916;&amp;#x63A5;&amp;#x53E3;&amp;#xFF0C;&amp;#x63A5;&amp;#x53E3;&amp;#x58F0;&amp;#x660E;&amp;#x4E2D;&amp;#x6709;&amp;#x90E8;&amp;#x5206;&amp;#x6839;&amp;#x636E;&amp;#x7C7B;&amp;#x57">
+    
+        <link rel="alternative" href="/atom.xml" title="拾遗集" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Hi ant</h5>
+          <a href="mailto:liudong.work@gmail.com" title="liudong.work@gmail.com" class="mail">liudong.work@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hiant" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">java中enum的进阶实践</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">java中enum的进阶实践</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-02-24T03:21:31.000Z" itemprop="datePublished" class="page-time">
+  2017-02-24
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#背景"><span class="post-toc-text">1. 背景</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#EnumMap"><span class="post-toc-text">2. EnumMap</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#其他"><span class="post-toc-text">3. 其他</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#更多应用"><span class="post-toc-text">4. 更多应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#类型判断"><span class="post-toc-text">4.1. 类型判断</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#根据枚举类型的Class获取枚举所有值"><span class="post-toc-text">4.2. 根据枚举类型的Class获取枚举所有值</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-enum"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">java中enum的进阶实践</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年02月24日 11:21" datetime="2017-02-24T03:21:31.000Z"  itemprop="datePublished">2017-02-24</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="&#x80CC;&#x666F;">1. &#x80CC;&#x666F;</h1><p>&#x9879;&#x76EE;&#x5B9E;&#x73B0;&#x4E00;&#x7EC4;&#x5BF9;&#x5916;&#x63A5;&#x53E3;&#xFF0C;&#x63A5;&#x53E3;&#x58F0;&#x660E;&#x4E2D;&#x6709;&#x90E8;&#x5206;&#x6839;&#x636E;&#x7C7B;&#x578B;&#x505A;&#x4E0D;&#x540C;&#x4E1A;&#x52A1;&#x7684;&#x903B;&#x8F91;&#x3002;</p>
+<p>&#x8001;&#x7CFB;&#x7EDF;&#x8BBE;&#x8BA1;&#x65F6;&#x901A;&#x8FC7; if-else &#x5224;&#x65AD;&#xFF0C;&#x5230;&#x6700;&#x540E;&#x63A5;&#x624B;&#x7EF4;&#x62A4;&#x7684;&#x65F6;&#x5019;&#x6709;&#x70B9;&#x75DB;&#x82E6;&#x3002;</p>
+<p>&#x65B0;&#x7684;&#x8FD9;&#x4E00;&#x5957;&#xFF0C;&#x91CD;&#x65B0;&#x505A;&#x4E86;&#x70B9;&#x8BBE;&#x8BA1;&#xFF1A;</p>
+<ol>
+<li>&#x8981;&#x5224;&#x65AD;&#x7684;&#x7C7B;&#x578B; Type&#xFF0C;&#x8BBE;&#x7F6E;&#x6210; enum</li>
+<li>&#x5177;&#x4F53;&#x4E1A;&#x52A1; ServiceImpl &#x548C;&#x5165;&#x53E3; ServiceImpl &#x90FD;&#x5B9E;&#x73B0;&#x63A5;&#x53E3; Service</li>
+<li>&#x5165;&#x53E3; ServiceImpl &#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x6240;&#x6709; Type &#x5230; &#x5BF9;&#x5E94;&#x5177;&#x4F53;&#x4E1A;&#x52A1; ServiceImpl &#x6784;&#x6210;&#x7684; EnumMap</li>
+<li>&#x5165;&#x53E3; ServiceImpl &#x6839;&#x636E;&#x8BF7;&#x6C42;&#x4E2D;&#x7684; Type&#xFF0C;&#x4ECE; EnumMap &#x83B7;&#x53D6;&#x5BF9;&#x5E94;&#x7684;&#x5177;&#x4F53;&#x4E1A;&#x52A1; ServiceImpl&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8BF7;&#x6C42;&#x4F20;&#x9012;&#x7ED9;&#x8BE5; ServiceImpl</li>
+</ol>
+<h1 id="EnumMap">2. EnumMap</h1><p>&#x8FD9;&#x4E2A;&#x7C7B;&#x578B;&#x7684; Map &#x5E95;&#x5C42;&#x662F;&#x6784;&#x9020;&#x4E86;&#x4E00;&#x4E2A;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#x503C;&#x4E2A;&#x6570;&#x957F;&#x5EA6;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x7136;&#x540E;&#x6570;&#x7EC4;&#x4E0B;&#x6807;&#x5C31;&#x662F;&#x5BF9;&#x5E94;&#x7684;&#x679A;&#x4E3E;&#x503C;&#x7684;&#x5E8F;&#x53F7;&#xFF08;<code>((Enum&lt;?&gt;)key).ordinal()</code>&#xFF09;</p>
+<p>&#x8FD9;&#x4E48;&#x8BBE;&#x8BA1;&#x5728;&#x53D6;&#x6570;&#x636E;&#x65F6;&#x81EA;&#x7136;&#x662F;&#x6BD4; HashMap &#x6548;&#x7387;&#x9AD8;&#xFF0C;&#x5BF9;&#x6BD4;&#x4E0B; HashMap &#x7684;&#x5185;&#x5B58;&#x7ED3;&#x6784;&#x5C31;&#x7406;&#x89E3;&#x4E86;&#x3002;</p>
+<h1 id="&#x5176;&#x4ED6;">3. &#x5176;&#x4ED6;</h1><p>&#x5173;&#x4E8E; enum &#x7684;&#x8FDB;&#x9636;&#x7528;&#x6CD5;&#xFF0C;&#x5176;&#x5B9E;&#x770B;&#x770B; <code>java.util.concurrent.TimeUnit</code> &#x7684;&#x6E90;&#x7801;&#x5C31;&#x5DEE;&#x4E0D;&#x591A;&#x4E86;&#x3002;</p>
+<h1 id="&#x66F4;&#x591A;&#x5E94;&#x7528;">4. &#x66F4;&#x591A;&#x5E94;&#x7528;</h1><h2 id="&#x7C7B;&#x578B;&#x5224;&#x65AD;">4.1. &#x7C7B;&#x578B;&#x5224;&#x65AD;</h2><p>&#x505A;&#x901A;&#x7528;&#x5DE5;&#x5177;&#x65F6;&#xFF0C;&#x5224;&#x65AD;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#x662F;&#x4E0D;&#x662F;&#x679A;&#x4E3E;&#xFF1A;<code>T.class.isEnum()</code></p>
+<p>&#x6848;&#x4F8B;&#xFF1A;&#x6211;&#x7528;&#x6765;&#x52A8;&#x6001;&#x5224;&#x65AD;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61; Field &#x7684;&#x58F0;&#x660E;&#x662F;&#x4E0D;&#x662F;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x8FD9;&#x4E2A; Field &#x5728;&#x8868;&#x5355;&#x4E0A;&#x52A8;&#x6001;&#x8868;&#x793A;&#x4E3A;&#x4E0B;&#x62C9;&#x83DC;&#x5355;</p>
+<h2 id="&#x6839;&#x636E;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#x7684;Class&#x83B7;&#x53D6;&#x679A;&#x4E3E;&#x6240;&#x6709;&#x503C;">4.2. &#x6839;&#x636E;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#x7684;Class&#x83B7;&#x53D6;&#x679A;&#x4E3E;&#x6240;&#x6709;&#x503C;</h2><p>&#x505A;&#x901A;&#x7528;&#x5DE5;&#x5177;&#x65F6;&#xFF0C;&#x52A8;&#x6001;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x679A;&#x4E3E;&#x503C;&#xFF1A;<code>EnumSet.allOf(T.class)</code></p>
+<p>&#x6848;&#x4F8B;&#xFF1A;&#x6211;&#x7528;&#x6765;&#x52A8;&#x6001;&#x751F;&#x6210;&#x8FC7; <code>org.springframework.http.HttpMethod</code> &#x7684;&#x4E0B;&#x62C9;&#x83DC;&#x5355;</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-01T01:26:20.636Z" itemprop="dateUpdated">2017年3月1日 9:26</time>
+</span><br>
+
+
+        本站所有文章均为原创，欢迎订阅，转载请注明出处：<a href="/2017/02/24/enum/" target="_blank" rel="external">http://hiant.github.io/2017/02/24/enum/</a>
+    </div>
+    <footer>
+        <a href="http://hiant.github.io">
+            <img src="/img/author.jpg" alt="Hi ant">
+            Hi ant
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2017/02/24/enum/&title=《java中enum的进阶实践》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2017/02/24/enum/&title=《java中enum的进阶实践》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2017/02/24/enum/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《java中enum的进阶实践》 — 拾遗集&url=http://hiant.github.io/2017/02/24/enum/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2017/02/24/enum/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/01/spring-cloud-0x0/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">spring-cloud实战0x0</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/02/24/optimize-and-improve-gitbook-output/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">gitbook 部分细节改进</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="enum" data-title="java中enum的进阶实践" data-url="http://hiant.github.io/2017/02/24/enum/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'hiant', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.7');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>拾遗集 &copy; 2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2017/02/24/enum/&title=《java中enum的进阶实践》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2017/02/24/enum/&title=《java中enum的进阶实践》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2017/02/24/enum/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《java中enum的进阶实践》 — 拾遗集&url=http://hiant.github.io/2017/02/24/enum/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2017/02/24/enum/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABx0lEQVR42u3aQY7DIBAEQP//094HZI17GENiqThFiQVFDiPo8XHE47wYn898fh7PdqwYuLi4be45HFfPJMSrGca/jv8UXFzcndyrivEspVr4cHFx38IdL5wcYsbbw8XFfSM32cwL6i4uLm7ATS4/yaUlyTQ23dVwcXEb3DylXPd5Sb6Li4s7xT2LY275vGDdrI6Li7uFmxeU/iGmMxsuLu4vcPulLYlF8mJ35OksLi5um1sNMZPoc46SHINwcXH3cPOXJ5Ii9VT8cdOCxcXFXczNC1D+fdIISTb5Dx0XF3cLt3q8SKarXpbKwQouLu52bh6G5gvPtVJa+S4uLm6D2295JhvII9SbVXBxcbdzO+VprlnbKmS4uLjLuOVstViGkoikeqjCxcXdw02mzjeQt2Hm2iq4uLg7uXncmUer1WcKPWFcXNwt3GpsMVeq8gtS+RSGi4v7ELcTkuYvWOQRSeG8g4uLu4zbuoQ82qDtbBsXF3cFt/8q1bMt1Zv/FRcXdyN3XHo6sUjn8nMTmOLi4v4MtxOVVi9ahdQEFxf3q9zqlWa87fIrILi4uBu5/fKUl7kkocHFxf0utx93VrPYuQMTLi7uFu4ffPcBL3kacwIAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.7" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

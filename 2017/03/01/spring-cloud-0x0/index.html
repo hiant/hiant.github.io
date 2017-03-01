@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>spring-cloud实战0x0 | 拾遗集 | 那故事仓猝结束不到气绝便已安葬</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="1. &amp;#x4E3A;&amp;#x4EC0;&amp;#x4E48;&amp;#x662F; spring-cloud&amp;#x672C;&amp;#x6765;&amp;#x5F88;&amp;#x60F3;&amp;#x5BF9;&amp;#x5DF2;&amp;#x7ECF;&amp;#x5F00;&amp;#x6E90;&amp;#x7684; dubbo &amp;#x7814;&amp;#x7A76;&amp;#x4E00;&amp;#x756A;&amp;#xFF0C;&amp;#x53EA;&amp;#x662F;&amp;#x4F20;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring-cloud实战0x0">
+<meta property="og:url" content="http://hiant.github.io/2017/03/01/spring-cloud-0x0/index.html">
+<meta property="og:site_name" content="拾遗集">
+<meta property="og:description" content="1. &amp;#x4E3A;&amp;#x4EC0;&amp;#x4E48;&amp;#x662F; spring-cloud&amp;#x672C;&amp;#x6765;&amp;#x5F88;&amp;#x60F3;&amp;#x5BF9;&amp;#x5DF2;&amp;#x7ECF;&amp;#x5F00;&amp;#x6E90;&amp;#x7684; dubbo &amp;#x7814;&amp;#x7A76;&amp;#x4E00;&amp;#x756A;&amp;#xFF0C;&amp;#x53EA;&amp;#x662F;&amp;#x4F20;&amp;">
+<meta property="og:updated_time" content="2017-03-01T07:12:27.279Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spring-cloud实战0x0">
+<meta name="twitter:description" content="1. &amp;#x4E3A;&amp;#x4EC0;&amp;#x4E48;&amp;#x662F; spring-cloud&amp;#x672C;&amp;#x6765;&amp;#x5F88;&amp;#x60F3;&amp;#x5BF9;&amp;#x5DF2;&amp;#x7ECF;&amp;#x5F00;&amp;#x6E90;&amp;#x7684; dubbo &amp;#x7814;&amp;#x7A76;&amp;#x4E00;&amp;#x756A;&amp;#xFF0C;&amp;#x53EA;&amp;#x662F;&amp;#x4F20;&amp;">
+    
+        <link rel="alternative" href="/atom.xml" title="拾遗集" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Hi ant</h5>
+          <a href="mailto:liudong.work@gmail.com" title="liudong.work@gmail.com" class="mail">liudong.work@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hiant" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">spring-cloud实战0x0</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">spring-cloud实战0x0</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-01T05:41:49.000Z" itemprop="datePublished" class="page-time">
+  2017-03-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为什么是-spring-cloud"><span class="post-toc-text">1. 为什么是 spring-cloud</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#目标"><span class="post-toc-text">2. 目标</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#源码"><span class="post-toc-text">3. 源码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#仓库地址"><span class="post-toc-text">3.1. 仓库地址</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-spring-cloud-0x0"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">spring-cloud实战0x0</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年03月01日 13:41" datetime="2017-03-01T05:41:49.000Z"  itemprop="datePublished">2017-03-01</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="&#x4E3A;&#x4EC0;&#x4E48;&#x662F;-spring-cloud">1. &#x4E3A;&#x4EC0;&#x4E48;&#x662F; spring-cloud</h1><p>&#x672C;&#x6765;&#x5F88;&#x60F3;&#x5BF9;&#x5DF2;&#x7ECF;&#x5F00;&#x6E90;&#x7684; dubbo &#x7814;&#x7A76;&#x4E00;&#x756A;&#xFF0C;&#x53EA;&#x662F;&#x4F20;&#x95FB; HSF&#xFF08;HighSpeedFramework&#xFF09; &#x5DF2;&#x7ECF;&#x6253;&#x8D25;&#x4E86; dubbo &#x5374;&#x4ECD;&#x65E7;&#x672A;&#x73B0;&#x771F;&#x5BB9;&#xFF0C;&#x800C; spring-cloud &#x6709; spring framework &#x505A;&#x80CC;&#x4E66;&#x3002;</p>
+<h1 id="&#x76EE;&#x6807;">2. &#x76EE;&#x6807;</h1><ol>
+<li>&#x670D;&#x52A1;&#x6CE8;&#x518C;&#x4E0E;&#x53D1;&#x73B0;</li>
+<li>&#x670D;&#x52A1;&#x8C03;&#x7528;&#x8FFD;&#x8E2A;</li>
+<li>&#x914D;&#x7F6E;&#x7BA1;&#x7406;</li>
+<li>&#x7194;&#x65AD;&#x5206;&#x6790;</li>
+</ol>
+<h1 id="&#x6E90;&#x7801;">3. &#x6E90;&#x7801;</h1><h2 id="&#x4ED3;&#x5E93;&#x5730;&#x5740;">3.1. &#x4ED3;&#x5E93;&#x5730;&#x5740;</h2><p><strong>github&#xFF1A;</strong><a href="https://github.com/hiant/spring-cloud-demo" target="_blank" rel="external">https://github.com/hiant/spring-cloud-demo</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-01T07:12:27.279Z" itemprop="dateUpdated">2017年3月1日 15:12</time>
+</span><br>
+
+
+        本站所有文章均为原创，欢迎订阅，转载请注明出处：<a href="/2017/03/01/spring-cloud-0x0/" target="_blank" rel="external">http://hiant.github.io/2017/03/01/spring-cloud-0x0/</a>
+    </div>
+    <footer>
+        <a href="http://hiant.github.io">
+            <img src="/img/author.jpg" alt="Hi ant">
+            Hi ant
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2017/03/01/spring-cloud-0x0/&title=《spring-cloud实战0x0》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2017/03/01/spring-cloud-0x0/&title=《spring-cloud实战0x0》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2017/03/01/spring-cloud-0x0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《spring-cloud实战0x0》 — 拾遗集&url=http://hiant.github.io/2017/03/01/spring-cloud-0x0/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2017/03/01/spring-cloud-0x0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/01/spring-cloud-0x1/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">spring-cloud实战0x1——服务注册与发现</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/02/24/enum/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">java中enum的进阶实践</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="spring-cloud-0x0" data-title="spring-cloud实战0x0" data-url="http://hiant.github.io/2017/03/01/spring-cloud-0x0/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'hiant', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.7');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>拾遗集 &copy; 2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2017/03/01/spring-cloud-0x0/&title=《spring-cloud实战0x0》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2017/03/01/spring-cloud-0x0/&title=《spring-cloud实战0x0》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2017/03/01/spring-cloud-0x0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《spring-cloud实战0x0》 — 拾遗集&url=http://hiant.github.io/2017/03/01/spring-cloud-0x0/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2017/03/01/spring-cloud-0x0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIElEQVR42u3azW7EMAhF4Xn/l063rVpb50JSKfh4NRrlhy8LZMCfD17Xdn2/ZnX9/sm/7/o8sWTIkPFaBg9x9QJ+1/4J5HMsI5EhQ8YBDP5oAoiDaLBlyJAhY3UNT6/kXhkyZMi4l8HD4qHLkCFDBmHwVlpadvJwyf831OIyZMh4IYN33f//9yPzDRkyZLyKcYWrtqXjKfIqLRkyZMxm8ARHGvr9grYVjwwZMkYz0kKUt954QOlHWT5ZhgwZ4xj80EPx24THMtLi+ccOV4YMGYcx+Av4AYu0cCUfSIYMGecw0vTHG3B8YNmKQYYMGQcw9pu/dDCQlrgcvOTJkCFjNCNtu9cScVoYp8NRGTJkzGYQWecIBR8SkM3iEi9DhozRjNrwMi1fawk9vVeGDBnnMNJmPdnwpYVxbUQqQ4aMqYxayguSYMguFrcyZMg4hlFLgvuVNvdrDT4ZMmTIqCH7xyyKhy1kyJAxjsEb9LWAagm3doxDhgwZsxm8rcZL0/5Gk/TW/hhhypAh4wAGSbudznytoA3mGzJkyBjN4DfUGv2tHStJzTJkyBjKuMK1Z3QSa6v+liFDxmgGX/2Xpccs0i2mDBkyZjNqSZaMB9KgH5xpyJAhYwSD96/uavp3ilgZMmTI4CPMJw6T8dQsQ4YMGXxr2Bkk8A0lKmJlyJAxmpEeV60l1vTJvP0nQ4aM2Yy0dLxrxJhuDTulrwwZMl7L+AJD2ZNhp7ORfQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.7" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

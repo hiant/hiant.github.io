@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hiant.github.io/"/>
-  <updated>2017-02-23T09:22:03.970Z</updated>
+  <updated>2017-03-01T10:25:52.204Z</updated>
   <id>http://hiant.github.io/</id>
   
   <author>
@@ -14,6 +14,239 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring-cloud实战0x1——服务注册与发现</title>
+    <link href="http://hiant.github.io/2017/03/01/spring-cloud-0x1/"/>
+    <id>http://hiant.github.io/2017/03/01/spring-cloud-0x1/</id>
+    <published>2017-03-01T05:41:56.000Z</published>
+    <updated>2017-03-01T10:25:52.204Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="&#x642D;&#x5EFA;&#x4E00;&#x4E2A;-eureka-&#x670D;&#x52A1;&#x53D1;&#x73B0;&#x670D;&#x52A1;&#x5668;">1. &#x642D;&#x5EFA;&#x4E00;&#x4E2A; eureka &#x670D;&#x52A1;&#x53D1;&#x73B0;&#x670D;&#x52A1;&#x5668;</h1><h2 id="eureka-server-demo">1.1. eureka-server-demo</h2><p>&#x65B0;&#x5EFA; module&#xFF0C;&#x4F7F;&#x7528; spring boot &#x5FEB;&#x901F;&#x5F00;&#x53D1;</p>
+<h2 id="POM">1.2. POM</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-demo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.hiant<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>eureka-server-demo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>eureka-server-demo<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>spring-cloud-starter-eureka-server &#x7528;&#x6765;&#x63D0;&#x4F9B;&#x57FA;&#x4E8E; eureka &#x7684;&#x670D;&#x52A1;&#x53D1;&#x73B0;&#x670D;&#x52A1;&#x5668;&#x6240;&#x9700;&#x4F9D;&#x8D56;</p>
+<h2 id="&#x6E90;&#x7801;">1.3. &#x6E90;&#x7801;</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">EurekaServerDemoApplication</td>
+<td style="text-align:left">&#x670D;&#x52A1;&#x5668;&#x542F;&#x52A8;&#x5165;&#x53E3;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="EurekaServerDemoApplication">1.3.1. EurekaServerDemoApplication</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@SpringBootApplication</span></div><div class="line"><span class="variable">@EnableEurekaServer</span>   <span class="comment">// &#x6CE8;&#x89E3;&#x65B9;&#x5F0F;&#xFF0C;&#x5728;spring boot&#x4E2D;&#x542F;&#x52A8;&#x670D;&#x52A1;&#x53D1;&#x73B0;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5177;&#x4F53;&#x914D;&#x7F6E;&#xFF0C;&#x901A;&#x8FC7;spring boot&#x65B9;&#x5F0F;&#x6CE8;&#x5165;&#x8FDB;&#x53BB;</span></div><div class="line">public class EurekaServerDemoApplication {</div><div class="line"></div><div class="line">    <span class="selector-tag">public</span> <span class="selector-tag">static</span> <span class="selector-tag">void</span> <span class="selector-tag">main</span>(String[] args) {</div><div class="line">        <span class="selector-tag">SpringApplication</span><span class="selector-class">.run</span>(EurekaServerDemoApplication.class, args);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h2 id="&#x914D;&#x7F6E;">1.4. &#x914D;&#x7F6E;</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">&#x6587;&#x4EF6;&#x540D;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">application.properties</td>
+<td style="text-align:left">&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;yml&#x3002;&#x8FD9;&#x91CC;&#x9762;&#x6709;&#x4E2A;&#x5751;&#xFF0C;map&#x7C7B;&#x578B;&#x7684;&#x952E;&#x503C;&#xFF0C;&#x952E;&#x6CA1;&#x6CD5;&#x518D;&#x50CF;&#x5176;&#x4ED6;&#x524D;&#x7F00;&#x5DF2;&#x7ECF;&#x901A;&#x8FC7;&#x77ED;&#x6A2A;&#x7EBF;&#x8868;&#x793A;&#x9A7C;&#x5CF0;&#x53D8;&#x91CF;&#x540D;</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># &#x670D;&#x52A1;&#x5668;&#x7AEF;&#x53E3;&#x53F7;&#xFF0C;&#x4E0D;&#x4FEE;&#x6539; eureka.client.service-url.defaultZone &#xFF0C;&#x8FD9;&#x91CC;&#x7684;&#x7AEF;&#x53E3;&#x53F7;&#x5FC5;&#x987B;&#x662F; 8671</span></div><div class="line">server.port=<span class="number">8765</span></div><div class="line"><span class="meta"># eureka &#x670D;&#x52A1;&#x5668;&#x5B9E;&#x4F8B;&#x7ED1;&#x5B9A;&#x7684;&#x673A;&#x5668;&#x5730;&#x5740;</span></div><div class="line">eureka.instance.hostname=localhost</div><div class="line"><span class="meta"># &#x6CE8;&#x518C;&#x5230; eureka &#x670D;&#x52A1;&#x5668;&#x7684;&#x662F; ip &#x8FD8;&#x662F; hostname</span></div><div class="line">eureka.instance.prefer-ip-address=<span class="literal">true</span></div><div class="line"><span class="meta"># eureka &#x670D;&#x52A1;&#x5668;&#x7684;&#x5730;&#x5740;&#xFF0C;&#x670D;&#x52A1;&#x63D0;&#x4F9B;&#x65B9;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x8BE5;&#x5730;&#x5740;&#x6CE8;&#x518C;&#x670D;&#x52A1;</span></div><div class="line">eureka.client.service-url.defaultZone=http:<span class="comment">//${eureka.instance.hostname}:${server.port}/eureka/</span></div><div class="line"><span class="meta"># &#x662F;&#x5426;&#x6CE8;&#x518C;&#x81EA;&#x8EAB;&#x5230; eureka &#x670D;&#x52A1;&#x5668;&#xFF0C;&#x8FD9;&#x91CC;&#x4EC5;&#x662F;&#x4E00;&#x4E2A;&#x6CE8;&#x518C;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x56E0;&#x6B64;&#x8BBE;&#x4E3A;false</span></div><div class="line">eureka.client.register-with-eureka=<span class="literal">false</span></div><div class="line"><span class="meta"># &#x662F;&#x5426;&#x4ECE; eureka &#x670D;&#x52A1;&#x5668;&#x83B7;&#x53D6;&#x6CE8;&#x518C;&#x4FE1;&#x606F;</span></div><div class="line">eureka.client.fetch-registry=<span class="literal">false</span></div></pre></td></tr></table></figure>
+<h2 id="&#x5176;&#x4ED6;">1.5. &#x5176;&#x4ED6;</h2><h3 id="&#x9057;&#x7559;&#x95EE;&#x9898;">1.5.1. &#x9057;&#x7559;&#x95EE;&#x9898;</h3><ol>
+<li>&#x6CE8;&#x518C; eureka &#x670D;&#x52A1;&#x9009;&#x62E9;&#x7528; ip &#x65F6;&#xFF0C;&#x600E;&#x4E48;&#x8BBE;&#x7F6E; ip&#xFF1F;&#x4E0D;&#x8BBE;&#x7F6E;&#x65F6;&#xFF0C;&#x9ED8;&#x8BA4;&#x5730;&#x5740;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</li>
+<li>&#x5982;&#x4F55;&#x8BBE;&#x7F6E; eureka &#x6CE8;&#x518C;&#x670D;&#x52A1;&#x5668;&#x4E3A;&#x96C6;&#x7FA4;&#x6A21;&#x5F0F;&#xFF1F;</li>
+</ol>
+<h1 id="&#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x670D;&#x52A1;">2. &#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x670D;&#x52A1;</h1><h2 id="eureka-service-demo">2.1. eureka-service-demo</h2><p>&#x7B80;&#x5355;&#x7684;&#x4F7F;&#x7528; <code>java.util.UUID</code> &#x505A;&#x4E00;&#x4E2A;&#x5168;&#x5C40;id&#x751F;&#x6210;&#x670D;&#x52A1;</p>
+<h2 id="POM-1">2.2. POM</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-demo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.hiant<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>eureka-service-demo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>eureka-service-demo<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-eureka<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>spring-cloud-starter-eureka &#x7528;&#x6765;&#x63D0;&#x4F9B; eureka &#x670D;&#x52A1;&#x6CE8;&#x518C;&#x53CA; spring web &#x7684;&#x4F9D;&#x8D56;</p>
+<h2 id="&#x6E90;&#x7801;-1">2.3. &#x6E90;&#x7801;</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">EurekaServiceDemoApplication</td>
+<td style="text-align:left">&#x670D;&#x52A1;&#x5668;&#x542F;&#x52A8;&#x5165;&#x53E3;</td>
+</tr>
+<tr>
+<td style="text-align:left">UUIDController</td>
+<td style="text-align:left">UUID&#x670D;&#x52A1;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="EurekaServiceDemoApplication">2.3.1. EurekaServiceDemoApplication</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@SpringBootApplication</span></div><div class="line"><span class="variable">@EnableEurekaClient</span>   <span class="comment">// &#x6CE8;&#x89E3;&#x65B9;&#x5F0F;&#xFF0C;&#x5728;spring boot&#x4E2D;&#x6CE8;&#x518C;&#x670D;&#x52A1;</span></div><div class="line">public class EurekaServiceDemoApplication {</div><div class="line"></div><div class="line">    <span class="selector-tag">public</span> <span class="selector-tag">static</span> <span class="selector-tag">void</span> <span class="selector-tag">main</span>(String[] args) {</div><div class="line">        <span class="selector-tag">SpringApplication</span><span class="selector-class">.run</span>(EurekaServiceDemoApplication.class, args);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h3 id="UUIDController">2.3.2. UUIDController</h3><p>&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684; restful &#x670D;&#x52A1;&#xFF0C;&#x5F53;&#x8BBF;&#x95EE; <a href="http://ip:port/uuid" target="_blank" rel="external">http://ip:port/uuid</a> &#x65F6;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; <code>java.util.UUID</code> &#x751F;&#x6210;&#x7684;&#x968F;&#x673A; id</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UUIDController</span> </span>{</div><div class="line"></div><div class="line">    <span class="meta">@GetMapping(<span class="meta-string">&quot;/uuid&quot;</span>)</span></div><div class="line">    <span class="keyword">public</span> String uuid() {</div><div class="line">        <span class="keyword">return</span> UUID.randomUUID().toString();</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h2 id="&#x914D;&#x7F6E;-1">2.4. &#x914D;&#x7F6E;</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">&#x6587;&#x4EF6;&#x540D;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">application.properties</td>
+<td style="text-align:left">spring boot &#x914D;&#x7F6E;&#x6587;&#x4EF6;</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># &#x670D;&#x52A1;&#x540D;&#x5B57;</span></div><div class="line">spring.application.name=UUID</div><div class="line"><span class="meta"># &#x670D;&#x52A1;&#x7AEF;&#x53E3;&#xFF0C;spring cloud &#x4F7F;&#x7528; restful &#x65B9;&#x5F0F;&#x8C03;&#x7528;&#x670D;&#x52A1;</span></div><div class="line">server.port=<span class="number">8081</span></div><div class="line"><span class="meta"># &#x6CE8;&#x518C;&#x670D;&#x52A1;&#x5668;&#x5730;&#x5740;</span></div><div class="line">eureka.client.service-url.defaultZone=http:<span class="comment">//localhost:8765/eureka/</span></div></pre></td></tr></table></figure>
+<h2 id="&#x5176;&#x4ED6;-1">2.5. &#x5176;&#x4ED6;</h2><h3 id="&#x9057;&#x7559;&#x95EE;&#x9898;-1">2.5.1. &#x9057;&#x7559;&#x95EE;&#x9898;</h3><h1 id="&#x901A;&#x8FC7;&#x670D;&#x52A1;&#x6CE8;&#x518C;&#x5668;&#x53D1;&#x73B0;&#x670D;&#x52A1;&#x5E76;&#x8BBF;&#x95EE;">3. &#x901A;&#x8FC7;&#x670D;&#x52A1;&#x6CE8;&#x518C;&#x5668;&#x53D1;&#x73B0;&#x670D;&#x52A1;&#x5E76;&#x8BBF;&#x95EE;</h1><h2 id="eureka-client-demo">3.1. eureka-client-demo</h2><h2 id="POM-2">3.2. POM</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-demo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.hiant<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>eureka-client-demo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>eureka-client-demo<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.netflix.eureka<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>eureka-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.netflix.ribbon<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ribbon-eureka<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-feign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>spring-cloud-netflix-eureka-client&#x3001;eureka-core&#x3001;ribbon-eureka &#x7528;&#x6765;&#x63D0;&#x4F9B; eureka &#x670D;&#x52A1;&#x53D1;&#x73B0;&#x7684;&#x4F9D;&#x8D56;</p>
+<p>spring-cloud-starter-feign &#x7528;&#x6765;&#x63D0;&#x4F9B; eureka &#x670D;&#x52A1;&#x8C03;&#x7528;&#x7684;&#x4F9D;&#x8D56;</p>
+<h2 id="&#x6E90;&#x7801;-2">3.3. &#x6E90;&#x7801;</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">EurekaClientDemoApplication</td>
+<td style="text-align:left">&#x5BA2;&#x6237;&#x7AEF;&#x542F;&#x52A8;&#x5165;&#x53E3;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="EurekaClientDemoApplication">3.3.1. EurekaClientDemoApplication</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="meta">@EnableDiscoveryClient</span></div><div class="line"><span class="meta">@EnableFeignClients</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaClientDemoApplication</span> </span>{</div><div class="line"></div><div class="line">    <span class="keyword">public</span> static void main(String[] args) {</div><div class="line">        ApplicationContext context = SpringApplication.run(EurekaClientDemoApplication.<span class="keyword">class</span>, args);</div><div class="line">        Service service = context.getBean(Service.<span class="keyword">class</span>);</div><div class="line">        System.<span class="keyword">out</span>.println(service.uuid());</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="meta">@FeignClient(<span class="meta-string">&quot;UUID&quot;</span>)</span></div><div class="line">    <span class="class"><span class="keyword">interface</span> <span class="title">Service</span> </span>{</div><div class="line"></div><div class="line">        <span class="meta">@GetMapping(<span class="meta-string">&quot;/uuid&quot;</span>)</span></div><div class="line">        String uuid();</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>FeignClient &#x5305;&#x88C5;&#x4E86;&#x670D;&#x52A1;&#x540D;&#xFF0C;Service &#x91CC;&#x9762;&#x7684; uuid &#x65B9;&#x6CD5;&#x901A;&#x8FC7;&#x6CE8;&#x89E3;&#x5305;&#x88C5;&#x4E86; eureka-service-demo &#x5DE5;&#x7A0B;&#x63D0;&#x4F9B;&#x7684; rest api</p>
+<h2 id="&#x914D;&#x7F6E;-2">3.4. &#x914D;&#x7F6E;</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">&#x6587;&#x4EF6;&#x540D;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">application.properties</td>
+<td style="text-align:left">spring boot &#x914D;&#x7F6E;&#x6587;&#x4EF6;</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># &#x6CE8;&#x518C;&#x670D;&#x52A1;&#x5668;&#x5730;&#x5740;</span></div><div class="line">eureka.client.service-url.defaultZone=http:<span class="regexp">//</span>localhost:<span class="number">8765</span><span class="regexp">/eureka/</span></div></pre></td></tr></table></figure>
+<h2 id="&#x5176;&#x4ED6;-2">3.5. &#x5176;&#x4ED6;</h2><h3 id="&#x9057;&#x7559;&#x95EE;&#x9898;-2">3.5.1. &#x9057;&#x7559;&#x95EE;&#x9898;</h3><ol>
+<li>FeignClient &#x5305;&#x88C5;&#x5E26;&#x6765;&#x7684;&#x8026;&#x5408;&#x5EA6;&#x5F71;&#x54CD;<blockquote>
+<p>&#x901A;&#x8FC7; FeignClient &#x7684;&#x5305;&#x88C5;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x8C03;&#x7528;&#x8FDC;&#x7AEF;&#x670D;&#x52A1;&#xFF0C;&#x5176;&#x5B9E;&#x548C;&#x672C;&#x5730;&#x8C03;&#x7528;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x5DF2;&#x7ECF;&#x4E00;&#x6837;&#x4E86;&#xFF0C;&#x8FD9;&#x548C; dubbo &#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x7136;&#x540E;&#x670D;&#x52A1;&#x7AEF;&#x5BA2;&#x6237;&#x7AEF;&#x90FD;&#x7528;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x4ECE;&#x53E6;&#x5916;&#x4E2A;&#x65B9;&#x9762;&#x6765;&#x8BF4;&#x4E5F;&#x662F;&#x589E;&#x52A0;&#x4E86;&#x8026;&#x5408;&#x5EA6;&#x4E86;&#x3002;</p>
+</blockquote>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;&amp;#x642D;&amp;#x5EFA;&amp;#x4E00;&amp;#x4E2A;-eureka-&amp;#x670D;&amp;#x52A1;&amp;#x53D1;&amp;#x73B0;&amp;#x670D;&amp;#x52A1;&amp;#x5668;&quot;&gt;1. &amp;#x642D;&amp;#x5EFA;&amp;#x4E00;&amp;#x4E2A
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>spring-cloud实战0x0</title>
+    <link href="http://hiant.github.io/2017/03/01/spring-cloud-0x0/"/>
+    <id>http://hiant.github.io/2017/03/01/spring-cloud-0x0/</id>
+    <published>2017-03-01T05:41:49.000Z</published>
+    <updated>2017-03-01T07:12:27.279Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="&#x4E3A;&#x4EC0;&#x4E48;&#x662F;-spring-cloud">1. &#x4E3A;&#x4EC0;&#x4E48;&#x662F; spring-cloud</h1><p>&#x672C;&#x6765;&#x5F88;&#x60F3;&#x5BF9;&#x5DF2;&#x7ECF;&#x5F00;&#x6E90;&#x7684; dubbo &#x7814;&#x7A76;&#x4E00;&#x756A;&#xFF0C;&#x53EA;&#x662F;&#x4F20;&#x95FB; HSF&#xFF08;HighSpeedFramework&#xFF09; &#x5DF2;&#x7ECF;&#x6253;&#x8D25;&#x4E86; dubbo &#x5374;&#x4ECD;&#x65E7;&#x672A;&#x73B0;&#x771F;&#x5BB9;&#xFF0C;&#x800C; spring-cloud &#x6709; spring framework &#x505A;&#x80CC;&#x4E66;&#x3002;</p>
+<h1 id="&#x76EE;&#x6807;">2. &#x76EE;&#x6807;</h1><ol>
+<li>&#x670D;&#x52A1;&#x6CE8;&#x518C;&#x4E0E;&#x53D1;&#x73B0;</li>
+<li>&#x670D;&#x52A1;&#x8C03;&#x7528;&#x8FFD;&#x8E2A;</li>
+<li>&#x914D;&#x7F6E;&#x7BA1;&#x7406;</li>
+<li>&#x7194;&#x65AD;&#x5206;&#x6790;</li>
+</ol>
+<h1 id="&#x6E90;&#x7801;">3. &#x6E90;&#x7801;</h1><h2 id="&#x4ED3;&#x5E93;&#x5730;&#x5740;">3.1. &#x4ED3;&#x5E93;&#x5730;&#x5740;</h2><p><strong>github&#xFF1A;</strong><a href="https://github.com/hiant/spring-cloud-demo" target="_blank" rel="external">https://github.com/hiant/spring-cloud-demo</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;&amp;#x4E3A;&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;-spring-cloud&quot;&gt;1. &amp;#x4E3A;&amp;#x4EC0;&amp;#x4E48;&amp;#x662F; spring-cloud&lt;/h1&gt;&lt;p&gt;&amp;#x672C;&amp;#x6765;&amp;#x5F88;&amp;#x60
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>java中enum的进阶实践</title>
+    <link href="http://hiant.github.io/2017/02/24/enum/"/>
+    <id>http://hiant.github.io/2017/02/24/enum/</id>
+    <published>2017-02-24T03:21:31.000Z</published>
+    <updated>2017-03-01T01:26:20.636Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="&#x80CC;&#x666F;">1. &#x80CC;&#x666F;</h1><p>&#x9879;&#x76EE;&#x5B9E;&#x73B0;&#x4E00;&#x7EC4;&#x5BF9;&#x5916;&#x63A5;&#x53E3;&#xFF0C;&#x63A5;&#x53E3;&#x58F0;&#x660E;&#x4E2D;&#x6709;&#x90E8;&#x5206;&#x6839;&#x636E;&#x7C7B;&#x578B;&#x505A;&#x4E0D;&#x540C;&#x4E1A;&#x52A1;&#x7684;&#x903B;&#x8F91;&#x3002;</p>
+<p>&#x8001;&#x7CFB;&#x7EDF;&#x8BBE;&#x8BA1;&#x65F6;&#x901A;&#x8FC7; if-else &#x5224;&#x65AD;&#xFF0C;&#x5230;&#x6700;&#x540E;&#x63A5;&#x624B;&#x7EF4;&#x62A4;&#x7684;&#x65F6;&#x5019;&#x6709;&#x70B9;&#x75DB;&#x82E6;&#x3002;</p>
+<p>&#x65B0;&#x7684;&#x8FD9;&#x4E00;&#x5957;&#xFF0C;&#x91CD;&#x65B0;&#x505A;&#x4E86;&#x70B9;&#x8BBE;&#x8BA1;&#xFF1A;</p>
+<ol>
+<li>&#x8981;&#x5224;&#x65AD;&#x7684;&#x7C7B;&#x578B; Type&#xFF0C;&#x8BBE;&#x7F6E;&#x6210; enum</li>
+<li>&#x5177;&#x4F53;&#x4E1A;&#x52A1; ServiceImpl &#x548C;&#x5165;&#x53E3; ServiceImpl &#x90FD;&#x5B9E;&#x73B0;&#x63A5;&#x53E3; Service</li>
+<li>&#x5165;&#x53E3; ServiceImpl &#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x6240;&#x6709; Type &#x5230; &#x5BF9;&#x5E94;&#x5177;&#x4F53;&#x4E1A;&#x52A1; ServiceImpl &#x6784;&#x6210;&#x7684; EnumMap</li>
+<li>&#x5165;&#x53E3; ServiceImpl &#x6839;&#x636E;&#x8BF7;&#x6C42;&#x4E2D;&#x7684; Type&#xFF0C;&#x4ECE; EnumMap &#x83B7;&#x53D6;&#x5BF9;&#x5E94;&#x7684;&#x5177;&#x4F53;&#x4E1A;&#x52A1; ServiceImpl&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8BF7;&#x6C42;&#x4F20;&#x9012;&#x7ED9;&#x8BE5; ServiceImpl</li>
+</ol>
+<h1 id="EnumMap">2. EnumMap</h1><p>&#x8FD9;&#x4E2A;&#x7C7B;&#x578B;&#x7684; Map &#x5E95;&#x5C42;&#x662F;&#x6784;&#x9020;&#x4E86;&#x4E00;&#x4E2A;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#x503C;&#x4E2A;&#x6570;&#x957F;&#x5EA6;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x7136;&#x540E;&#x6570;&#x7EC4;&#x4E0B;&#x6807;&#x5C31;&#x662F;&#x5BF9;&#x5E94;&#x7684;&#x679A;&#x4E3E;&#x503C;&#x7684;&#x5E8F;&#x53F7;&#xFF08;<code>((Enum&lt;?&gt;)key).ordinal()</code>&#xFF09;</p>
+<p>&#x8FD9;&#x4E48;&#x8BBE;&#x8BA1;&#x5728;&#x53D6;&#x6570;&#x636E;&#x65F6;&#x81EA;&#x7136;&#x662F;&#x6BD4; HashMap &#x6548;&#x7387;&#x9AD8;&#xFF0C;&#x5BF9;&#x6BD4;&#x4E0B; HashMap &#x7684;&#x5185;&#x5B58;&#x7ED3;&#x6784;&#x5C31;&#x7406;&#x89E3;&#x4E86;&#x3002;</p>
+<h1 id="&#x5176;&#x4ED6;">3. &#x5176;&#x4ED6;</h1><p>&#x5173;&#x4E8E; enum &#x7684;&#x8FDB;&#x9636;&#x7528;&#x6CD5;&#xFF0C;&#x5176;&#x5B9E;&#x770B;&#x770B; <code>java.util.concurrent.TimeUnit</code> &#x7684;&#x6E90;&#x7801;&#x5C31;&#x5DEE;&#x4E0D;&#x591A;&#x4E86;&#x3002;</p>
+<h1 id="&#x66F4;&#x591A;&#x5E94;&#x7528;">4. &#x66F4;&#x591A;&#x5E94;&#x7528;</h1><h2 id="&#x7C7B;&#x578B;&#x5224;&#x65AD;">4.1. &#x7C7B;&#x578B;&#x5224;&#x65AD;</h2><p>&#x505A;&#x901A;&#x7528;&#x5DE5;&#x5177;&#x65F6;&#xFF0C;&#x5224;&#x65AD;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#x662F;&#x4E0D;&#x662F;&#x679A;&#x4E3E;&#xFF1A;<code>T.class.isEnum()</code></p>
+<p>&#x6848;&#x4F8B;&#xFF1A;&#x6211;&#x7528;&#x6765;&#x52A8;&#x6001;&#x5224;&#x65AD;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61; Field &#x7684;&#x58F0;&#x660E;&#x662F;&#x4E0D;&#x662F;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x8FD9;&#x4E2A; Field &#x5728;&#x8868;&#x5355;&#x4E0A;&#x52A8;&#x6001;&#x8868;&#x793A;&#x4E3A;&#x4E0B;&#x62C9;&#x83DC;&#x5355;</p>
+<h2 id="&#x6839;&#x636E;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#x7684;Class&#x83B7;&#x53D6;&#x679A;&#x4E3E;&#x6240;&#x6709;&#x503C;">4.2. &#x6839;&#x636E;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#x7684;Class&#x83B7;&#x53D6;&#x679A;&#x4E3E;&#x6240;&#x6709;&#x503C;</h2><p>&#x505A;&#x901A;&#x7528;&#x5DE5;&#x5177;&#x65F6;&#xFF0C;&#x52A8;&#x6001;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x679A;&#x4E3E;&#x503C;&#xFF1A;<code>EnumSet.allOf(T.class)</code></p>
+<p>&#x6848;&#x4F8B;&#xFF1A;&#x6211;&#x7528;&#x6765;&#x52A8;&#x6001;&#x751F;&#x6210;&#x8FC7; <code>org.springframework.http.HttpMethod</code> &#x7684;&#x4E0B;&#x62C9;&#x83DC;&#x5355;</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;&amp;#x80CC;&amp;#x666F;&quot;&gt;1. &amp;#x80CC;&amp;#x666F;&lt;/h1&gt;&lt;p&gt;&amp;#x9879;&amp;#x76EE;&amp;#x5B9E;&amp;#x73B0;&amp;#x4E00;&amp;#x7EC4;&amp;#x5BF9;&amp;#x5916;&amp;#x63A5;&amp;#x53E3;&amp;#xFF0C
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>gitbook 部分细节改进</title>
+    <link href="http://hiant.github.io/2017/02/24/optimize-and-improve-gitbook-output/"/>
+    <id>http://hiant.github.io/2017/02/24/optimize-and-improve-gitbook-output/</id>
+    <published>2017-02-24T02:07:01.000Z</published>
+    <updated>2017-02-24T02:12:31.299Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#x6539;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;">1. &#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#x6539;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;</h1><p>&#x4FEE;&#x6539;&#x6587;&#x4EF6;&#xFF1A;${gitbook.home}\lib\output\website\createTemplateEngine.js<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">resolveAsset: <span class="function"><span class="keyword">function</span><span class="params">(filePath)</span> </span>{</div><div class="line">    filePath = LocationUtils.toAbsolute(filePath, <span class="string">&apos;&apos;</span>, <span class="string">&apos;&apos;</span>);</div><div class="line">    filePath = path.join(<span class="string">&apos;/gitbook&apos;</span>, filePath);</div><div class="line">    <span class="comment">//filePath = LocationUtils.relativeForFile(currentFile, filePath);</span></div><div class="line"></div><div class="line">    <span class="comment">// Use assets from parent if language book</span></div><div class="line">    <span class="comment">//if (book.isLanguageBook()) {</span></div><div class="line">    <span class="comment">//    filePath = path.join(&apos;../&apos;, filePath);</span></div><div class="line">    <span class="comment">//}</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> LocationUtils.normalize(filePath);</div><div class="line">},</div></pre></td></tr></table></figure></p>
+<h1 id="&#x91CD;&#x7528;-book-&#x76EE;&#x5F55;">2. &#x91CD;&#x7528; _book &#x76EE;&#x5F55;</h1><p>&#x4E0D;&#x4F7F;&#x7528;&#x4E34;&#x65F6;&#x76EE;&#x5F55;&#xFF0C;&#x52A0;&#x5FEB;&#x751F;&#x6210;pdf&#x7B49;ebook&#x683C;&#x5F0F;&#x65F6;&#x7F16;&#x8BD1;&#x901F;&#x5EA6;</p>
+<p>&#x4FEE;&#x6539;&#x6587;&#x4EF6;&#xFF1A;${gitbook.home}\lib\cli\buildEbook.js</p>
+<p>&#x7B2C;&#x4E00;&#x5904;&#xFF0C;&#x4FEE;&#x6539;&#x76EE;&#x5F55;<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Create temporary directory</span></div><div class="line"><span class="keyword">var</span> book = getBook(args, kwargs);</div><div class="line"><span class="keyword">var</span> outputFolder = book.fs.root ? book.fs.root + <span class="string">&apos;/_book&apos;</span> : tmp.dirSync().<span class="keyword">name</span>;</div></pre></td></tr></table></figure></p>
+<p>&#x7B2C;&#x4E8C;&#x5904;&#xFF0C;&#x4E0D;&#x5220;&#x9664; _book &#x76EE;&#x5F55;<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// Log <span class="keyword">end</span></div><div class="line">.<span class="keyword">then</span>(<span class="function"><span class="keyword">function</span><span class="params">(count)</span></span> {</div><div class="line">    logger.info.ok(count + <span class="string">&apos; file(s) generated&apos;</span>);</div><div class="line"></div><div class="line">    //logger.<span class="built_in">debug</span>(<span class="string">&apos;cleaning up... &apos;</span>);</div><div class="line">    //<span class="keyword">return</span> logger.<span class="built_in">debug</span>.promise(fs.rmDir(outputFolder));</div><div class="line">});</div></pre></td></tr></table></figure></p>
+<h1 id="toc-&#x6539;&#x8FDB;">3. toc &#x6539;&#x8FDB;</h1><p>&#x4FEE;&#x6539;ebook&#x683C;&#x5F0F;&#x4E0B;&#xFF0C;&#x4E0D;&#x8F93;&#x51FA;&#x6BCF;&#x4E00;&#x9875;&#x7684;h1&#x6807;&#x7B7E;&#xFF1B;website&#x683C;&#x5F0F;&#x4E0B;&#xFF0C;&#x5C06;h1&#x7684;id&#x4FEE;&#x6539;&#x4E3A;&#x5F53;&#x524D;level&#xFF0C;&#x914D;&#x5408;gtoc&#x751F;&#x6210;&#x5168;&#x5C40;&#x7684;&#x7D22;&#x5F15;</p>
+<p>&#x4FEE;&#x6539;&#x6587;&#x4EF6;&#xFF1A;${gitbook.home}lib\output\website\onPage.js</p>
+<p>&#x7B2C;&#x4E00;&#x5904;&#xFF0C;&#x5F15;&#x5165; cheerio<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var fileToOutput</span> = require(<span class="string">&apos;../helper/fileToOutput&apos;</span>);</div><div class="line"><span class="attribute">var cheerio</span> = require(<span class="string">&apos;cheerio&apos;</span>);</div></pre></td></tr></table></figure></p>
+<p>&#x7B2C;&#x4E8C;&#x5904;&#xFF0C;&#x6539;&#x5199;&#x9875;&#x9762;&#x5185;&#x5BB9;</p>
+<pre><code>$ = cheerio.load(context.page.content);
+context.page.title = context.page.level + &apos;  &apos; + context.page.title;
+if (options.prefix == &apos;ebook&apos;) {
+    $(&apos;h1&apos;).remove();
+} else {
+    $(&apos;h1&apos;).attr(&apos;id&apos;, context.page.level);
+    $(&apos;h1&apos;).text(context.page.title);
+}
+context.page.content = $.html();
+
+// Render the theme
+return Templating.renderFile(engine, prefix + &apos;/page.html&apos;, context)
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;&amp;#x76F8;&amp;#x5BF9;&amp;#x8DEF;&amp;#x5F84;&amp;#x6539;&amp;#x7EDD;&amp;#x5BF9;&amp;#x8DEF;&amp;#x5F84;&quot;&gt;1. &amp;#x76F8;&amp;#x5BF9;&amp;#x8DEF;&amp;#x5F84;&amp;#x6539;&amp;#x7EDD;&amp;#x5BF9
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>数据库与redis的数据差异比对</title>
