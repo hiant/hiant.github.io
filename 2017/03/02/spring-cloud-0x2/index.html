@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <meta name="baidu-site-verification" content="jmmV9dNwAF">
+    
+    
+    
+    <title>spring-cloud实战0x2——服务调用追踪 | 拾遗集 | 那故事仓猝结束不到气绝便已安葬</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="spring cloud">
+    <meta name="description" content="1. &amp;#x80CC;&amp;#x666F;&amp;#x5982;&amp;#x679C;&amp;#x662F;&amp;#x5355;&amp;#x4F53;&amp;#x5E94;&amp;#x7528;&amp;#xFF0C;&amp;#x8BF7;&amp;#x6C42;&amp;#x5230;&amp;#x54CD;&amp;#x5E94;&amp;#x53EF;&amp;#x4EE5;&amp;#x901A;&amp;#x8FC7;&amp;#x8BBE;&amp;#x7F6E;&amp;#x4E00;&amp;#x4E2A;&amp;#x8BF7;&amp;#x6C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring-cloud实战0x2——服务调用追踪">
+<meta property="og:url" content="http://hiant.github.io/2017/03/02/spring-cloud-0x2/index.html">
+<meta property="og:site_name" content="拾遗集">
+<meta property="og:description" content="1. &amp;#x80CC;&amp;#x666F;&amp;#x5982;&amp;#x679C;&amp;#x662F;&amp;#x5355;&amp;#x4F53;&amp;#x5E94;&amp;#x7528;&amp;#xFF0C;&amp;#x8BF7;&amp;#x6C42;&amp;#x5230;&amp;#x54CD;&amp;#x5E94;&amp;#x53EF;&amp;#x4EE5;&amp;#x901A;&amp;#x8FC7;&amp;#x8BBE;&amp;#x7F6E;&amp;#x4E00;&amp;#x4E2A;&amp;#x8BF7;&amp;#x6C">
+<meta property="og:updated_time" content="2017-03-02T08:41:03.840Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spring-cloud实战0x2——服务调用追踪">
+<meta name="twitter:description" content="1. &amp;#x80CC;&amp;#x666F;&amp;#x5982;&amp;#x679C;&amp;#x662F;&amp;#x5355;&amp;#x4F53;&amp;#x5E94;&amp;#x7528;&amp;#xFF0C;&amp;#x8BF7;&amp;#x6C42;&amp;#x5230;&amp;#x54CD;&amp;#x5E94;&amp;#x53EF;&amp;#x4EE5;&amp;#x901A;&amp;#x8FC7;&amp;#x8BBE;&amp;#x7F6E;&amp;#x4E00;&amp;#x4E2A;&amp;#x8BF7;&amp;#x6C">
+    
+        <link rel="alternative" href="/atom.xml" title="拾遗集" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Hi ant</h5>
+          <a href="mailto:liudong.work@gmail.com" title="liudong.work@gmail.com" class="mail">liudong.work@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/hiant" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">spring-cloud实战0x2——服务调用追踪</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">spring-cloud实战0x2——服务调用追踪</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-02T00:59:13.000Z" itemprop="datePublished" class="page-time">
+  2017-03-02
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#背景"><span class="post-toc-text">1. 背景</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SpringCloudSleuth"><span class="post-toc-text">2. SpringCloudSleuth</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#单服务"><span class="post-toc-text">3. 单服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#POM"><span class="post-toc-text">3.1. POM</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#增加日志"><span class="post-toc-text">3.2. 增加日志</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#验证"><span class="post-toc-text">3.3. 验证</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#链式服务"><span class="post-toc-text">4. 链式服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#新增模块-eureka-service-complex-demo"><span class="post-toc-text">4.1. 新增模块 eureka-service-complex-demo</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#POM-1"><span class="post-toc-text">4.1.1. POM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#源码"><span class="post-toc-text">4.1.2. 源码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#EurekaServiceComplexDemoApplication"><span class="post-toc-text">4.1.2.1. EurekaServiceComplexDemoApplication</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#TimeController"><span class="post-toc-text">4.1.2.2. TimeController</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置"><span class="post-toc-text">4.1.3. 配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#修改模块-eureka-service-demo"><span class="post-toc-text">4.2. 修改模块 eureka-service-demo</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#POM-2"><span class="post-toc-text">4.2.1. POM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#源码-1"><span class="post-toc-text">4.2.2. 源码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#EurekaServiceDemoApplication"><span class="post-toc-text">4.2.2.1. EurekaServiceDemoApplication</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#UUIDController"><span class="post-toc-text">4.2.2.2. UUIDController</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#验证-1"><span class="post-toc-text">4.3. 验证</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#扩展"><span class="post-toc-text">4.4. 扩展</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-spring-cloud-0x2"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">spring-cloud实战0x2——服务调用追踪</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年03月02日 8:59" datetime="2017-03-02T00:59:13.000Z"  itemprop="datePublished">2017-03-02</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="&#x80CC;&#x666F;">1. &#x80CC;&#x666F;</h1><p>&#x5982;&#x679C;&#x662F;&#x5355;&#x4F53;&#x5E94;&#x7528;&#xFF0C;&#x8BF7;&#x6C42;&#x5230;&#x54CD;&#x5E94;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x5E8F;&#x5217;&#x53F7;&#x6765;&#x8BB0;&#x5F55;&#x76F8;&#x5E94;&#x7684;&#x6D88;&#x606F;&#x6D41;&#x8F6C;&#x8FC7;&#x7A0B;&#xFF1B;&#x4F46;&#x662F;&#x6269;&#x5C55;&#x5230;&#x7EA7;&#x8054;&#x8C03;&#x7528;&#x7684;&#x670D;&#x52A1;&#x6216;&#x8005;&#x662F;&#x5FAE;&#x670D;&#x52A1;&#xFF0C;&#x8DDF;&#x8E2A;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x4ECE;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#x5230;&#x4E0B;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#x7684;&#x6D41;&#x8F6C;&#x8FC7;&#x7A0B;&#xFF0C;&#x8FD8;&#x4E0D;&#x80FD;&#x5F71;&#x54CD;&#x5DF2;&#x6709;&#x7684;&#x4E1A;&#x52A1;&#xFF0C;&#x8FD9;&#x5C31;&#x6BD4;&#x8F83;&#x56F0;&#x96BE;&#x3002;</p>
+<h1 id="SpringCloudSleuth">2. SpringCloudSleuth</h1><p>&#x5728;&#x65E5;&#x5FD7;&#x4E2D;&#x589E;&#x52A0;&#x56DB;&#x4E2A;&#x503C;&#xFF1A;</p>
+<pre><code>1. &#x670D;&#x52A1;&#x540D;&#xFF1A;spring.application.name&#x7684;&#x503C;
+2. trace ID&#xFF1A;&#x5305;&#x542B;&#x4E00;&#x7CFB;&#x5217;span ID&#xFF0C;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x6811;&#x72B6;&#x7ED3;&#x6784;
+3. span ID&#xFF1A;&#x5DE5;&#x4F5C;&#x57FA;&#x672C;&#x5355;&#x5143;&#xFF0C;&#x6BD4;&#x5982;&#x53D1;&#x9001;&#x4E00;&#x4E2A;HTTP &#x8BF7;&#x6C42;
+4. span&#x662F;&#x5426;&#x5E94;&#x8BE5;&#x5BFC;&#x51FA;&#x5230;Zipkin
+</code></pre><h1 id="&#x5355;&#x670D;&#x52A1;">3. &#x5355;&#x670D;&#x52A1;</h1><h2 id="POM">3.1. POM</h2><p>&#x5728; eureka-service-demo &#x7684; POM &#x6587;&#x4EF6;&#x4E2D;&#x589E;&#x52A0;&#x4F9D;&#x8D56;</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-sleuth<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="&#x589E;&#x52A0;&#x65E5;&#x5FD7;">3.2. &#x589E;&#x52A0;&#x65E5;&#x5FD7;</h2><p>&#x4FEE;&#x6539; eureka-service-demo &#x7684; <code>io.github.hiant.UUIDController</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UUIDController</span> </span>{</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * name=&quot;{<span class="doctag">@link</span> UUIDController}&quot;</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> static <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(UUIDController.<span class="keyword">class</span>);</div><div class="line"></div><div class="line">    <span class="meta">@GetMapping(<span class="meta-string">&quot;/uuid&quot;</span>)</span></div><div class="line">    <span class="keyword">public</span> String uuid() {</div><div class="line">        LOGGER.info(<span class="string">&quot;{}&quot;</span>, LOGGER);</div><div class="line">        <span class="keyword">return</span> UUID.randomUUID().toString();</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h2 id="&#x9A8C;&#x8BC1;">3.3. &#x9A8C;&#x8BC1;</h2><ol>
+<li>&#x542F;&#x52A8; <code>io.github.hiant.EurekaServiceDemoApplication</code><blockquote>
+<p><a href="http://localhost:8765/" target="_blank" rel="external">http://localhost:8765/</a> </p>
+</blockquote>
+</li>
+<li><p>&#x542F;&#x52A8; <code>io.github.hiant.EurekaServiceDemoApplication</code></p>
+<blockquote>
+<p><a href="http://localhost:8765/" target="_blank" rel="external">http://localhost:8765/</a> &#x4F1A;&#x663E;&#x793A;&#x6CE8;&#x518C;&#x7684; UUID &#x670D;&#x52A1;<br>&#x7B2C; 3 &#x6B65;&#x6267;&#x884C;&#x540E;&#xFF0C;&#x4F1A;&#x5728;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;&#xFF1A;</p>
+<blockquote>
+<p>2017-03-02 13:48:18.152  INFO [UUID,58c1d40563eb68a4,58c1d40563eb68a4,false] 11128 &#x2014; [nio-8081-exec-7] io.github.hiant.UUIDController           : Logger[io.github.hiant.UUIDController]</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>&#x542F;&#x52A8; <code>io.github.hiant.EurekaClientDemoApplication</code></p>
+<blockquote>
+<p>&#x4F1A;&#x5728;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;&#x83B7;&#x53D6;&#x5230;&#x7684; uuid</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="&#x94FE;&#x5F0F;&#x670D;&#x52A1;">4. &#x94FE;&#x5F0F;&#x670D;&#x52A1;</h1><h2 id="&#x65B0;&#x589E;&#x6A21;&#x5757;-eureka-service-complex-demo">4.1. &#x65B0;&#x589E;&#x6A21;&#x5757; eureka-service-complex-demo</h2><h3 id="POM-1">4.1.1. POM</h3><p>POM &#x4E2D;&#x7684;&#x4F9D;&#x8D56;&#x548C; eureka-service-demo &#x4FDD;&#x6301;&#x4E00;&#x81F4;</p>
+<h3 id="&#x6E90;&#x7801;">4.1.2. &#x6E90;&#x7801;</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">class</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">EurekaClientDemoApplication</td>
+<td style="text-align:left">&#x5BA2;&#x6237;&#x7AEF;&#x542F;&#x52A8;&#x5165;&#x53E3;</td>
+</tr>
+<tr>
+<td style="text-align:left">TimeController</td>
+<td style="text-align:left">&#x65F6;&#x95F4;&#x670D;&#x52A1;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="EurekaServiceComplexDemoApplication">4.1.2.1. EurekaServiceComplexDemoApplication</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@SpringBootApplication</span></div><div class="line"><span class="variable">@EnableEurekaClient</span></div><div class="line">public class EurekaServiceComplexDemoApplication {</div><div class="line"></div><div class="line">    <span class="selector-tag">public</span> <span class="selector-tag">static</span> <span class="selector-tag">void</span> <span class="selector-tag">main</span>(String[] args) {</div><div class="line">        <span class="selector-tag">SpringApplication</span><span class="selector-class">.run</span>(EurekaServiceComplexDemoApplication.class, args);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h4 id="TimeController">4.1.2.2. TimeController</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimeController</span> </span>{</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * name=&quot;{<span class="doctag">@link</span> TimeController io.github.hiant.UUIDController}&quot;</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> static <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(TimeController.<span class="keyword">class</span>);</div><div class="line"></div><div class="line">    <span class="meta">@GetMapping(<span class="meta-string">&quot;/now&quot;</span>)</span></div><div class="line">    <span class="keyword">public</span> <span class="built_in">Long</span> now() {</div><div class="line">        LOGGER.info(<span class="string">&quot;{}&quot;</span>, LOGGER);</div><div class="line">        <span class="keyword">return</span> System.currentTimeMillis();</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h3 id="&#x914D;&#x7F6E;">4.1.3. &#x914D;&#x7F6E;</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">&#x6587;&#x4EF6;&#x540D;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">application.properties</td>
+<td style="text-align:left">spring boot &#x914D;&#x7F6E;&#x6587;&#x4EF6;</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># &#x670D;&#x52A1;&#x540D;&#x5B57;</span></div><div class="line">spring.application.name=TIME</div><div class="line"><span class="meta"># &#x670D;&#x52A1;&#x7AEF;&#x53E3;&#xFF0C;spring cloud &#x4F7F;&#x7528; restful &#x65B9;&#x5F0F;&#x8C03;&#x7528;&#x670D;&#x52A1;</span></div><div class="line">server.port=<span class="number">8082</span></div><div class="line"><span class="meta"># &#x6CE8;&#x518C;&#x670D;&#x52A1;&#x5668;&#x5730;&#x5740;</span></div><div class="line">eureka.client.service-url.defaultZone=http:<span class="comment">//localhost:8765/eureka/</span></div></pre></td></tr></table></figure>
+<h2 id="&#x4FEE;&#x6539;&#x6A21;&#x5757;-eureka-service-demo">4.2. &#x4FEE;&#x6539;&#x6A21;&#x5757; eureka-service-demo</h2><h3 id="POM-2">4.2.1. POM</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-feign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>&#x4F7F;&#x7528; FeignClient &#x8C03;&#x7528;&#x5D4C;&#x5957;&#x7684;&#x670D;&#x52A1;</p>
+<h3 id="&#x6E90;&#x7801;-1">4.2.2. &#x6E90;&#x7801;</h3><h4 id="EurekaServiceDemoApplication">4.2.2.1. EurekaServiceDemoApplication</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@SpringBootApplication</span></div><div class="line"><span class="variable">@EnableEurekaClient</span></div><div class="line"><span class="variable">@EnableDiscoveryClient</span></div><div class="line"><span class="variable">@EnableFeignClients</span></div><div class="line">public class EurekaServiceDemoApplication {</div><div class="line"></div><div class="line">    <span class="selector-tag">public</span> <span class="selector-tag">static</span> <span class="selector-tag">void</span> <span class="selector-tag">main</span>(String[] args) {</div><div class="line">        <span class="selector-tag">SpringApplication</span><span class="selector-class">.run</span>(EurekaServiceDemoApplication.class, args);</div><div class="line">    }</div><div class="line"></div><div class="line">    @<span class="selector-tag">FeignClient</span>(<span class="string">&quot;TIME&quot;</span>)</div><div class="line">    <span class="selector-tag">interface</span> <span class="selector-tag">Service</span> {</div><div class="line"></div><div class="line">        <span class="variable">@GetMapping</span>(<span class="string">&quot;/now&quot;</span>)</div><div class="line">        long now();</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x52A0;&#x5165; FeignClient &#x5305;&#x88C5;&#x7684; TIME &#x670D;&#x52A1;&#x76F8;&#x5173;&#x4EE3;&#x7801;&#x53CA;&#x6CE8;&#x89E3;</p>
+<h4 id="UUIDController">4.2.2.2. UUIDController</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UUIDController</span> </span>{</div><div class="line"></div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    EurekaServiceDemoApplication.Service service;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * name=&quot;{<span class="doctag">@link</span> UUIDController io.github.hiant.UUIDController}&quot;</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> static <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(UUIDController.<span class="keyword">class</span>);</div><div class="line"></div><div class="line">    <span class="meta">@GetMapping(<span class="meta-string">&quot;/uuid&quot;</span>)</span></div><div class="line">    <span class="keyword">public</span> String uuid() {</div><div class="line">        LOGGER.info(<span class="string">&quot;{}&quot;</span>, LOGGER);</div><div class="line">        <span class="keyword">return</span> UUID.randomUUID().toString() + <span class="string">&quot;-&quot;</span> + service.now();</div><div class="line">    }</div><div class="line"></div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x6CE8;&#x5165; TIME &#x670D;&#x52A1;&#xFF0C;&#x5E76;&#x5728; uuid &#x65B9;&#x6CD5;&#x4E2D;&#x8C03;&#x7528;</p>
+<h2 id="&#x9A8C;&#x8BC1;-1">4.3. &#x9A8C;&#x8BC1;</h2><ol>
+<li>&#x542F;&#x52A8; <code>io.github.hiant.EurekaServiceDemoApplication</code><blockquote>
+<p><a href="http://localhost:8765/" target="_blank" rel="external">http://localhost:8765/</a> </p>
+</blockquote>
+</li>
+<li>&#x542F;&#x52A8; <code>io.github.hiant.EurekaServiceDemoApplication</code><blockquote>
+<p><a href="http://localhost:8765/" target="_blank" rel="external">http://localhost:8765/</a> &#x4F1A;&#x663E;&#x793A;&#x6CE8;&#x518C;&#x7684; UUID &#x670D;&#x52A1;<br>&#x7B2C; 4 &#x6B65;&#x6267;&#x884C;&#x540E;&#xFF0C;&#x4F1A;&#x5728;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;&#xFF1A;</p>
+<blockquote>
+<p>2017-03-02 14:47:02.216  INFO [UUID,a945b5d3b97a31b4,a945b5d3b97a31b4,false] 9716 &#x2014; [nio-8081-exec-1] io.github.hiant.UUIDController           : Logger[io.github.hiant.UUIDController]</p>
+</blockquote>
+</blockquote>
+</li>
+<li>&#x542F;&#x52A8; <code>io.github.hiant.EurekaServiceComplexDemoApplication</code><blockquote>
+<p>&#x7B2C; 4 &#x6B65;&#x6267;&#x884C;&#x540E;&#xFF0C;&#x4F1A;&#x5728;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;&#xFF1A;</p>
+<blockquote>
+<p>2017-03-02 14:47:04.060  INFO [TIME,a945b5d3b97a31b4,eec94acf057e7556,false] 424 &#x2014; [nio-8082-exec-1] io.github.hiant.TimeController           : Logger[io.github.hiant.TimeController]</p>
+</blockquote>
+</blockquote>
+</li>
+<li>&#x542F;&#x52A8; <code>io.github.hiant.EurekaClientDemoApplication</code><blockquote>
+<p>&#x4F1A;&#x5728;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;&#x83B7;&#x53D6;&#x5230;&#x7684; uuid</p>
+</blockquote>
+</li>
+</ol>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5728;&#x8C03;&#x7528;&#x94FE;&#x4E2D;&#xFF0C;uuid &#x670D;&#x52A1;&#x662F;&#x5165;&#x53E3;&#x670D;&#x52A1;&#xFF0C;&#x6240;&#x4EE5; trace ID &#x548C; span ID &#x90FD;&#x662F;&#xFF1A;a945b5d3b97a31b4&#xFF1B;&#x800C; time &#x670D;&#x52A1;&#x662F; uuid &#x7684;&#x4E0B;&#x6E38;&#x670D;&#x52A1;&#xFF0C;&#x6240;&#x4EE5; trace ID &#x662F; uuid &#x670D;&#x52A1;&#x7684; span ID&#xFF1A;a945b5d3b97a31b4</p>
+<h2 id="&#x6269;&#x5C55;">4.4. &#x6269;&#x5C55;</h2><p>HTTP &#x5E94;&#x7B54;&#x5934;&#x4E2D;&#xFF0C;&#x4F1A;&#x589E;&#x52A0;2&#x4E2A;&#x5C5E;&#x6027;&#xFF1A;</p>
+<pre><code>1. X-B3-SpanId&#xFF1A;&#x5F53;&#x524D;&#x670D;&#x52A1;&#x7684; id
+2. X-B3-TraceId: &#x4E0A;&#x6E38;&#x670D;&#x52A1;&#x7684; id
+</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-02T08:41:03.840Z" itemprop="dateUpdated">2017年3月2日 16:41</time>
+</span><br>
+
+
+        本站所有文章均为原创，欢迎订阅，转载请注明出处：<a href="/2017/03/02/spring-cloud-0x2/" target="_blank" rel="external">http://hiant.github.io/2017/03/02/spring-cloud-0x2/</a>
+    </div>
+    <footer>
+        <a href="http://hiant.github.io">
+            <img src="/img/author.jpg" alt="Hi ant">
+            Hi ant
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-cloud/">spring cloud</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2017/03/02/spring-cloud-0x2/&title=《spring-cloud实战0x2——服务调用追踪》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2017/03/02/spring-cloud-0x2/&title=《spring-cloud实战0x2——服务调用追踪》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2017/03/02/spring-cloud-0x2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《spring-cloud实战0x2——服务调用追踪》 — 拾遗集&url=http://hiant.github.io/2017/03/02/spring-cloud-0x2/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2017/03/02/spring-cloud-0x2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/03/01/spring-cloud-0x1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">spring-cloud实战0x1——服务注册与发现</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="spring-cloud-0x2" data-title="spring-cloud实战0x2——服务调用追踪" data-url="http://hiant.github.io/2017/03/02/spring-cloud-0x2/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'hiant', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.7');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>拾遗集 &copy; 2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://hiant.github.io/2017/03/02/spring-cloud-0x2/&title=《spring-cloud实战0x2——服务调用追踪》 — 拾遗集&pic=http://hiant.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://hiant.github.io/2017/03/02/spring-cloud-0x2/&title=《spring-cloud实战0x2——服务调用追踪》 — 拾遗集&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://hiant.github.io/2017/03/02/spring-cloud-0x2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《spring-cloud实战0x2——服务调用追踪》 — 拾遗集&url=http://hiant.github.io/2017/03/02/spring-cloud-0x2/&via=http://hiant.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://hiant.github.io/2017/03/02/spring-cloud-0x2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3aQW7DMAwFUd//0s6miwKJlfmUHED0eFUEscqnBUNSOg78nMPn/3euvj9e+f2t445HhgwZ2zJ4iFf/gL81XoFsx2UkMmTIeACDL00AcRATbBkyZMioJcRxmuafy5AhQ8YdDNJj8iZWhgwZMmqjtFqxSMIlny/oxWXIkLEhg0/df//3LecbMmTI2Ipxhs844fL0uiqevzVlyJDRmsETHBno86D5asEKMmTIaM3gQzTe3KZJNt2Uy5VlyJDRlMGbRj6Mq13LSJvn+HdDhgwZ2zL4yzMXLNLGNT7ClCFDRlMGaTVTXu3AcuqIVIYMGQ9j1C43pFc00ib5SwqWIUNGawYfu4/TIgGTFXiyRiQZMmS0YPB2kZR36Yitth0feDJkyGjNSMvBtHSrJd/auzJkyOjKqKXL+ZKRb1OxkpUhQ0YjRnp4uerAgARa2z4ZMmT0Y9SS4ImfdLhfO8iUIUNGb0aa4MaJLz2STAtENMKTIUNGawa/4MWLuVrCJccPqK2VIUNGI0baWPIrETUqObz8EKEMGTIewCiWX6XJfNrQxr8SMmTIaMrgQdcG/Qsq1nG0MmTIaMo4w4cP6H/af8uQIaM1Iy31UuQd0zB0Z0SGDBntGPzCRLoradBTCVeGDBkPYMyMzOYb17SJlSFDhgzOWNXi1pK1DBkyZKzqidNrGXx49+WyhQwZMtoxSBOblnc86HQKKEOGjKcx0tZx1RFjWhrOtL4yZMjYlvEC4ol0cgYZX7YAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.7" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

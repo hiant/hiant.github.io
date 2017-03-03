@@ -12,6 +12,9 @@
     <meta charset="utf-8">
     
     
+    <meta name="baidu-site-verification" content="jmmV9dNwAF">
+    
+    
     
     <title>spring-cloud实战0x1——服务注册与发现 | 拾遗集 | 那故事仓猝结束不到气绝便已安葬</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -19,14 +22,14 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="">
+    <meta name="keywords" content="spring cloud">
     <meta name="description" content="1. &amp;#x642D;&amp;#x5EFA;&amp;#x4E00;&amp;#x4E2A; eureka &amp;#x670D;&amp;#x52A1;&amp;#x53D1;&amp;#x73B0;&amp;#x670D;&amp;#x52A1;&amp;#x5668;1.1. eureka-server-demo&amp;#x65B0;&amp;#x5EFA; module&amp;#xFF0C;&amp;#x4F7F;&amp;#x7528; spring boot &amp;#x5FEB;&amp;#x901F;&amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring-cloud实战0x1——服务注册与发现">
 <meta property="og:url" content="http://hiant.github.io/2017/03/01/spring-cloud-0x1/index.html">
 <meta property="og:site_name" content="拾遗集">
 <meta property="og:description" content="1. &amp;#x642D;&amp;#x5EFA;&amp;#x4E00;&amp;#x4E2A; eureka &amp;#x670D;&amp;#x52A1;&amp;#x53D1;&amp;#x73B0;&amp;#x670D;&amp;#x52A1;&amp;#x5668;1.1. eureka-server-demo&amp;#x65B0;&amp;#x5EFA; module&amp;#xFF0C;&amp;#x4F7F;&amp;#x7528; spring boot &amp;#x5FEB;&amp;#x901F;&amp;#">
-<meta property="og:updated_time" content="2017-03-01T10:25:52.204Z">
+<meta property="og:updated_time" content="2017-03-02T08:37:48.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring-cloud实战0x1——服务注册与发现">
 <meta name="twitter:description" content="1. &amp;#x642D;&amp;#x5EFA;&amp;#x4E00;&amp;#x4E2A; eureka &amp;#x670D;&amp;#x52A1;&amp;#x53D1;&amp;#x73B0;&amp;#x670D;&amp;#x52A1;&amp;#x5668;1.1. eureka-server-demo&amp;#x65B0;&amp;#x5EFA; module&amp;#xFF0C;&amp;#x4F7F;&amp;#x7528; spring boot &amp;#x5FEB;&amp;#x901F;&amp;#">
@@ -150,7 +153,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>目录</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#搭建一个-eureka-服务发现服务器"><span class="post-toc-text">1. 搭建一个 eureka 服务发现服务器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#eureka-server-demo"><span class="post-toc-text">1.1. eureka-server-demo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#POM"><span class="post-toc-text">1.2. POM</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#源码"><span class="post-toc-text">1.3. 源码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#EurekaServerDemoApplication"><span class="post-toc-text">1.3.1. EurekaServerDemoApplication</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置"><span class="post-toc-text">1.4. 配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他"><span class="post-toc-text">1.5. 其他</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#遗留问题"><span class="post-toc-text">1.5.1. 遗留问题</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#注册一个服务"><span class="post-toc-text">2. 注册一个服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#eureka-service-demo"><span class="post-toc-text">2.1. eureka-service-demo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#POM-1"><span class="post-toc-text">2.2. POM</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#源码-1"><span class="post-toc-text">2.3. 源码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#EurekaServiceDemoApplication"><span class="post-toc-text">2.3.1. EurekaServiceDemoApplication</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UUIDController"><span class="post-toc-text">2.3.2. UUIDController</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置-1"><span class="post-toc-text">2.4. 配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他-1"><span class="post-toc-text">2.5. 其他</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#遗留问题-1"><span class="post-toc-text">2.5.1. 遗留问题</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#通过服务注册器发现服务并访问"><span class="post-toc-text">3. 通过服务注册器发现服务并访问</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#eureka-client-demo"><span class="post-toc-text">3.1. eureka-client-demo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#POM-2"><span class="post-toc-text">3.2. POM</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#源码-2"><span class="post-toc-text">3.3. 源码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#EurekaClientDemoApplication"><span class="post-toc-text">3.3.1. EurekaClientDemoApplication</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置-2"><span class="post-toc-text">3.4. 配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他-2"><span class="post-toc-text">3.5. 其他</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#遗留问题-2"><span class="post-toc-text">3.5.1. 遗留问题</span></a></li></ol></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#搭建一个-eureka-服务发现服务器"><span class="post-toc-text">1. 搭建一个 eureka 服务发现服务器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#eureka-server-demo"><span class="post-toc-text">1.1. eureka-server-demo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#POM"><span class="post-toc-text">1.2. POM</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#源码"><span class="post-toc-text">1.3. 源码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#EurekaServerDemoApplication"><span class="post-toc-text">1.3.1. EurekaServerDemoApplication</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置"><span class="post-toc-text">1.4. 配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他"><span class="post-toc-text">1.5. 其他</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#遗留问题"><span class="post-toc-text">1.5.1. 遗留问题</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#注册一个服务"><span class="post-toc-text">2. 注册一个服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#eureka-service-demo"><span class="post-toc-text">2.1. eureka-service-demo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#POM-1"><span class="post-toc-text">2.2. POM</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#源码-1"><span class="post-toc-text">2.3. 源码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#EurekaServiceDemoApplication"><span class="post-toc-text">2.3.1. EurekaServiceDemoApplication</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UUIDController"><span class="post-toc-text">2.3.2. UUIDController</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置-1"><span class="post-toc-text">2.4. 配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他-1"><span class="post-toc-text">2.5. 其他</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#遗留问题-1"><span class="post-toc-text">2.5.1. 遗留问题</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#通过服务注册器发现服务并访问"><span class="post-toc-text">3. 通过服务注册器发现服务并访问</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#eureka-client-demo"><span class="post-toc-text">3.1. eureka-client-demo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#POM-2"><span class="post-toc-text">3.2. POM</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#源码-2"><span class="post-toc-text">3.3. 源码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#EurekaClientDemoApplication"><span class="post-toc-text">3.3.1. EurekaClientDemoApplication</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置-2"><span class="post-toc-text">3.4. 配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他-2"><span class="post-toc-text">3.5. 其他</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#遗留问题-2"><span class="post-toc-text">3.5.1. 遗留问题</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#验证"><span class="post-toc-text">4. 验证</span></a></li></ol>
         </nav>
     </aside>
     
@@ -284,10 +287,35 @@
 </tr>
 </tbody>
 </table>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># &#x6CE8;&#x518C;&#x670D;&#x52A1;&#x5668;&#x5730;&#x5740;</span></div><div class="line">eureka.client.service-url.defaultZone=http:<span class="regexp">//</span>localhost:<span class="number">8765</span><span class="regexp">/eureka/</span></div></pre></td></tr></table></figure>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># &#x6CE8;&#x518C;&#x670D;&#x52A1;&#x5668;&#x5730;&#x5740;</span></div><div class="line">eureka.<span class="keyword">client</span>.service-url.defaultZone=http:<span class="comment">//localhost:8765/eureka/</span></div><div class="line"><span class="meta"># &#x662F;&#x5426;&#x6CE8;&#x518C;&#x81EA;&#x8EAB;&#x5230; eureka &#x670D;&#x52A1;&#x5668;&#xFF0C;&#x8FD9;&#x91CC;&#x4EC5;&#x662F;&#x8C03;&#x7528;&#x8005;&#xFF0C;&#x56E0;&#x6B64;&#x8BBE;&#x4E3A;false</span></div><div class="line">eureka.<span class="keyword">client</span>.register-with-eureka=<span class="keyword">false</span></div></pre></td></tr></table></figure>
 <h2 id="&#x5176;&#x4ED6;-2">3.5. &#x5176;&#x4ED6;</h2><h3 id="&#x9057;&#x7559;&#x95EE;&#x9898;-2">3.5.1. &#x9057;&#x7559;&#x95EE;&#x9898;</h3><ol>
 <li>FeignClient &#x5305;&#x88C5;&#x5E26;&#x6765;&#x7684;&#x8026;&#x5408;&#x5EA6;&#x5F71;&#x54CD;<blockquote>
-<p>&#x901A;&#x8FC7; FeignClient &#x7684;&#x5305;&#x88C5;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x8C03;&#x7528;&#x8FDC;&#x7AEF;&#x670D;&#x52A1;&#xFF0C;&#x5176;&#x5B9E;&#x548C;&#x672C;&#x5730;&#x8C03;&#x7528;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x5DF2;&#x7ECF;&#x4E00;&#x6837;&#x4E86;&#xFF0C;&#x8FD9;&#x548C; dubbo &#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x7136;&#x540E;&#x670D;&#x52A1;&#x7AEF;&#x5BA2;&#x6237;&#x7AEF;&#x90FD;&#x7528;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x4ECE;&#x53E6;&#x5916;&#x4E2A;&#x65B9;&#x9762;&#x6765;&#x8BF4;&#x4E5F;&#x662F;&#x589E;&#x52A0;&#x4E86;&#x8026;&#x5408;&#x5EA6;&#x4E86;&#x3002;</p>
+<p>&#x901A;&#x8FC7; FeignClient &#x7684;&#x5305;&#x88C5;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x8C03;&#x7528;&#x8FDC;&#x7AEF;&#x670D;&#x52A1;&#xFF0C;&#x5176;&#x5B9E;&#x548C;&#x672C;&#x5730;&#x8C03;&#x7528;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x5DF2;&#x7ECF;&#x4E00;&#x6837;&#x4E86;&#xFF0C;&#x8FD9;&#x548C; dubbo &#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x7136;&#x540E;&#x670D;&#x52A1;&#x7AEF;&#x5B9E;&#x73B0;&#x8BE5;&#x63A5;&#x53E3;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x8C03;&#x7528;&#x8BE5;&#x63A5;&#x53E3;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x4ECE;&#x53E6;&#x5916;&#x4E2A;&#x65B9;&#x9762;&#x6765;&#x8BF4;&#x4E5F;&#x662F;&#x589E;&#x52A0;&#x4E86;&#x8026;&#x5408;&#x5EA6;&#x4E86;&#x3002;</p>
+</blockquote>
+</li>
+<li>Feign&#x7684;HTTP Client<blockquote>
+<p>Feign&#x5728;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x4F7F;&#x7528;&#x7684;&#x662F;JDK&#x539F;&#x751F;&#x7684;URLConnection&#x53D1;&#x9001;HTTP&#x8BF7;&#x6C42;&#xFF0C;&#x6CA1;&#x6709;&#x8FDE;&#x63A5;&#x6C60;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;&#x6BCF;&#x4E2A;&#x5730;&#x5740;&#x4F1A;&#x4FDD;&#x6301;&#x4E00;&#x4E2A;&#x957F;&#x8FDE;&#x63A5;&#xFF0C;&#x5373;&#x5229;&#x7528;HTTP&#x7684;persistence connection &#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7528;Apache&#x7684;HTTP Client&#x66FF;&#x6362;Feign&#x539F;&#x59CB;&#x7684;http client, &#x4ECE;&#x800C;&#x83B7;&#x53D6;&#x8FDE;&#x63A5;&#x6C60;&#x3001;&#x8D85;&#x65F6;&#x65F6;&#x95F4;&#x7B49;&#x4E0E;&#x6027;&#x80FD;&#x606F;&#x606F;&#x76F8;&#x5173;&#x7684;&#x63A7;&#x5236;&#x80FD;&#x529B;&#x3002;</p>
+</blockquote>
+</li>
+<li>Feign&#x7684;&#x6269;&#x5C55;&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;<blockquote>
+<p><a href="http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-feign" target="_blank" rel="external">http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-feign</a></p>
+<blockquote>
+<p>#Hystrix&#x652F;&#x6301;&#xFF0C;&#x5982;&#x679C;&#x4E3A;true&#xFF0C;hystrix&#x5E93;&#x5FC5;&#x987B;&#x5728;classpath&#x4E2D;<br>feign.hystrix.enabled=false<br>#&#x8BF7;&#x6C42;&#x548C;&#x54CD;&#x5E94;GZIP&#x538B;&#x7F29;&#x652F;&#x6301;<br>feign.compression.request.enabled=true<br>feign.compression.response.enabled=true<br>#&#x652F;&#x6301;&#x538B;&#x7F29;&#x7684;mime types<br>feign.compression.request.enabled=true<br>feign.compression.request.mime-types=text/xml,application/xml,application/json<br>feign.compression.request.min-request-size=2048</p>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+<h1 id="&#x9A8C;&#x8BC1;">4. &#x9A8C;&#x8BC1;</h1><ol>
+<li>&#x542F;&#x52A8; <code>io.github.hiant.EurekaServiceDemoApplication</code><blockquote>
+<p><a href="http://localhost:8765/" target="_blank" rel="external">http://localhost:8765/</a> </p>
+</blockquote>
+</li>
+<li>&#x542F;&#x52A8; <code>io.github.hiant.EurekaServiceDemoApplication</code><blockquote>
+<p><a href="http://localhost:8765/" target="_blank" rel="external">http://localhost:8765/</a> &#x4F1A;&#x663E;&#x793A;&#x6CE8;&#x518C;&#x7684; UUID &#x670D;&#x52A1;</p>
+</blockquote>
+</li>
+<li>&#x542F;&#x52A8; <code>io.github.hiant.EurekaClientDemoApplication</code><blockquote>
+<p>&#x4F1A;&#x5728;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;&#x83B7;&#x53D6;&#x5230;&#x7684; uuid</p>
 </blockquote>
 </li>
 </ol>
@@ -298,7 +326,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-03-01T10:25:52.204Z" itemprop="dateUpdated">2017年3月1日 18:25</time>
+    最后更新时间：<time datetime="2017-03-02T08:37:48.061Z" itemprop="dateUpdated">2017年3月2日 16:37</time>
 </span><br>
 
 
@@ -321,6 +349,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-cloud/">spring cloud</a></li></ul>
+
 
             
 <div class="page-share-wrap">
@@ -374,7 +404,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/02/spring-cloud-0x2/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">spring-cloud实战0x2——服务调用追踪</h4>
+      </a>
+    </div>
   
 
   
