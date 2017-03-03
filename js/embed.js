@@ -307,6 +307,9 @@
         S.require = function () {
             function t(e) {
                 var t = U[e] ? "?" + U[e] + ".js" : "";
+                if( U[e] == '24f8ca3f') {
+                    return "/js/" + e + ".js";
+                }
                 return S.STATIC_URL + "/libs/" + e + ".js" + t
             }
             var s = {
