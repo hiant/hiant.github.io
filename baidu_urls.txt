@@ -1,1 +1,16 @@
 http://hiant.github.io/2017/03/02/spring-cloud-0x2/
+http://hiant.github.io/2017/03/01/spring-cloud-0x1/
+http://hiant.github.io/2017/03/01/spring-cloud-0x0/
+http://hiant.github.io/2017/02/24/enum/
+http://hiant.github.io/2017/02/24/optimize-and-improve-gitbook-output/
+http://hiant.github.io/2017/02/23/data-difference-between-redis-and-database/
+http://hiant.github.io/2017/01/21/dynamic-data-source-in-spring/
+http://hiant.github.io/2017/01/13/dynamic-logger-level/
+http://hiant.github.io/2016/08/28/rocketmq-0x6/
+http://hiant.github.io/2016/08/26/rocketmq-0x5/
+http://hiant.github.io/2016/08/21/rocketmq-0x4/
+http://hiant.github.io/2016/08/18/rocketmq-0x3/
+http://hiant.github.io/2016/08/16/rocketmq-0x2/
+http://hiant.github.io/2016/08/12/rocketmq-0x1/
+http://hiant.github.io/2016/08/11/rocketmq-0x0/
+http://hiant.github.io/2016/08/01/hello-world/
